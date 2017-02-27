@@ -1,26 +1,36 @@
 import java.util.*;
+import Project230.*;
+
+/**
+ * Account
+ * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
+ * @version 2/22/17
+ */
 
 public class Account{
   
+  //First name of user
   private String firstName;
+  
+  //Last name of user
   private String lastName;
+  
+  //Username of user
   private String username;
+  
+  //The password for the user
   private String password;
+  
+  //type of the account
   private char type;
+  
+  //status of the account
   private boolean status;
   
-  /**
-   * A class with all of the information of the account that is being accessed
-   * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
-   * @version 2/22/17
-   */
-  
-  
-  
-  public Account()
+  public Account(String first, String last, String username, String password, char type, boolean status)
   {
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstName = first;
+    this.lastName = last;
     this.username = username;
     this.password = password;
     this.type = type;
@@ -92,7 +102,7 @@ public class Account{
   
   public String getUsername(String username)
   {
-   return ""; 
+    return ""; 
   }
   
   /**
@@ -102,7 +112,7 @@ public class Account{
   
   public char getType()
   {
-   return 'a'; 
+    return 'a'; 
   }
   
   /**
@@ -122,7 +132,7 @@ public class Account{
   
   public boolean getStatus()
   {
-   return false; 
+    return false; 
   }
   
   /**
