@@ -9,11 +9,13 @@ import Project.*;
  */
 public class AdminUI{
   private AdminFuncController aFuncController;
+  private AccountController aController;
   /**
    * An AdminUI constructor
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();
+    aController = new AccountController();
   }
   
   /**
@@ -89,8 +91,8 @@ public class AdminUI{
    *
    * @param Account object user
    */
-  public void deactivateUser(Account user){
-    
+  public void deactivateUser(String first, String last, String username, String password, char type){
+    aController.deactivateUser(first, last, username, password, type);
   }
   
   /**
@@ -121,8 +123,8 @@ public class AdminUI{
    * 
    * @return true if added else return false
    */
-  public boolean addAccount(String first, String last, String username, String password, char type, boolean status){
-    return false; 
+  public String addAccount(String first, String last, String username, String password, char type){
+    return aFuncController.addAccount(first,last,username,password,type)
   }
   
   /**
