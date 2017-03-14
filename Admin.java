@@ -16,21 +16,18 @@ public class Admin extends Account{
   public Admin(String first, String last, String username, String password)
   {
     super(first,last,username,password,'a');
-    //String[][] universities = new 
   }
   
   /**
-   * Edit a University
-   * 
-   * @return true if the University was edited else return false
-   */
+	   * Edit a University
+	   * 
+	   * @return true if the University was edited else return false
+	   */
   public boolean editUniversity(University school){
-    if(1==1){
-    return true;
-    }
-    return false;
+
+	  return false;
   }
-  
+	  
   /**
    * add an University to the database
    * 

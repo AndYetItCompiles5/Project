@@ -9,6 +9,7 @@ import Project.*;
  */
 public class AdminFuncController {
   private DBController dbController;
+  private UniversityController uController;
   /**
    * Constructor
    * 
@@ -64,7 +65,8 @@ public class AdminFuncController {
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-    return true; 
+		return uController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+				socialScale,lifeScale,emphases);
   }
   
   /**

@@ -10,13 +10,14 @@ import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBController
 {
+	private String[][] universities = new String[][];
   private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   /**
    * Constructor if needed
    */
   public DBController()
   {
-    
+	  
   }
   
   /**
@@ -52,9 +53,20 @@ public class DBController
    * @param school the school to be edited
    * @returns true if the University has been successfully edited
    */
-  public boolean editUniversity(University school)
+  public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
+          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return false;
+	  for(int i =0; int < universities.length(); i++){
+		  if(universities[i][0].equals(school.getName())){
+			  
+	    	    return true;
+		  }
+		  else{
+			  return false;
+		  }
+	  }
   }
   
   /**

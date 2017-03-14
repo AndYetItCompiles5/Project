@@ -52,7 +52,9 @@ public class AdminUI{
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-    return false;
+
+	return aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+				socialScale,lifeScale,emphases);
   }
   
   /**
