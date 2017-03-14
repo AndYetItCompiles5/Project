@@ -21,7 +21,7 @@ public class Account{
   //type of the account 'a' for admin, 'u' for user
   private char type;
   //status of the account (activated or deactivated)
-  private boolean status;
+  private char status;
   
   /**
    * Constructor for an Account
@@ -38,7 +38,7 @@ public class Account{
     this.username = username;
     this.password = password;
     this.type = type;
-    this.status = true;    
+    this.status = 'y';    
   }
   
   /**
@@ -126,7 +126,7 @@ public class Account{
    * Gets the status of the account
    * @return the account's status
    */
-  public boolean getStatus()
+  public char getStatus()
   {
     return status; 
   }
@@ -135,7 +135,7 @@ public class Account{
    * Sets the status of the account
    * @param status: the type being set
    */
-  public void setStatus(boolean status)
+  public void setStatus(char status)
   {
     this.status=status;
   }

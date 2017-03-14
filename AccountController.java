@@ -132,4 +132,8 @@ public class AccountController{
   {
    return ("User is already deactivated"); 
   }
+  
+  public String deactivateUser(String first, String last, String username, String password, char type){
+	  dbController.deactivateUser(first, last, username, password, type);
+  }
 }

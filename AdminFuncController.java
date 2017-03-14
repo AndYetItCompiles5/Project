@@ -9,12 +9,14 @@ import Project.*;
  */
 public class AdminFuncController {
   private DBController dbController;
+  private AccountController aController;
   /**
    * Constructor
    * 
    */
   public AdminFuncController(){
     dbController = new DBController();
+    aController = new AccountController();
   }
   
   /**
@@ -24,8 +26,8 @@ public class AdminFuncController {
    * 
    * @return true if added else return false
    */
-  public boolean addAccount(Account user){
-    return true;
+  public String addAccount(String first, String last, String username, String password, char type){
+    return dbController.addAccount(first,last,username,password,type);
   }
   
   /**
@@ -114,7 +116,7 @@ public class AdminFuncController {
    * @return a confirmation Message 
    */
   public String confirmationMessage(){
-    return null; 
+    return "Are you sure?"; 
   }
   
   /**
@@ -129,7 +131,7 @@ public class AdminFuncController {
    * @return a noNameError 
    */
   public String noNameError(){
-    return null; 
+    return "No name was inputted. Please enter a name"; 
   }
   
   /**

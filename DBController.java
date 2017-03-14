@@ -241,9 +241,16 @@ public class DBController
    * @param account the account to be added to the database
    * @returns true if successfully added to the database
    */
-  public boolean addAccount(Account account)
+  public String addAccount(String first, String last, String username, String password, char type)
   {
-    return false;
+	boolean taken = isUserNameTaken(username);
+	if(!taken){
+		dataBase.user_addUser(first,last,username,password,type);
+		return "Addition Successful!";
+  }
+	else(){
+		return userAlreadyTakenError();
+	}
   }
   
   /**
@@ -253,6 +260,12 @@ public class DBController
    */
   public boolean isUsernameTaken(String username)
   {
+	int[][] userList = dataBase.user_getUsers();
+	for(int i = 0; i<userList.length;i++){
+		if(userList[i][2].equals(username)){
+			return true;
+		}
+	}
     return false;
   }
   
@@ -284,7 +297,7 @@ public class DBController
    * @param account the Account object of the user
    * @returns true if the user was successfully edited
    */
-  public boolean editUser(String first, String last, String password, char type, boolean status, Account account)
+  public boolean editUser(String first, String last, String username, String password, char type, char status)
   {
     return false;
   }
@@ -303,9 +316,17 @@ public class DBController
    * @param account the Account to be checked
    * @returns true if account is deactivated
    */
-  public boolean isDeactivated(Account account)
+  public boolean isDeactivated(String username)
   {
-    return false;
+	  int[][] userList = dataBase.user_getUsers();
+	  for(int i = 0; i<userList.length;i++){
+			if(userList[i][2].equals(username)){
+				if(userList[i][5].equals('n')){
+					return true;
+				}
+			}
+		}
+	    return false;
   }
   
   /**
@@ -313,9 +334,15 @@ public class DBController
    * @param account the account to be deactivated
    * @returns true if successfully deactivated
    */
-  public boolean deactivateUser(Account account)
+  public String deactivateUser(String first, String last, String username, String password, char type)
   {
-    return false;
+	if(isDeactivated(usernam)){
+		return alreadyDeactivatedError();
+	}
+	else{
+	    dataBase.user_editUser(username,first,last,password,type,'n');
+	    return "Deactivation Successful!";
+	}
   }
   
   /**
