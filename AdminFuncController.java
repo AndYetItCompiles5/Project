@@ -33,15 +33,6 @@ public class AdminFuncController {
   }
   
   /**
-   * An Admin can add a new school to the list of schools in the DB
-   * 
-   * @return true if school is added else return false
-   */
-  public boolean addSchool(University school){
-    return true;
-  }
-  
-  /**
    *An Admin can edit a University from the BD 
    * 
    * @param name the name of the University
@@ -94,8 +85,8 @@ public class AdminFuncController {
    * 
    * @return the details of the account
    */
-  public String displayInfo(String first, String last, String username, String password, char type, boolean status){
-    return null; 
+  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
+    return dbController.getAccount(username); 
   }
   
   /**
@@ -110,7 +101,7 @@ public class AdminFuncController {
    * 
    * @return true of the account was editted successifully else return false
    */
-  public int editAccount(String first, String last, String username, String password, char type, char status){
+  public String editAccount(String first, String last, String username, String password, char type, char status){
     return aController.editAccount(first,last,username,password,type,status);
   }
   
@@ -124,12 +115,6 @@ public class AdminFuncController {
   }
   
   /**
-   * resets the field to their default settings 
-   */
-  public void resetFields(){
-  }
-  
-  /**
    * A no name error
    * 
    * @return a noNameError 
@@ -137,17 +122,7 @@ public class AdminFuncController {
   public String noNameError(){
     return "No name was inputted. Please enter a name"; 
   }
-  
-  /**
-   * displays the name of the University
-   * 
-   * @param name name of the University
-   * 
-   * @return name of the University
-   */
-  public String displayUnversity(String name){
-    return name;
-  }
+
   
   /**
    * An empty field error. 

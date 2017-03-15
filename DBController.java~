@@ -118,7 +118,7 @@ public class DBController
       }
     }
     
-    dataBase.user_saveSchool(user, school);
+    return dataBase.user_saveSchool(user, school);
   }
   
   /**

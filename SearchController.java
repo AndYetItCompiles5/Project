@@ -87,22 +87,5 @@ public class SearchController{
   {
     return null;
   }
-  /**
-   * Displays the search results
-   * @param list: the list of universities that will be displayed
-   * @return the set of universities being displayed
-   * 
-   */
-  public Set<String> displayResults(Set<String> list)
-  {
-    return null;
-  }
-  /**
-   * Resets the search fields
-   * 
-   */
-  public void resetFields()
-  {
-    
-  }
+
 }

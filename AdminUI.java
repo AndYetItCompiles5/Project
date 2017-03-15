@@ -110,7 +110,7 @@ public class AdminUI{
    * 
    * @return true if edited else return false
    */
-  public int editAccount(String first, String last,String username, String password, char type, char status){
+  public String editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
   }
   
@@ -133,10 +133,10 @@ public class AdminUI{
    * @param
    * @param
    * 
-   * @return true if added else return false
+   * @returns the info of the user
    */
-  public String displayInfo(String first, String last, String username, String password, char type, char status){
-    return null; 
+  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
+    return aFuncController.displayInfo(first,last,username,password,type,status);
   }
   
   /**
@@ -178,8 +178,8 @@ public class AdminUI{
    * 
    * @return true if change is confirmed else return false
    */
-  public boolean confirmChange(){
-    return true; 
+  public String confirmChange(){
+    return "Are you sure?"; 
   }
   
   /**
@@ -198,17 +198,6 @@ public class AdminUI{
    */
   public String alreadyDeactivatedError(){
     return "The account is already deactivated"; 
-  }
-  
-  /**
-   * display University's name
-   *
-   * @param name
-   * 
-   * @return name
-   */
-  public String displayUniversity(String name){
-    return name; 
   }
   
   /**

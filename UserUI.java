@@ -108,33 +108,11 @@ public class UserUI{
   }
   
   /**
-   * displays results
-   *
-   * @param a set of string called list
-   * 
-   * @return list
-   */
-  public String displayResults(Set<String> list){
-    return "";
-  }
-  
-  /**
-   * show universities
-   *
-   * @param University object school
-   * 
-   * @return the school
-   */
-  public String showSchools(University school){
-    return ""; 
-  }
-  
-  /**
    * The user can edit their acccount
    * 
    * @return true if they made any changes else return false
    */
-  public int editAccount(String firstName,String lastName, String username, String password, char type, char status){
+  public String editAccount(String firstName,String lastName, String username, String password, char type, char status){
     return dbController.editAccount(firstName,lastName,username,password,type,status);
   }
   
@@ -145,17 +123,6 @@ public class UserUI{
    */
   public String confirm(){
     return "confirm"; 
-  }
-  
-  /**
-   *  display University
-   *
-   *@param University object school
-   * 
-   * @return 
-   */
-  public String displayUniversity(University school){
-    return ""; 
   }
   
   /**
@@ -180,6 +147,6 @@ public class UserUI{
    *confirmation message to change
    */
   public String confirmChange(){
-    return "are you sure?"; 
+    return "Are you sure?"; 
   }
 }

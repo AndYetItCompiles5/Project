@@ -122,53 +122,25 @@ public class DBController
   }
   
   /**
-   * Method that checks is a username already exists
-   * @param username the username being searched for
-   * @returns true if the username already exists
-   */
-  public boolean isUsername(String username)
-  {
-    return false;
-  }
-  
-  /**
-   * Gets the password from a specified Account object
-   * @param user the Account object the password is being retrieved from
-   * @returns a String(the password)
-   */
-  public String getPassword(Account user)
-  {
-    return "";
-  }
-  
-  /**
-   * Gets the status from a specified Account object
-   * @param user the Account object the status is being pulled from
-   * @returns true if the account is active
-   */
-  public boolean getStatus(Account user)
-  {
-    return false;
-  }
-  
-  /**
-   * Get the type of a specified Account object
-   * @param user the Account object the type is being pulled from
-   * @returns A if admin, U is user
-   */
-  public char getType(Account user)
-  {
-    return 'a';
-  }
-  
-  /**
    * Returns an Account object based off of a username
    * @param username the username being used to search for the account
    * @returns an the account based off the username
    */
-  public Account getAccount(String username)
+  public ArrayList<String> getAccount(String username)
   {
-    return null;
+    ArrayList<String> info = new ArrayList<String>();
+    String[][] users = dataBase.user_getUsers();
+    for(int i= 0; i<users.length;i++){
+      if(users[i][2].equals(username)){
+       info.add(users[i][0]);   
+       info.add(users[i][1]);
+       info.add(users[i][2]); 
+       info.add(users[i][3]); 
+       info.add(users[i][4]); 
+       info.add(users[i][5]); 
+      }
+    }
+    return info;
   }
   
   /**
@@ -273,33 +245,14 @@ public class DBController
       return false; 
     }
   }
-  
-  /**
-   * Displays the Set of University objects
-   * @param setOfSchools the set of University objects 
-   * @returns the Set of University objects
-   */
-  public Set<University> displayResults(Set<String> setOfSchools)
-  {
-    return null;
-  }
+
   
   /**
    * Confirms stuff -----
    */
-  public void confirm()
+  public String confirm()
   {
-    
-  }
-  
-  /**
-   * Takes a University object and displays it's name
-   * @param school the University whose name is to be displayed
-   * @returns the name of school
-   */
-  public String displayUniversity(University school)
-  {
-    return ""; 
+    return "Are you sure?";
   }
   
   public int removeSchool(String user, String school)
@@ -409,9 +362,10 @@ public class DBController
    * @param account the Account object of the user
    * @returns true if the user was successfully edited
    */
-  public int editAccount(String first, String last, String username, String password, char type, char status)
+  public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-    return dataBase.user_editUser(username,first,last,password,type,status);
+    dataBase.user_editUser(username,first,last,password,type,status);
+    return "Edit Successful!";
   }
   
   /**
@@ -420,7 +374,7 @@ public class DBController
    */
   public String confirmationMessage()
   {
-    return "";
+    return "Are you sure?";
   }
   
   /**
