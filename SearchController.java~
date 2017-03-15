@@ -9,7 +9,7 @@ import Project.*;
  */
 
 public class SearchController{
- 
+  
   public SearchController()
   {
     
@@ -36,9 +36,9 @@ public class SearchController{
    * @return set of schools that match the search criteria
    */
   public Set<String> search(String name, String state, String loc, String control, int numStudents,
-                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                               int socialScale, int lifeScale, ArrayList<String> emphases)
+                            double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                            int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                            int socialScale, int lifeScale, ArrayList<String> emphases)
   {
     return null;
   }
@@ -64,9 +64,9 @@ public class SearchController{
    * @return set of recommended schools
    */
   public Set<String> findReccomendations(String name, String state, String loc, String control, int numStudents,
-                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                               int socialScale, int lifeScale, ArrayList<String> emphases)
+                                         double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                                         int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                                         int socialScale, int lifeScale, ArrayList<String> emphases)
   {
     return null;
   }
