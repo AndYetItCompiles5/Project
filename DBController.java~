@@ -10,7 +10,7 @@ import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBController
 {
-  
+  private String[][] universities = new String[][];
   private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   private UniversityController uController = new UniversityController();
   /**
@@ -18,26 +18,16 @@ public class DBController
    */
   public DBController()
   {
-    
+	  
   }
   
   /**
    * Returns the user to themselves when they are logging in/editing their profile
    * @returns the User object to the current User
    */
-  public ArrayList getUser(username)
+  public User getUser()
   {
-	ArrayList() userInfo = new ArrayList();
-    String[][] users = dataBase.user_getUsers();
-    for(int i = 0; i<users.length;i++){
-    	if(users[i][2].equals(username)){
-    		userInfo.add(users[i][2]);
-    		userInfo.add(users[i][3]);
-    		userInfo.add(users[i][4].charAt(0));
-    		userInfo.add(users[i][5].charAt(0));
-    	}
-    }
-    return userInfo;
+    return null;
   }
   
   /**
@@ -58,20 +48,33 @@ public class DBController
     }
     return result;
   }
-//change return type to Set<University> in class diagram
+  
   /**
    * Method that takes a Universty object and edits it's info in the database
    * @param school the school to be edited
    * @returns true if the University has been successfully edited
    */
   public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases)
+          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    dataBase.university_editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
-                                       numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return true;
+	  for(int i =0; int < universities.length(); i++){
+		  if(universities[i][0].equals(school.getName())){
+			  
+			  dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+				socialScale,lifeScale,emphases);
+				if(){
+					
+					return false
+				}
+				
+	    	    return true;
+		  }
+		  else{
+			  return false;
+		  }
+	  }
   }
   
   /**
@@ -79,22 +82,9 @@ public class DBController
    * @param school the new University object to be added to the database
    * @returns true if the school has been added successfully
    */
-  public String addUniversity(String name, String state, String loc, String control, int numStudents,
-          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-          int socialScale, int lifeScale, ArrayList<String> emphases) //changed from addSchool()
+  public boolean addUniversity(University school) //changed from addSchool()
   {
-	if(isSchoolSaved(name)){
-		return alreadySavedError();
-		
-	}
-	else{
-    dataBase.university_addUniversity(name,state, location, control, numStudents,
-            perFemale, satVerbal, satMath, expenses, perFA,
-            numApplicants, perAdmitted, perEnrolled, academicScale,
-            socialScale, lifeScale, emphases);
-    return "Save Successful!";
-  }
+    return false;
   }
   
   /**
@@ -169,9 +159,9 @@ public class DBController
    * Returns a Set of all the University objects in the database
    * @returns a Set of all the University objects in the database
    */
-  public String[][] getAllUniversities() 
+  public Set<University> getAllUniversities() // change return type to Set<University> in class diagram
   {
-    return dataBase.university_getUniversities();
+    return null;
   }
   
   /**
@@ -236,15 +226,9 @@ public class DBController
    * @param school the University we want to save to the database
    * @returns true if the school has been saved
    */
-  public boolean isSchoolSaved(String name)
+  public boolean isSchoolSaved(University school)
   {
-	  int[][] universityList = dataBase.university_getUniversities();
-		for(int i = 0; i<universityList.length;i++){
-			if(userList[i][0].equals(name)){
-				return true;
-			}
-		}
-	    return false;
+    return false;
   }
   
   /**
@@ -279,14 +263,14 @@ public class DBController
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
-    boolean taken = isUsernameTaken(username);
-    if(!taken){
-      dataBase.user_addUser(first,last,username,password,type);
-      return "Addition Successful!";
-    }
-    else{
-      return userAlreadyTakenError();
-    }
+	boolean taken = isUserNameTaken(username);
+	if(!taken){
+		dataBase.user_addUser(first,last,username,password,type);
+		return "Addition Successful!";
+  }
+	else(){
+		return userAlreadyTakenError();
+	}
   }
   
   /**
@@ -296,12 +280,12 @@ public class DBController
    */
   public boolean isUsernameTaken(String username)
   {
-    String[][] userList = dataBase.user_getUsers();
-    for(int i = 0; i<userList.length;i++){
-      if(userList[i][2].equals(username)){
-        return true;
-      }
-    }
+	int[][] userList = dataBase.user_getUsers();
+	for(int i = 0; i<userList.length;i++){
+		if(userList[i][2].equals(username)){
+			return true;
+		}
+	}
     return false;
   }
   
@@ -354,7 +338,6 @@ public class DBController
    */
   public boolean isDeactivated(String username)
   {
-<<<<<<< HEAD
 	  int[][] userList = dataBase.user_getUsers();
 	  for(int i = 0; i<userList.length;i++){
 			if(userList[i][2].equals(username)){
@@ -363,18 +346,7 @@ public class DBController
 				}
 			}
 		}
-	  return false;
-=======
-    String[][] userList = dataBase.user_getUsers();
-    for(int i = 0; i<userList.length;i++){
-      if(userList[i][2].equals(username)){
-        if(userList[i][5].equals('n')){
-          return true;
-        }
-      }
-    }
-    return false;
->>>>>>> d8dffa436f28c8e5cb6f76260a44f68c5e802b33
+	    return false;
   }
   
   /**
@@ -384,13 +356,13 @@ public class DBController
    */
   public String deactivateUser(String first, String last, String username, String password, char type)
   {
-    if(isDeactivated(username)){
-      return alreadyDeactivatedError();
-    }
-    else{
-      dataBase.user_editUser(username,first,last,password,type,'n');
-      return "Deactivation Successful!";
-    }
+	if(isDeactivated(usernam)){
+		return alreadyDeactivatedError();
+	}
+	else{
+	    dataBase.user_editUser(username,first,last,password,type,'n');
+	    return "Deactivation Successful!";
+	}
   }
   
   /**

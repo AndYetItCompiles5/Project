@@ -9,7 +9,7 @@ import Project.*;
  */
 
 public class Admin extends Account{
-  
+   
   /**
    *Constructor 
    */
@@ -19,15 +19,15 @@ public class Admin extends Account{
   }
   
   /**
-   * Edit a University
-   * 
-   * @return true if the University was edited else return false
-   */
+	   * Edit a University
+	   * 
+	   * @return true if the University was edited else return false
+	   */
   public boolean editUniversity(University school){
-    
-    return false;
+
+	  return false;
   }
-  
+	  
   /**
    * add an University to the database
    * 

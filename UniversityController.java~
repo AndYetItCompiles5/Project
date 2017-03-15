@@ -8,7 +8,7 @@ import Project.*;
  * @version 2/22/17
  */
 public class UniversityController{
-  private DBController dbController;
+	private DBController dbController;
   public UniversityController(){
     
     
@@ -34,15 +34,12 @@ public class UniversityController{
    * @param emphases up to five areas of study the University excels at (all Strings)
    * @return true if the university was added
    */
-  public String addUniversity(String name, String state, String loc, String control, int numStudents,
+  public boolean addUniversity(String name, String state, String loc, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.addUniversity(name,state, location, control, numStudents,
-                                perFemale, satVerbal, satMath, expenses, perFA,
-                                numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale, emphases);
+    return false;
   }
   /**
    * Lets the admin edit the given university
@@ -50,12 +47,12 @@ public class UniversityController{
    * @return true if the universiy was successfully edited 
    */
   public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases)
+          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
-                                       socialScale,lifeScale,emphases);
+   return dbController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+			socialScale,lifeScale,emphases);
   }
   /**
    * Sends a confirmation message to the user
@@ -63,8 +60,8 @@ public class UniversityController{
    */
   public boolean confirmationMessage()
   {
-    //"Are you sure want to make those change(s)"
-    return true;
+	  //"Are you sure want to make those change(s)"
+    return ;
   }
   
 }
