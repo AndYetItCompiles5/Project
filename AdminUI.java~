@@ -55,19 +55,18 @@ public class AdminUI{
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-    
-    
-    if(aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
-                                      socialScale,lifeScale,emphases) ==true){
-      boolean answer = confirmChange();
-      
-      if(answer == true){
-        return aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
-                                              socialScale,lifeScale,emphases);
-        
-      }
-    } 
-    return false;
+
+	  
+	if(aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+				socialScale,lifeScale,emphases) ==true){
+		boolean answer = confirmChange();
+		
+		if(answer == true){
+			return aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+			socialScale,lifeScale,emphases);
+			
+		}
+	}	
   }
   
   /**
@@ -135,7 +134,7 @@ public class AdminUI{
    * @return true if added else return false
    */
   public String addAccount(String first, String last, String username, String password, char type){
-    return aFuncController.addAccount(first,last,username,password,type);
+    return aFuncController.addAccount(first,last,username,password,type)
   }
   
   /**

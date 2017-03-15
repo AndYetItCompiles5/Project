@@ -10,7 +10,6 @@ import Project.*;
 
 public class AccountController{
   private Account loggedIn = null;
-  private DBController dbController;
   /**
    * default empty constructor
    */
@@ -26,7 +25,7 @@ public class AccountController{
    */
   public boolean login(String username, String password)
   {
-    return false; 
+   return false; 
   }
   /**
    * Logs the user out with the specified username and password
@@ -43,7 +42,7 @@ public class AccountController{
    */
   public boolean addAccount(Account account)
   {
-    return false; 
+   return false; 
   }
   /**
    * Logs the person in as an admin
@@ -73,7 +72,7 @@ public class AccountController{
    */
   public String wrongLoginInfoError()
   {
-    return ("Wrong login information:Please try again"); 
+   return ("Wrong login information:Please try again"); 
   }
   /**
    * Gives an error if the account is deactivated
@@ -81,7 +80,7 @@ public class AccountController{
    */
   public String deactivateError()
   {
-    return ("Account is deactivated, please contact an administrator"); 
+   return ("Account is deactivated, please contact an administrator"); 
   }
   /**
    * Edits the user with the given information
@@ -92,7 +91,7 @@ public class AccountController{
    */
   public boolean editUser(String first, String last, String password)
   {
-    return false; 
+   return false; 
   }
   /**
    * Gives a message asking the user to confirm their changes
@@ -100,7 +99,7 @@ public class AccountController{
    */
   public String confirm()
   {
-    return ("Are you sure?"); 
+   return ("Are you sure?"); 
   }
   /**
    * Edits any account with the given information
@@ -123,7 +122,7 @@ public class AccountController{
    */
   public String confirmationMessage()
   {
-    return ("Are you sure?"); 
+   return ("Are you sure?"); 
   }
   /**
    * Gives an error saying the account is already deactivated
@@ -131,11 +130,10 @@ public class AccountController{
    */
   public String alreadyDeactivatedError()
   {
-    return ("User is already deactivated"); 
+   return ("User is already deactivated"); 
   }
   
   public String deactivateUser(String first, String last, String username, String password, char type){
-    dbController.deactivateUser(first, last, username, password, type);
-    return "";
+	  dbController.deactivateUser(first, last, username, password, type);
   }
 }

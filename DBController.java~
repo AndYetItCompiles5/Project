@@ -10,7 +10,7 @@ import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBController
 {
-  
+  private String[][] universities = new String[][];
   private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   private UniversityController uController = new UniversityController();
   /**
@@ -18,7 +18,7 @@ public class DBController
    */
   public DBController()
   {
-    
+	  
   }
   
   /**
@@ -55,13 +55,26 @@ public class DBController
    * @returns true if the University has been successfully edited
    */
   public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases)
+          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    dataBase.university_editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
-                                       numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return true;
+	  for(int i =0; int < universities.length(); i++){
+		  if(universities[i][0].equals(school.getName())){
+			  
+			  dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
+				socialScale,lifeScale,emphases);
+				if(){
+					
+					return false
+				}
+				
+	    	    return true;
+		  }
+		  else{
+			  return false;
+		  }
+	  }
   }
   
   /**
@@ -250,14 +263,14 @@ public class DBController
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
-    boolean taken = isUsernameTaken(username);
-    if(!taken){
-      dataBase.user_addUser(first,last,username,password,type);
-      return "Addition Successful!";
-    }
-    else{
-      return userAlreadyTakenError();
-    }
+	boolean taken = isUserNameTaken(username);
+	if(!taken){
+		dataBase.user_addUser(first,last,username,password,type);
+		return "Addition Successful!";
+  }
+	else(){
+		return userAlreadyTakenError();
+	}
   }
   
   /**
@@ -267,12 +280,12 @@ public class DBController
    */
   public boolean isUsernameTaken(String username)
   {
-    String[][] userList = dataBase.user_getUsers();
-    for(int i = 0; i<userList.length;i++){
-      if(userList[i][2].equals(username)){
-        return true;
-      }
-    }
+	int[][] userList = dataBase.user_getUsers();
+	for(int i = 0; i<userList.length;i++){
+		if(userList[i][2].equals(username)){
+			return true;
+		}
+	}
     return false;
   }
   
@@ -325,15 +338,15 @@ public class DBController
    */
   public boolean isDeactivated(String username)
   {
-    String[][] userList = dataBase.user_getUsers();
-    for(int i = 0; i<userList.length;i++){
-      if(userList[i][2].equals(username)){
-        if(userList[i][5].equals('n')){
-          return true;
-        }
-      }
-    }
-    return false;
+	  int[][] userList = dataBase.user_getUsers();
+	  for(int i = 0; i<userList.length;i++){
+			if(userList[i][2].equals(username)){
+				if(userList[i][5].equals('n')){
+					return true;
+				}
+			}
+		}
+	    return false;
   }
   
   /**
@@ -343,13 +356,13 @@ public class DBController
    */
   public String deactivateUser(String first, String last, String username, String password, char type)
   {
-    if(isDeactivated(username)){
-      return alreadyDeactivatedError();
-    }
-    else{
-      dataBase.user_editUser(username,first,last,password,type,'n');
-      return "Deactivation Successful!";
-    }
+	if(isDeactivated(usernam)){
+		return alreadyDeactivatedError();
+	}
+	else{
+	    dataBase.user_editUser(username,first,last,password,type,'n');
+	    return "Deactivation Successful!";
+	}
   }
   
   /**
