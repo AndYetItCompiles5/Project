@@ -11,7 +11,7 @@ public class AdminFuncController {
   private DBController dbController;
   private UniversityController uController;
   private AccountController aController;
-
+  
   /**
    * Constructor
    * 
@@ -68,8 +68,9 @@ public class AdminFuncController {
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-		return uController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale)
-				socialScale,lifeScale,emphases);
+    return uController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,
+                                      expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
+                                      socialScale,lifeScale,emphases);
   }
   
   /**
@@ -162,8 +163,11 @@ public class AdminFuncController {
    * 
    * @return a list of Universities
    */
-  public ArrayList<String> viewUniversities(){
-    return null; 
+  public String[][] viewUniversities(){
+    return dbController.getAllUniversities();
+    
+    	}
+    }
   }
   
 }

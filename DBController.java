@@ -25,17 +25,17 @@ public class DBController
    * Returns the user to themselves when they are logging in/editing their profile
    * @returns the User object to the current User
    */
-  public ArrayList getUser(username)
+  public ArrayList getUser(String username)
   {
-	ArrayList() userInfo = new ArrayList();
+    ArrayList userInfo = new ArrayList();
     String[][] users = dataBase.user_getUsers();
     for(int i = 0; i<users.length;i++){
-    	if(users[i][2].equals(username)){
-    		userInfo.add(users[i][2]);
-    		userInfo.add(users[i][3]);
-    		userInfo.add(users[i][4].charAt(0));
-    		userInfo.add(users[i][5].charAt(0));
-    	}
+      if(users[i][2].equals(username)){
+        userInfo.add(users[i][2].toString());
+        userInfo.add(users[i][3].toString());
+        userInfo.add(users[i][4].charAt(0));
+        userInfo.add(users[i][5].charAt(0));
+      }
     }
     return userInfo;
   }
@@ -80,21 +80,21 @@ public class DBController
    * @returns true if the school has been added successfully
    */
   public String addUniversity(String name, String state, String loc, String control, int numStudents,
-          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-          int socialScale, int lifeScale, ArrayList<String> emphases) //changed from addSchool()
+                              double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                              int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                              int socialScale, int lifeScale, ArrayList<String> emphases) //changed from addSchool()
   {
-	if(isSchoolSaved(name)){
-		return alreadySavedError();
-		
-	}
-	else{
-    dataBase.university_addUniversity(name,state, location, control, numStudents,
-            perFemale, satVerbal, satMath, expenses, perFA,
-            numApplicants, perAdmitted, perEnrolled, academicScale,
-            socialScale, lifeScale, emphases);
-    return "Save Successful!";
-  }
+    if(isSchoolSaved(name)){
+      return alreadySavedError();
+      
+    }
+    else{
+      dataBase.university_addUniversity(name,state, loc, control, numStudents,
+                                        perFemale, satVerbal, satMath, expenses, perFA,
+                                        numApplicants, perAdmitted, perEnrolled, academicScale,
+                                        socialScale, lifeScale);
+      return "Save Successful!";
+    }
   }
   
   /**
@@ -238,13 +238,13 @@ public class DBController
    */
   public boolean isSchoolSaved(String name)
   {
-	  int[][] universityList = dataBase.university_getUniversities();
-		for(int i = 0; i<universityList.length;i++){
-			if(userList[i][0].equals(name)){
-				return true;
-			}
-		}
-	    return false;
+   String[][] universityList = dataBase.university_getUniversities();
+  for(int i = 0; i<universityList.length;i++){
+   if(universityList[i][0].equals(name)){
+    return true;
+   }
+  }
+     return false;
   }
   
   /**
@@ -354,17 +354,6 @@ public class DBController
    */
   public boolean isDeactivated(String username)
   {
-<<<<<<< HEAD
-	  int[][] userList = dataBase.user_getUsers();
-	  for(int i = 0; i<userList.length;i++){
-			if(userList[i][2].equals(username)){
-				if(userList[i][5].equals('n')){
-					return true;
-				}
-			}
-		}
-	  return false;
-=======
     String[][] userList = dataBase.user_getUsers();
     for(int i = 0; i<userList.length;i++){
       if(userList[i][2].equals(username)){
@@ -374,7 +363,7 @@ public class DBController
       }
     }
     return false;
->>>>>>> d8dffa436f28c8e5cb6f76260a44f68c5e802b33
+
   }
   
   /**

@@ -29,23 +29,23 @@ public class AccountController{
    */
   public String login(String username, String password)
   {
-
-   ArrayList() user = dbController.getUser(username);
+   ArrayList user = new ArrayList();
+   user = dbController.getUser(username);
    String loginName = user.get(0);
    String loginPass = user.get(1);
-   Char type = user.get(2);
-   Char status = user.get(3);
+   char type = user.get(2);
+   char status = user.get(3);
    if(!loginPass.equals(password)){
-	   return wrongLoginInfoError();
+    return wrongLoginInfoError();
    }
-   if(status.equals('n')){
-	   return deactivateError();
+   if(status==('n')){
+    return deactivateError();
    }
    setLoggedIn(username);
    return "Successful login!";
    }
 
-  }
+  
   /**
    * Logs the user out with the specified username and password
    */
@@ -154,7 +154,7 @@ public class AccountController{
   
   public String deactivateUser(String first, String last, String username, String password, char type){
 
-	  return dbController.deactivateUser(first, last, username, password, type);
+   return dbController.deactivateUser(first, last, username, password, type);
 
   }
 }

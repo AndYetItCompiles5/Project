@@ -39,7 +39,7 @@ public class UniversityController{
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.addUniversity(name,state, location, control, numStudents,
+    return dbController.addUniversity(name,state, loc, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
                                 socialScale, lifeScale, emphases);

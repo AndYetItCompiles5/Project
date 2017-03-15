@@ -7,21 +7,18 @@ import Project.*;
  * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
-public class AdminUI{// change// change return type to Set<University> in class diagram return type to Set<University> in class diagram
+public class AdminUI{
   private AdminFuncController aFuncController;
   private AccountController aController;
   private UniversityController uController;
-  /**// change return type to Set<University> in class diagram
-   * An AdminUI constructor
+ /// change return type to Set<University> in class diagram
+   /* An AdminUI constructor
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();
     aController = new AccountController();
-<<<<<<< HEAD
     uController = new UniversityController();
-=======
-    
->>>>>>> d8dffa436f28c8e5cb6f76260a44f68c5e802b33
+
   }
   
   /**
@@ -60,26 +57,11 @@ public class AdminUI{// change// change return type to Set<University> in class 
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-<<<<<<< HEAD
+
     return uController.addUniversity(name,state, location, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
                                 socialScale, lifeScale, emphases);
-=======
-    
-    
-    if(aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
-                                      socialScale,lifeScale,emphases) ==true){
-      boolean answer = confirmChange();
-      
-      if(answer == true){
-        return aFuncController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
-                                              socialScale,lifeScale,emphases);
-        
-      }
-    } 
-    return false;
->>>>>>> d8dffa436f28c8e5cb6f76260a44f68c5e802b33
   }
   
   /**
@@ -104,9 +86,9 @@ public class AdminUI{// change// change return type to Set<University> in class 
    * @param emphases up to five areas of study the University excels at (all Strings)
    */
   public void editUniversity(String name, String state, String location, String control, int numStudents,
-          	double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-          	int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-          	int socialScale, int lifeScale, ArrayList<String> emphases){
+           double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+           int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+           int socialScale, int lifeScale, ArrayList<String> emphases){
     
   }
   
