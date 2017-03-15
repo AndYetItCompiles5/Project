@@ -85,11 +85,15 @@ public class AdminUI{
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    */
-  public void editUniversity(String name, String state, String location, String control, int numStudents,
+  public String editUniversity(String name, String state, String location, String control, int numStudents,
            double perFemale, int satVerbal, int satMath, int expenses, double perFA,
            int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
            int socialScale, int lifeScale, ArrayList<String> emphases){
     
+        return aFuncController.editUniversity(name,state, location, control, numStudents,
+                                perFemale, satVerbal, satMath, expenses, perFA,
+                                numApplicants, perAdmitted, perEnrolled, academicScale,
+                                socialScale, lifeScale, emphases);
   }
   
   /**
@@ -100,14 +104,14 @@ public class AdminUI{
   }
   
   /**
-   * An admin can edit users
+   * An admin can edit any account
    *
    * @param Account object user
    * 
    * @return true if edited else return false
    */
-  public boolean editUsers(Account user){
-    return false; 
+  public int editAccount(String first, String last,String username, String password, char type, char status){
+    return aFuncController.editAccount(first,last,username,password,type, status); 
   }
   
   /**
