@@ -11,14 +11,15 @@ public class AdminUI{
   private AdminFuncController aFuncController;
   private AccountController aController;
   private UniversityController uController;
- /// change return type to Set<University> in class diagram
-   /* An AdminUI constructor
+  
+  /// change return type to Set<University> in class diagram
+  /* An AdminUI constructor
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();
     aController = new AccountController();
     uController = new UniversityController();
-
+    
   }
   
   /**
@@ -54,14 +55,14 @@ public class AdminUI{
    * @return true if the University was added else return false
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases){
-
+                              double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                              int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                              int socialScale, int lifeScale, ArrayList<String> emphases){
+    
     return uController.addUniversity(name,state, location, control, numStudents,
-                                perFemale, satVerbal, satMath, expenses, perFA,
-                                numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale, emphases);
+                                     perFemale, satVerbal, satMath, expenses, perFA,
+                                     numApplicants, perAdmitted, perEnrolled, academicScale,
+                                     socialScale, lifeScale, emphases);
   }
   
   /**
@@ -86,14 +87,14 @@ public class AdminUI{
    * @param emphases up to five areas of study the University excels at (all Strings)
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
-           double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-           int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-           int socialScale, int lifeScale, ArrayList<String> emphases){
+                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                               int socialScale, int lifeScale, ArrayList<String> emphases){
     
-        return aFuncController.editUniversity(name,state, location, control, numStudents,
-                                perFemale, satVerbal, satMath, expenses, perFA,
-                                numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale, emphases);
+    return aFuncController.editUniversity(name,state, location, control, numStudents,
+                                          perFemale, satVerbal, satMath, expenses, perFA,
+                                          numApplicants, perAdmitted, perEnrolled, academicScale,
+                                          socialScale, lifeScale, emphases);
   }
   
   /**
@@ -126,12 +127,12 @@ public class AdminUI{
   /**
    * Display the account information
    *
-   * @param
-   * @param
-   * @param
-   * @param
-   * @param
-   * @param
+   * @param first name
+   * @param last name
+   * @param username
+   * @param password
+   * @param type (char)
+   * @param status
    * 
    * @returns the info of the user
    */
@@ -142,12 +143,11 @@ public class AdminUI{
   /**
    * An admin can create an account 
    *
-   * @param
-   * @param
-   * @param
-   * @param
-   * @param
-   * @param
+   * @param first name
+   * @param last name
+   * @param username
+   * @param password
+   * @param type (char)
    * 
    * @return true if added else return false
    */

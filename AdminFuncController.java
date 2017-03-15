@@ -143,10 +143,3 @@ public class AdminFuncController {
     
      }
     }
-  
-  
-
-
-
-
-

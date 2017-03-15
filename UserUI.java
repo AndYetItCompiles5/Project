@@ -57,8 +57,9 @@ public class UserUI{
    * 
    * @return school
    */
-  public Set<String> viewSavedSchools(University school){
-    return null;
+  public ArrayList<String> viewSavedSchools(String user)
+  {
+    return dbController.getUserSavedSchools(user);
   }
   
   /**

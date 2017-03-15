@@ -100,6 +100,9 @@ public class DBController
     }
   }
   
+  /**
+   * 
+   */
   public int saveSchool(String user, String school)
   {
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
@@ -119,6 +122,70 @@ public class DBController
     }
     
     return dataBase.user_saveSchool(user, school);
+  }
+  
+  /**
+   * This methods gets the user's saved schools from the db
+   * @param user
+   * @returns a array of user's saved schools
+   */
+  public ArrayList<String> getUserSavedSchools(String user)
+  {
+    ArrayList<String> listSchools = new ArrayList<String>();
+    String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
+    
+    for(int i = 0; i < namesWithSchools.length; i++)
+    {
+      if(namesWithSchools[i][0].equals(user))
+      {
+        for(int j = 0; j < namesWithSchools[i].length; j++)
+        {
+          listSchools.add(namesWithSchools[i][j]);
+        }
+      }
+    }
+    
+    return listSchools;
+  }
+  
+  /**
+   * Method that checks is a username already exists
+   * @param username the username being searched for
+   * @returns true if the username already exists
+   */
+  public boolean isUsername(String username)
+  {
+    return false;
+  }
+  
+  /**
+   * Gets the password from a specified Account object
+   * @param user the Account object the password is being retrieved from
+   * @returns a String(the password)
+   */
+  public String getPassword(Account user)
+  {
+    return "";
+  }
+  
+  /**
+   * Gets the status from a specified Account object
+   * @param user the Account object the status is being pulled from
+   * @returns true if the account is active
+   */
+  public boolean getStatus(Account user)
+  {
+    return false;
+  }
+  
+  /**
+   * Get the type of a specified Account object
+   * @param user the Account object the type is being pulled from
+   * @returns A if admin, U is user
+   */
+  public char getType(Account user)
+  {
+    return 'a';
   }
   
   /**
