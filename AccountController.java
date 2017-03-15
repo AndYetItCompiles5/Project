@@ -131,9 +131,9 @@ public class AccountController{
    * @return true if the account was edited successfully
    * 
    */
-  public boolean editAccount(Account account, String first, String last, String password, char type, boolean status)
+  public int editAccount(String first, String last, String username, String password, char type, char status)
   {
-    return false; 
+    return dbController.editAccount(first,last,username,password,type,status); 
   }
   /**
    * Gives a message asking the user to confirm their changes

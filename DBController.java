@@ -23,14 +23,16 @@ public class DBController
   
   /**
    * Returns the user to themselves when they are logging in/editing their profile
+   * 
    * @returns the User object to the current User
    */
   public ArrayList getUser(String username)
   {
     ArrayList userInfo = new ArrayList();
     String[][] users = dataBase.user_getUsers();
-    for(int i = 0; i<users.length;i++){
-      if(users[i][2].equals(username)){
+    for(int i = 0; i < users.length;i++){
+      if(users[i][2].equals(username))
+      {
         userInfo.add(users[i][2].toString());
         userInfo.add(users[i][3].toString());
         userInfo.add(users[i][4].charAt(0));
@@ -64,14 +66,14 @@ public class DBController
    * @param school the school to be edited
    * @returns true if the University has been successfully edited
    */
-  public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
+  public String editUniversity(String name, String state, String loc, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases)
   {
     dataBase.university_editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
                                        numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return true;
+    return "Are you sure you want to make these changes?";
   }
   
   /**
@@ -82,7 +84,7 @@ public class DBController
   public String addUniversity(String name, String state, String loc, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale, ArrayList<String> emphases) //changed from addSchool()
+                              int socialScale, int lifeScale, ArrayList<String> emphases)
   {
     if(isSchoolSaved(name)){
       return alreadySavedError();
@@ -95,6 +97,27 @@ public class DBController
                                         socialScale, lifeScale);
       return "Save Successful!";
     }
+  }
+  
+  public int saveSchool(String user, String school)
+  {
+    String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
+    
+    for(int i = 0; i < namesWithSchools.length; i++)
+    {
+      if(namesWithSchools[i][0].equals(user))
+      {
+        for(int j = 0; j < namesWithSchools[i].length; j++)
+        {
+          if(namesWithSchools[i][j].equals(school))
+          {
+            return -1;
+          }
+        }
+      }
+    }
+    
+    dataBase.user_saveSchool(user, school);
   }
   
   /**
@@ -231,6 +254,11 @@ public class DBController
     return ""; 
   }
   
+  public int removeSchool(String user, String school)
+  {
+    return dataBase.user_removeSchool(user, school);
+  }
+  
   /**
    * Finds whether or not the schools has been saved
    * @param school the University we want to save to the database
@@ -238,13 +266,13 @@ public class DBController
    */
   public boolean isSchoolSaved(String name)
   {
-   String[][] universityList = dataBase.university_getUniversities();
-  for(int i = 0; i<universityList.length;i++){
-   if(universityList[i][0].equals(name)){
-    return true;
-   }
-  }
-     return false;
+    String[][] universityList = dataBase.university_getUniversities();
+    for(int i = 0; i<universityList.length;i++){
+      if(universityList[i][0].equals(name)){
+        return true;
+      }
+    }
+    return false;
   }
   
   /**
@@ -333,9 +361,9 @@ public class DBController
    * @param account the Account object of the user
    * @returns true if the user was successfully edited
    */
-  public boolean editUser(String first, String last, String username, String password, char type, char status)
+  public int editAccount(String first, String last, String username, String password, char type, char status)
   {
-    return false;
+    return dataBase.user_editUser(username,first,last,password,type,status);
   }
   
   /**

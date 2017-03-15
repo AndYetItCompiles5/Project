@@ -166,11 +166,11 @@ public class AdminFuncController {
   public String[][] viewUniversities(){
     return dbController.getAllUniversities();
     
-    	}
+     }
     }
-  }
   
-}
+  
+
 
 
 

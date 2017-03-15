@@ -18,6 +18,7 @@ public class User extends Account{
     super(first,last,username,password,'u');
     HashSet<String> savedSchools = new HashSet<String>();
   }
+  
   /**
    * Gets the user's saved schools
    * @return list of saved schools
@@ -26,6 +27,7 @@ public class User extends Account{
   {
     return savedSchools; 
   }
+  
   /**
    * Adds a new university to the user's saved school list
    * @param school: the university being added

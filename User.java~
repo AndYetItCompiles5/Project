@@ -3,16 +3,16 @@ import java.util.*;
 import Project.*;
 
 
-   /**
-   * A class that can add and remove schools from a user's list
-   * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
-   * @version 2/22/17
-   */
+/**
+ * A class that can add and remove schools from a user's list
+ * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
+ * @version 2/22/17
+ */
 
 public class User extends Account{
- 
+  
   Set<String> savedSchools;
-
+  
   public User(String first, String last, String username, String password)
   {
     super(first,last,username,password,'u');
@@ -24,7 +24,7 @@ public class User extends Account{
    */
   public Set<String> getSavedSchools()
   {
-   return savedSchools; 
+    return savedSchools; 
   }
   /**
    * Adds a new university to the user's saved school list
@@ -62,7 +62,7 @@ public class User extends Account{
    */
   public void deactivate()
   {
-   super.setStatus(false);
+    super.setStatus('n');
   }
   
 }

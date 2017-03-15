@@ -9,7 +9,6 @@ import Project.*;
  */
 public class UserUI{
   private DBController dbController;
-  private UserFuncController uFuncController;
   /**
    * UserUI constructor
    */
@@ -33,16 +32,15 @@ public class UserUI{
    *
    * @param University object school
    */
-  public int saveSchool(String user, String school)
-  {
-    uFuncController.saveSchool(user, school);
+  public void saveSchool(University school){
+    
   }
   
   /**
    * remove school from the users list 
    */
-  public int removeSchool(String user, String school){
-    return uFuncController.removeSchool(user, school);
+  public void removeSchool(){
+    
   }
   
   /**
@@ -111,8 +109,8 @@ public class UserUI{
    * 
    * @return true if they made any changes else return false
    */
-  public int editAccount(String firstName,String lastName, String username, String password, char type, char status){
-    return dbController.editAccount(firstName,lastName,username,password,type,status);
+  public boolean editAccount(){
+    return false; 
   }
   
   /**

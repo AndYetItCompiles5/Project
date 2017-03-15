@@ -64,7 +64,7 @@ public class AdminFuncController {
    * 
    * @return true if school was successfully editted else return false
    */
-  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
+  public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
@@ -110,8 +110,8 @@ public class AdminFuncController {
    * 
    * @return true of the account was editted successifully else return false
    */
-  public boolean editAccount(Account account, String first, String last, String password, char type, boolean status){
-    return true; 
+  public int editAccount(String first, String last, String username, String password, char type, char status){
+    return aController.editAccount(first,last,username,password,type,status);
   }
   
   /**
