@@ -159,8 +159,11 @@ public class AdminFuncController {
    * 
    * @return a list of Universities
    */
-  public ArrayList<String> viewUniversities(){
-    return null; 
+  public String[][] viewUniversities(){
+    return dbController.getAllUniversities();
+    
+    	}
+    }
   }
   
 }

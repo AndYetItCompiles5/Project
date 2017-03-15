@@ -7,15 +7,17 @@ import Project.*;
  * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
-public class AdminUI{
+public class AdminUI{// change// change return type to Set<University> in class diagram return type to Set<University> in class diagram
   private AdminFuncController aFuncController;
   private AccountController aController;
-  /**
+  private UniversityController uController;
+  /**// change return type to Set<University> in class diagram
    * An AdminUI constructor
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();
     aController = new AccountController();
+    uController = new UniversityController();
   }
   
   /**
@@ -23,8 +25,8 @@ public class AdminUI{
    * 
    * @return a set of Univserities
    */
-  public Set<String> viewUniversities(){
-    return null;
+  public String[][] viewUniversities(){
+    return aFuncController.viewUniversities();
   }
   
   /**
@@ -50,19 +52,41 @@ public class AdminUI{
    * 
    * @return true if the University was added else return false
    */
-  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
+  public String addUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases){
-    return false;
+    return uController.addUniversity(name,state, location, control, numStudents,
+                                perFemale, satVerbal, satMath, expenses, perFA,
+                                numApplicants, perAdmitted, perEnrolled, academicScale,
+                                socialScale, lifeScale, emphases);
   }
   
   /**
-   * An admin edit Universities
+   * An admin edits the Universities
    *
-   * @param University object school
+   * @param name the name of the University
+   * @param state the state the University is located int
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+   * @param numStudents number of students enrolled in the University
+   * @param perFemale percentage of enrolled students that are females (between 0 and 100)
+   * @param satVerbal average SAT verbal score for enrolled students(between 0 and 800)
+   * @param satMath average SAT math score for enrolled students(between 0 and 800)
+   * @param expenses annual expenses or tuition to attend the school
+   * @param perFA percentage of enrolled students receiving financial aid
+   * @param numAppicants total number of applicants that apply to the school anually
+   * @param perAdmitted percent of applicants that get admitted
+   * @param perEnrolled percent of applicants that decide to enroll
+   * @param academicScale integer between 1 and 5 indicating the academic scale of the University
+   * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
+   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
+   * @param emphases up to five areas of study the University excels at (all Strings)
    */
-  public void editUniversity(University school){
+  public void editUniversity(String name, String state, String location, String control, int numStudents,
+          	double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          	int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          	int socialScale, int lifeScale, ArrayList<String> emphases){
     
   }
   
@@ -105,7 +129,7 @@ public class AdminUI{
    * 
    * @return true if added else return false
    */
-  public String displayInfo(String first, String last, String username, String password, char type, boolean status){
+  public String displayInfo(String first, String last, String username, String password, char type, char status){
     return null; 
   }
   

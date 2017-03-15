@@ -9,12 +9,14 @@ import Project.*;
  */
 
 public class AccountController{
-  private Account loggedIn = null;
+  private String loggedIn = null;
+  private DBController dbController;
   /**
    * default empty constructor
    */
   public AccountController(){
     loggedIn=null;
+    dbController = new DBController();
   }
   
   /**
@@ -23,9 +25,22 @@ public class AccountController{
    * @param password: the Password of the person logging in
    * @return true if the user was able to login successfully
    */
-  public boolean login(String username, String password)
+  public String login(String username, String password)
   {
-   return false; 
+   ArrayList() user = dbController.getUser(username);
+   String loginName = user.get(0);
+   String loginPass = user.get(1);
+   Char type = user.get(2);
+   Char status = user.get(3);
+   if(!loginPass.equals(password)){
+	   return wrongLoginInfoError();
+   }
+   if(status.equals('n')){
+	   return deactivateError();
+   }
+   setLoggedIn(username);
+   return "Successful login!";
+   }
   }
   /**
    * Logs the user out with the specified username and password
@@ -62,9 +77,9 @@ public class AccountController{
    * Sets the account given as logged in
    * @param account: the account that will be set as logged in
    */
-  public void setLoggedIn(Account account)
+  public void setLoggedIn(String username)
   {
-    
+    loggedIn = username;
   }
   /**
    * Gives an error if the login info was wrong
@@ -134,6 +149,6 @@ public class AccountController{
   }
   
   public String deactivateUser(String first, String last, String username, String password, char type){
-	  dbController.deactivateUser(first, last, username, password, type);
+	  return dbController.deactivateUser(first, last, username, password, type);
   }
 }

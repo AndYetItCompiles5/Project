@@ -23,9 +23,19 @@ public class DBController
    * Returns the user to themselves when they are logging in/editing their profile
    * @returns the User object to the current User
    */
-  public User getUser()
+  public ArrayList getUser(username)
   {
-    return null;
+	ArrayList() userInfo = new ArrayList();
+    String[][] users = dataBase.user_getUsers();
+    for(int i = 0; i<users.length;i++){
+    	if(users[i][2].equals(username)){
+    		userInfo.add(users[i][2]);
+    		userInfo.add(users[i][3]);
+    		userInfo.add(users[i][4].charAt(0));
+    		userInfo.add(users[i][5].charAt(0));
+    	}
+    }
+    return userInfo;
   }
   
   /**
@@ -46,7 +56,7 @@ public class DBController
     }
     return result;
   }
-  
+//change return type to Set<University> in class diagram
   /**
    * Method that takes a Universty object and edits it's info in the database
    * @param school the school to be edited
@@ -62,9 +72,22 @@ public class DBController
    * @param school the new University object to be added to the database
    * @returns true if the school has been added successfully
    */
-  public boolean addUniversity(University school) //changed from addSchool()
+  public String addUniversity(String name, String state, String loc, String control, int numStudents,
+          double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+          int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+          int socialScale, int lifeScale, ArrayList<String> emphases) //changed from addSchool()
   {
-    return false;
+	if(isSchoolSaved(name)){
+		return alreadySavedError();
+		
+	}
+	else{
+    dataBase.university_addUniversity(name,state, location, control, numStudents,
+            perFemale, satVerbal, satMath, expenses, perFA,
+            numApplicants, perAdmitted, perEnrolled, academicScale,
+            socialScale, lifeScale, emphases);
+    return "Save Successful!";
+  }
   }
   
   /**
@@ -139,9 +162,9 @@ public class DBController
    * Returns a Set of all the University objects in the database
    * @returns a Set of all the University objects in the database
    */
-  public Set<University> getAllUniversities() // change return type to Set<University> in class diagram
+  public String[][] getAllUniversities() 
   {
-    return null;
+    return dataBase.university_getUniversities();
   }
   
   /**
@@ -206,9 +229,15 @@ public class DBController
    * @param school the University we want to save to the database
    * @returns true if the school has been saved
    */
-  public boolean isSchoolSaved(University school)
+  public boolean isSchoolSaved(String name)
   {
-    return false;
+	  int[][] universityList = dataBase.university_getUniversities();
+		for(int i = 0; i<universityList.length;i++){
+			if(userList[i][0].equals(name)){
+				return true;
+			}
+		}
+	    return false;
   }
   
   /**
@@ -326,7 +355,7 @@ public class DBController
 				}
 			}
 		}
-	    return false;
+	  return false;
   }
   
   /**

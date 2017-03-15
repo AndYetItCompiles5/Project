@@ -10,8 +10,9 @@ import Project.*;
 
 public class LoginUI{
   
+	private AccountController aController;
   public LoginUI(){
-    
+    aController = new AccountController();
   }
   /**
    * Logs the user in with the specified username and password
@@ -20,7 +21,7 @@ public class LoginUI{
    */
   public void Login(String username, String password)
   {
-    
+    return aController.login(username,password);
   }
   /**
    * Displays an error if the user enters the wrong login informaion
