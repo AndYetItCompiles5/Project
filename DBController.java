@@ -1,6 +1,7 @@
 package Project;
 import java.util.*;
 import dblibrary.project.csci230.UniversityDBLibrary;
+import java.lang.*;
 
 /**
  * DB controller
@@ -177,30 +178,77 @@ public class DBController
   /**
    * Returns a Set of all the University objects that match the search criteria in the database
    * @param name the name of the University
-   * @param state the state where you can find the University
-   * @param location urban, suburban or rural
-   * @param sontrol private, public or other
-   * @param numStudents the number of students enrolled
-   * @param perFemale the percent of the school that is female
-   * @param satVerbal average SAT Verbal score
-   * @param satMath   average SAT Math score
-   * @param expenses how much money it costs to go there
-   * @param perFA percent on Financial Aid
-   * @param numApplicants number of students who applied to the school this year
-   * @param perAdmitted percent of applicants admitted annually
-   * @param perEnrolled percent of students enrolled at the school
-   * @param academicScale 1-5 scale on the quality of academics
-   * @param socialScale   1-5 scale on the quality of social opportunities
-   * @param lifeScale     1-5 scale on the quality of life at the university
-   * @param emphases      a set of areas of academic emphasis the school has
-   * @returns a Set of all the University objects that match the search criteria in the database
+   * @param state the state the University is located int
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+   * @param numStudentsLow user search input of minimum number of students
+   * @param numStudentsHigh user search input of maximum number of students
+   * @param perFemaleLow user search input of minimum female percentage
+   * @param perFemaleHigh user search input of maximum female percentage
+   * @param satVerbalLow user search input of minimum SAT Verbal score
+   * @param satVerbalHigh user search input of maximum SAT Verbal score
+   * @param satMathLow user search input of minimum SAT Math score
+   * @param satMathHigh user search input of minimum SAT Math score
+   * @param expensesLow user search input of minimum expenses
+   * @param expensesHigh user search input of maximum expenses
+   * @param perFALow user search input of minimum Financial Aid percentage
+   * @param perFAHigh user search input of maximum Financial Aid percentage
+   * @param numAppicantsLow user search input of minimum number of applicants
+   * @param numAppicantsHigh user search input of maximum number of applicants
+   * @param perAdmittedLow user search input of minimum number of admitted
+   * @param perAdmittedHigh user search input of maximum number of admitted
+   * @param perEnrolledLow user search input of minimum number of enrolled
+   * @param perEnrolledHigh user search input of maximum number of enrolled
+   * @param academicScaleLow user search input of minimum academic scale number
+   * @param academicScaleHigh user search input of maximum academic scale number
+   * @param socialScaleLow user search input of minimum social scale number
+   * @param socialScaleHigh user search input of maximimum social scale number
+   * @param lifeScaleLow user search input of minimum life scale number
+   * @param lifeScaleHigh user search input of maximum life scale number
+   * @param emphases up to five areas of study the University excels at (all Strings)
    */
-  public Set<University> search(String name, String state, String location, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA, int numApplicants,
-                                double perAdmitted, double perEnrolled, int academicScale, int socialScale, int lifeScale,
-                                ArrayList<String> emphases)
+  public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
+                                int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
+                                int satMathLow, int satMathHigh, int expensesLow, int expensesHigh, double perFALow, double perFAHigh,
+                                int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh, double perEnrolledLow, double perEnrolledHigh,
+                                int academicScaleLow, int academicScaleHigh, int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases)
   {
-    return null;
+    String[][] schoolList = dataBase.university_getUniversities();
+    String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+    HashSet<String> answer = new HashSet<String>();
+    for(int i=0;i<schoolList.length;i++){
+      if(schoolList[i][0].toLowerCase().contains(name.toLowerCase()) && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1")) 
+           && (schoolList[i][2].toLowerCase().contains(location.toLowerCase()) ||schoolList[i][2].equals("-1")) && (schoolList[i][3].toLowerCase().contains(control.toLowerCase())||
+                                                                                                                    schoolList[i][3].equals("-1"))){
+        
+        if((isWithinRange(numStudentsLow,numStudentsHigh,schoolList[i][4]) || (numStudentsLow==0 && numStudentsHigh==0)) && (isWithinRange(perFemaleLow,perFemaleHigh,schoolList[i][5]) ||
+                                                                                                                             (perFemaleLow==0 && perFemaleHigh==0)) && (isWithinRange(satVerbalLow,satVerbalHigh,schoolList[i][6])|| (satVerbalLow==0 && satVerbalHigh==0)) && (isWithinRange(satMathLow,satMathHigh,schoolList[i][7])||
+                                                                                                                                                                                                                                                                                (satMathLow==0 && satMathHigh==0)) && (isWithinRange(expensesLow,expensesHigh,schoolList[i][8])|| (expensesLow==0 && expensesHigh==0)) && (isWithinRange(perFALow,perFAHigh,schoolList[i][9])||
+                                                                                                                                                                                                                                                                                                                                                                                                                           (perFALow==0 && perFAHigh==0)) && (isWithinRange(numApplicantsLow,numApplicantsHigh,schoolList[i][10])|| (numApplicantsLow==0 && numApplicantsHigh==0)) &&
+           (isWithinRange(perAdmittedLow,perAdmittedHigh,schoolList[i][11])|| (perAdmittedLow==0 && perAdmittedHigh==0)) && (isWithinRange(perEnrolledLow,perEnrolledHigh,schoolList[i][12])||
+                                                                                                                             (perEnrolledLow==0 && perEnrolledHigh==0)) && (isWithinRange(academicScaleLow,academicScaleHigh,schoolList[i][13])|| (academicScaleLow==0 && academicScaleHigh==0)) &&
+           (isWithinRange(socialScaleLow,socialScaleHigh,schoolList[i][14])|| (socialScaleLow==0 && socialScaleHigh==0)) && (isWithinRange(lifeScaleLow,lifeScaleHigh,schoolList[i][15])|| (lifeScaleLow==0 && lifeScaleHigh==0))){
+          for(int k=0;k<emphasesList.length;k++){
+            if(schoolList[k][0].toLowerCase().contains(name.toLowerCase())){
+              if(emphases.contains(schoolList[k][1])){
+                answer.add(schoolList[k][0]);
+              }
+            }
+          } 
+        }
+      }
+    }
+    return answer;
+  }
+  
+  public boolean isWithinRange(double low, double high, String actual){
+    double newActual = Double.parseDouble(actual);
+    if(newActual>=low && newActual<=high){
+      return true; 
+    }
+    else{
+      return false; 
+    }
   }
   
   /**
@@ -238,13 +286,13 @@ public class DBController
    */
   public boolean isSchoolSaved(String name)
   {
-   String[][] universityList = dataBase.university_getUniversities();
-  for(int i = 0; i<universityList.length;i++){
-   if(universityList[i][0].equals(name)){
-    return true;
-   }
-  }
-     return false;
+    String[][] universityList = dataBase.university_getUniversities();
+    for(int i = 0; i<universityList.length;i++){
+      if(universityList[i][0].equals(name)){
+        return true;
+      }
+    }
+    return false;
   }
   
   /**
@@ -363,7 +411,7 @@ public class DBController
       }
     }
     return false;
-
+    
   }
   
   /**

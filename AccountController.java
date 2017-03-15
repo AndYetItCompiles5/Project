@@ -31,14 +31,18 @@ public class AccountController{
   {
    ArrayList user = new ArrayList();
    user = dbController.getUser(username);
-   String loginName = user.get(0);
-   String loginPass = user.get(1);
-   char type = user.get(2);
-   char status = user.get(3);
-   if(!loginPass.equals(password)){
+   Object loginName = user.get(0);
+   String loginName1 = loginName.toString();
+   Object loginPass = user.get(1);
+   String loginPass1 = loginName.toString();
+   Object type = user.get(2);
+   char type1 = type.toString().charAt(0);
+   Object status = user.get(3);
+   char status1 = status.toString().charAt(0);
+   if(!loginPass1.equals(password)){
     return wrongLoginInfoError();
    }
-   if(status==('n')){
+   if(status1==('n')){
     return deactivateError();
    }
    setLoggedIn(username);

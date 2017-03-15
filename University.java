@@ -90,6 +90,26 @@ public class University{
     }
   }
   
+  public University(String name){
+    this.name=name;
+    this.state=null;
+    this.location=null;
+    this.control=null;
+    this.numberOfStudents=0;
+    this.percentFemale=0;
+    this.satVerbal=0;
+    this.satMath=0;
+    this.expenses=0;
+    this.percentFA=0;
+    this.numApplicants=0;
+    this.percentAdmitted=0;
+    this.percentEnrolled=0;
+    this.academicScale=0;
+    this.socialScale=0;
+    this.lifeScale=0;
+    this.emphases=null;
+  }
+  
   /**
    * get the name of the University
    * @return the name of the University
