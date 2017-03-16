@@ -151,7 +151,8 @@ public class AdminUI{
    * 
    * @return true if added else return false
    */
-  public String addAccount(String first, String last, String username, String password, char type){
+  public String addAccount(String first, String last, String username, String password, char type)
+  {
     return aFuncController.addAccount(first,last,username,password,type);
   }
   

@@ -25,9 +25,9 @@ public class UserFuncController{
    * @return true if the user was edited
    */
   
-  public String editUser(String username, String firstName, String lastName, String password,char type, char status)
+  public String editUser(String username, String first, String last, String password,char type, char status)
   {
-        return dbController.editAccount(username,firstName,lastName,password,type,status);
+        return dbController.editAccount(username,first,last,password,type,status);
   }
   
   /**

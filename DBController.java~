@@ -125,8 +125,6 @@ public class DBController
   }
   
   /**
-<<<<<<< HEAD
-=======
    * This methods gets the user's saved schools from the db
    * @param user
    * @returns a array of user's saved schools
@@ -191,7 +189,6 @@ public class DBController
   }
   
   /**
->>>>>>> d844d1672a1c34a3d82e9e5da569e20fd9b7b9d9
    * Returns an Account object based off of a username
    * @param username the username being used to search for the account
    * @returns an the account based off the username

@@ -57,30 +57,7 @@ public class AccountController{
   {
     loggedIn=null; 
   }
-  
-  /**
-   * Lets the admin add a new account
-   * @param account: the account that will be added
-   * @return true if the account was added
-   */
-  public boolean addAccount(Account account)
-  {
-    return false; 
-  }
-  /**
-   * Logs the person in as an admin
-   */
-  public void aLogin()
-  {
-    
-  }
-  /**
-   * Logs the person in as a user
-   */
-  public void uLogin()
-  {
-    
-  }
+
   /**
    * Sets the account given as logged in
    * @param account: the account that will be set as logged in
@@ -112,9 +89,9 @@ public class AccountController{
    * @param password: the user's password
    * @return true if the user was edited
    */
-  public boolean editUser(String first, String last, String password)
+  public String editUser(String first, String last, String password)
   {
-    return false; 
+    return dbController.editAccount(first,last,loggedIn,password,'u','y');
   }
   /**
    * Gives a message asking the user to confirm their changes
@@ -135,7 +112,7 @@ public class AccountController{
    * @return true if the account was edited successfully
    * 
    */
-  public int editAccount(String first, String last, String username, String password, char type, char status)
+  public String editAccount(String first, String last, String username, String password, char type, char status)
   {
     return dbController.editAccount(first,last,username,password,type,status); 
   }

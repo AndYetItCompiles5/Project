@@ -7,10 +7,12 @@ import Project.*;
  * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
  * @version 2/22/17
  */
-public class UniversityController{
+public class UniversityController
+{
   private DBController dbController;
-  public UniversityController(){
-    
+  
+  public UniversityController()
+  {
     
   }
   /**
@@ -49,12 +51,12 @@ public class UniversityController{
    * @param school: the university that will be edited
    * @return true if the universiy was successfully edited 
    */
-  public String editUniversity(String name, String state, String loc, String control, int numStudents,
+  public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
+    return dbController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
                                        socialScale,lifeScale,emphases);
   }
   /**

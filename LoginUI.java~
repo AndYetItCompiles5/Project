@@ -39,4 +39,8 @@ public class LoginUI{
   {
     return ("User deactivated, please contact an administrator"); 
   }
+  
+  public void Logout(){
+   aController.logout(); 
+  }
 }

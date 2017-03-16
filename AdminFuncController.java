@@ -28,7 +28,8 @@ public class AdminFuncController {
    * 
    * @return true if added else return false
    */
-  public String addAccount(String first, String last, String username, String password, char type){
+  public String addAccount(String first, String last, String username, String password, char type)
+  {
     return dbController.addAccount(first,last,username,password,type);
   }
   

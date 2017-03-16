@@ -113,8 +113,8 @@ public class UserUI{
    * 
    * @return true if they made any changes else return false
    */
-  public String editAccount(String first,String last, String username, String password, char type, char status){
-    return dbController.editAccount(first,last,username,password,type,status);
+  public String editAccount(String firstName,String lastName, String username, String password, char type, char status){
+    return dbController.editAccount(firstName,lastName,username,password,type,status);
   }
   
   /**

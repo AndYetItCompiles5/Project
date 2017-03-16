@@ -25,7 +25,7 @@ public class UserFuncController{
    * @return true if the user was edited
    */
   
-  public int editUser(String username, String firstName, String lastName, String password,char type, char status)
+  public String editUser(String username, String firstName, String lastName, String password,char type, char status)
   {
         return dbController.editAccount(username,firstName,lastName,password,type,status);
   }
@@ -61,16 +61,6 @@ public class UserFuncController{
     return dbController.saveSchool(user, school); 
   }
   
-  /**
-   * Shows the specific school that is selected
-   * @param school: the university being shown
-   * @return the school as a set
-   */
-  
-  public Set<String> showSchool(University school)
-  {
-    return null; 
-  }
   
   /**
    * Lets the user confirm their selection
