@@ -12,7 +12,7 @@ import java.lang.*;
 public class DBController
 {
   //Creates an instance of the Database Library
-  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");\
+  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   //Creates an instance of UniversityController
   private UniversityController uController = new UniversityController();
   /**
@@ -191,13 +191,13 @@ public class DBController
    */
   public boolean isUsername(String username)
   {
-	  String[][] usernameList = dataBase.user_getUsers();
-	    for(int i = 0; i<universityList.length;i++){
-	      if(universityList[i][2].equals(name)){
-	        return true;
-	      }
-	    }
-	    return false;
+   String[][] usernameList = dataBase.user_getUsers();
+     for(int i = 0; i<usernameList.length;i++){
+       if(usernameList[i][2].equals(username)){
+         return true;
+       }
+     }
+     return false;
   }
   
   /**

@@ -66,6 +66,7 @@ public class AccountController{
   {
     loggedIn = username;
   }
+  
   /**
    * Gives an error if the login info was wrong
    * @return error message
@@ -116,14 +117,7 @@ public class AccountController{
   {
     return dbController.editAccount(first,last,username,password,type,status); 
   }
-  /**
-   * Gives a message asking the user to confirm their changes
-   * @return confirmation message
-   */
-  public String confirmationMessage()
-  {
-    return ("Are you sure?"); 
-  }
+
   /**
    * Gives an error saying the account is already deactivated
    * @return error message

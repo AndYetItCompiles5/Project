@@ -8,24 +8,29 @@ import Project.*;
  * @version 2/25/2017
  */
 public class UserUI{
+  //Creates an instance of the DBController
   private DBController dbController;
 
+  //Creates an instance of the UserFuncController
   private UserFuncController uFuncController;
 
+  //creates an instance of the Search Controller
   private SearchController searchController;
 
   /**
    * UserUI constructor
+   *Default constuctor
    */
   public UserUI(){
     dbController = new DBController();
     searchController = new SearchController();
+    uFuncController = new UserFuncController();
   }
   
   /**
    * View school information
    *
-   * @param University object school
+   * @param name of school
    * 
    * @return the schools info
    */
@@ -36,7 +41,10 @@ public class UserUI{
   /**
    * save the school to the user                                      
    *
-   * @param University object school
+   * @param user 
+   * @param school
+   * 
+   * @returns an int. -1 if not saved. 
    */
   public int saveSchool(String user, String school)
   {
@@ -45,6 +53,11 @@ public class UserUI{
   
   /**
    * remove school from the users list 
+   * 
+   * @param user 
+   * @param school
+   * 
+   * @returns an int. -1 if not saved. 
    */
   public int removeSchool(String user, String school){
     return uFuncController.removeSchool(user, school);
@@ -53,9 +66,9 @@ public class UserUI{
   /**
    * view a list of univerities the user has saved
    *
-   * @param University object school
+   * @param user
    * 
-   * @return school
+   * @return ArrayList of saved schools
    */
   public ArrayList<String> viewSavedSchools(String user)
   {
@@ -109,14 +122,42 @@ public class UserUI{
   }
   
   /**
+   * displays results. Do we need these?
+   *
+   * @param list a set of string called list
+   * 
+   * @return a message
+   */
+  public String displayResults(Set<String> list){
+    return "";
+  }
+  
+  /**
+   * show universities
+   *
+   * @param University object school
+   * 
+   * @return a message
+   */
+  public String showSchools(University school){
+    return ""; 
+  }
+  
+  /**
    * The user can edit their acccount
    * 
-   * @return true if they made any changes else return false
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param password the password of the user
+   * @param type U for user, A for admin
+   * @param status if the account is active or not
+   * @param account the Account object of the user
+   * 
+   * @return string
    */
   public String editAccount(String first,String last, String username, String password, char type, char status){
     return dbController.editAccount(first,last,username,password,type,status);
-  }
-  
+  } 
   /**
    * confirmation message
    * 
@@ -124,6 +165,17 @@ public class UserUI{
    */
   public String confirm(){
     return "confirm"; 
+  }
+  
+  /**
+   *  display University
+   *
+   *@param University object school
+   * 
+   * @return 
+   */
+  public String displayUniversity(University school){
+    return ""; 
   }
   
   /**
@@ -148,6 +200,6 @@ public class UserUI{
    *confirmation message to change
    */
   public String confirmChange(){
-    return "Are you sure?"; 
+    return "are you sure?"; 
   }
 }

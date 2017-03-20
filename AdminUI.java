@@ -8,8 +8,13 @@ import Project.*;
  * @version 2/25/2017
  */
 public class AdminUI{
+  //Creates an instance of the AdminFucController
   private AdminFuncController aFuncController;
+  
+  //Creates an instance of the AccountController
   private AccountController aController;
+  
+  //Creates an instance of the UniversityController
   private UniversityController uController;
   
   /// change return type to Set<University> in class diagram
@@ -19,7 +24,6 @@ public class AdminUI{
     aFuncController = new AdminFuncController();
     aController = new AccountController();
     uController = new UniversityController();
-    
   }
   
   /**
@@ -84,7 +88,8 @@ public class AdminUI{
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
-   * @param emphases up to five areas of study the University excels at (all Strings)
+   * @param emphases up to five areas of study the University excels at (all Strings) 
+   * @return a string
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -107,9 +112,14 @@ public class AdminUI{
   /**
    * An admin can edit any account
    *
-   * @param Account object user
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username of the user
+   * @param password the password of the user
+   * @param type of the account
+   * @param status the status of the account
    * 
-   * @return true if edited else return false
+   * @return int -1 if nothing changed
    */
   public String editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
@@ -118,7 +128,11 @@ public class AdminUI{
   /**
    * An admin can deactivate a user
    *
-   * @param Account object user
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username of the user
+   * @param password the password of the user
+   * @param type of the account
    */
   public void deactivateUser(String first, String last, String username, String password, char type){
     aController.deactivateUser(first, last, username, password, type);
@@ -127,14 +141,18 @@ public class AdminUI{
   /**
    * Display the account information
    *
-   * @param first name
-   * @param last name
-   * @param username
-   * @param password
-   * @param type (char)
-   * @param status
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username of the user
+   * @param password the password of the user
+   * @param type of the account
+   * @param status the status of the account
    * 
+<<<<<<< HEAD
+   * @return string
+=======
    * @returns the info of the user
+>>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    */
   public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
     return aFuncController.displayInfo(first,last,username,password,type,status);
@@ -143,11 +161,11 @@ public class AdminUI{
   /**
    * An admin can create an account 
    *
-   * @param first name
-   * @param last name
-   * @param username
-   * @param password
-   * @param type (char)
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username of the user
+   * @param password the password of the user
+   * @param type of the account
    * 
    * @return true if added else return false
    */
@@ -202,6 +220,20 @@ public class AdminUI{
   }
   
   /**
+<<<<<<< HEAD
+   * display University's name
+   *
+   * @param name of the university
+   * 
+   * @return name the name of the University
+   */
+  public String displayUniversity(String name){
+    return name; 
+  }
+  
+  /**
+=======
+>>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    * No name error. No user with that given name
    * 
    * @return "no name error"

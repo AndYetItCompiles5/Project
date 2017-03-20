@@ -11,7 +11,10 @@ public class AdminUI{
   private AdminFuncController aFuncController;
   private AccountController aController;
   private UniversityController uController;
+<<<<<<< HEAD
+=======
   
+>>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
   /// change return type to Set<University> in class diagram
   /* An AdminUI constructor
    */
