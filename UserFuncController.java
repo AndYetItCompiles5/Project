@@ -10,8 +10,10 @@ import Project.*;
 
 public class UserFuncController{
   
+  //Creates an instance of the DBController
   private DBController dbController;
   
+  //Constructor
   public UserFuncController()
   {
     
@@ -24,26 +26,16 @@ public class UserFuncController{
    * @param password: the user's password
    * @return true if the user was edited
    */
-  
   public int editUser(String username, String firstName, String lastName, String password,char type, char status)
   {
-        return dbController.editAccount(username,firstName,lastName,password,type,status);
-  }
-  
-  /**
-   * Lets the user view their saved schools
-   * @return the set of saved schools
-   */
-  
-  public Set<String> viewSchools()
-  {
-    return null; 
+    return dbController.editAccount(username,firstName,lastName,password,type,status);
   }
   
   /**
    * Removes a university from the student's saved schools
-   * @param school: the university being removed
-   * @return true if university was removed
+   * @param user : String
+   * @param school : String
+   * @return int if -1 school was not removed
    */
   public int removeSchool(String user, String school)
   {
@@ -52,31 +44,19 @@ public class UserFuncController{
   
   /**
    * Saves the selected university to the user's list of universities
-   * @param school: the university being saved
-   * @return true if university was saved
+   * @param user : String
+   * @param school : String
+   * @return int -1 if not saved
    */
-  
   public int saveSchool(String user, String school)
   {
     return dbController.saveSchool(user, school); 
   }
   
   /**
-   * Shows the specific school that is selected
-   * @param school: the university being shown
-   * @return the school as a set
-   */
-  
-  public Set<String> showSchool(University school)
-  {
-    return null; 
-  }
-  
-  /**
    * Lets the user confirm their selection
    * @return error message
    */
-  
   public String confirm()
   {
     return "Are you sure?";
@@ -86,7 +66,6 @@ public class UserFuncController{
    * Gives the user an error if they try saving an already saved school
    * @return error message
    */
-  
   public String AlreadySavedError()
   {
     return "School was already saved"; 

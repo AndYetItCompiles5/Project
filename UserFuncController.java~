@@ -10,6 +10,8 @@ import Project.*;
 
 public class UserFuncController{
   
+  private DBController dbController;
+  
   public UserFuncController()
   {
     
@@ -23,9 +25,9 @@ public class UserFuncController{
    * @return true if the user was edited
    */
   
-  public boolean editUser(String first, String last, String password)
+  public int editUser(String username, String firstName, String lastName, String password,char type, char status)
   {
-    return false; 
+        return dbController.editAccount(username,firstName,lastName,password,type,status);
   }
   
   /**
@@ -43,10 +45,9 @@ public class UserFuncController{
    * @param school: the university being removed
    * @return true if university was removed
    */
-  
-  public boolean removeSchool(University school)
+  public int removeSchool(String user, String school)
   {
-    return false; 
+    return dbController.removeSchool(user, school); 
   }
   
   /**
@@ -55,9 +56,9 @@ public class UserFuncController{
    * @return true if university was saved
    */
   
-  public boolean saveSchool(University school)
+  public int saveSchool(String user, String school)
   {
-    return false; 
+    return dbController.saveSchool(user, school); 
   }
   
   /**

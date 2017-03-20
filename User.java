@@ -13,15 +13,25 @@ public class User extends Account{
   
   Set<String> savedSchools;
   
+  /**
+   * Constructes a user object who can save schools
+   * 
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username, username of the user
+   * @param password the password of the user
+   */
   public User(String first, String last, String username, String password)
   {
     super(first,last,username,password,'u');
     HashSet<String> savedSchools = new HashSet<String>();
   }
   
-  /**
+  /** 
    * Gets the user's saved schools
    * @return list of saved schools
+   * 
+   * Double check to see where we used this
    */
   public Set<String> getSavedSchools()
   {
@@ -57,8 +67,8 @@ public class User extends Account{
     else{
       return false;
     }
-    
   }
+  
   /**
    * Deactivates the user
    */

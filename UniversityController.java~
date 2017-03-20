@@ -49,7 +49,7 @@ public class UniversityController{
    * @param school: the university that will be edited
    * @return true if the universiy was successfully edited 
    */
-  public boolean editUniversity(String name, String state, String loc, String control, int numStudents,
+  public String editUniversity(String name, String state, String loc, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases)

@@ -8,29 +8,24 @@ import Project.*;
  * @version 2/25/2017
  */
 public class UserUI{
-  //Creates an instance of the DBController
   private DBController dbController;
 
-  //Creates an instance of the UserFuncController
   private UserFuncController uFuncController;
 
-  //creates an instance of the Search Controller
   private SearchController searchController;
 
   /**
    * UserUI constructor
-   *Default constuctor
    */
   public UserUI(){
     dbController = new DBController();
     searchController = new SearchController();
-    uFuncController = new UserFuncController();
   }
   
   /**
    * View school information
    *
-   * @param name of school
+   * @param University object school
    * 
    * @return the schools info
    */
@@ -41,10 +36,7 @@ public class UserUI{
   /**
    * save the school to the user                                      
    *
-   * @param user 
-   * @param school
-   * 
-   * @returns an int. -1 if not saved. 
+   * @param University object school
    */
   public int saveSchool(String user, String school)
   {
@@ -53,11 +45,6 @@ public class UserUI{
   
   /**
    * remove school from the users list 
-   * 
-   * @param user 
-   * @param school
-   * 
-   * @returns an int. -1 if not saved. 
    */
   public int removeSchool(String user, String school){
     return uFuncController.removeSchool(user, school);
@@ -66,9 +53,9 @@ public class UserUI{
   /**
    * view a list of univerities the user has saved
    *
-   * @param user
+   * @param University object school
    * 
-   * @return ArrayList of saved schools
+   * @return school
    */
   public ArrayList<String> viewSavedSchools(String user)
   {
@@ -122,11 +109,11 @@ public class UserUI{
   }
   
   /**
-   * displays results. Do we need these?
+   * displays results
    *
-   * @param list a set of string called list
+   * @param a set of string called list
    * 
-   * @return a message
+   * @return list
    */
   public String displayResults(Set<String> list){
     return "";
@@ -137,7 +124,7 @@ public class UserUI{
    *
    * @param University object school
    * 
-   * @return a message
+   * @return the school
    */
   public String showSchools(University school){
     return ""; 
@@ -146,17 +133,10 @@ public class UserUI{
   /**
    * The user can edit their acccount
    * 
-   * @param first the first name of the user
-   * @param last the last name of the user
-   * @param password the password of the user
-   * @param type U for user, A for admin
-   * @param status if the account is active or not
-   * @param account the Account object of the user
-   * 
-   * @return int : returns -1 if nothing was changed
+   * @return true if they made any changes else return false
    */
-  public int editAccount(String first,String last, String username, String password, char type, char status){
-    return dbController.editAccount(first,last,username,password,type,status);
+  public int editAccount(String firstName,String lastName, String username, String password, char type, char status){
+    return dbController.editAccount(firstName,lastName,username,password,type,status);
   }
   
   /**
