@@ -130,7 +130,8 @@ public class University{
    * sets the state the University is in
    * @param state the state the University is in
    */
-  public void setState(String state){
+  public void setState(String state)
+  {
     this.state=state;
   }
   
@@ -138,7 +139,8 @@ public class University{
    * get the location of the University
    * @return the location of the University
    */
-  public String getLocation(){
+  public String getLocation()
+  {
     return location;
   }
   

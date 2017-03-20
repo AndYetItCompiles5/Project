@@ -24,11 +24,21 @@ public class UserFuncController{
    * @param first:the user's first name
    * @param last: the user's last name
    * @param password: the user's password
-   * @return true if the user was edited
+   * @return string
    */
-  public int editUser(String username, String firstName, String lastName, String password,char type, char status)
+  public String editUser(String username, String first, String last, String password,char type, char status)
   {
-    return dbController.editAccount(username,firstName,lastName,password,type,status);
+        return dbController.editAccount(username,first,last,password,type,status);
+  }
+  
+  /**
+   * Lets the user view their saved schools
+   * @return the set of saved schools
+   */
+  
+  public Set<String> viewSchools()
+  {
+    return null; 
   }
   
   /**

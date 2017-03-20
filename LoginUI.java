@@ -8,9 +8,11 @@ import Project.*;
  * @version 2/22/17
  */
 
-public class LoginUI{
+public class LoginUI
+{
   
  private AccountController aController;
+ 
   public LoginUI(){
     aController = new AccountController();
   }
@@ -38,5 +40,9 @@ public class LoginUI{
   public String deactivateError()
   {
     return ("User deactivated, please contact an administrator"); 
+  }
+  
+  public void logout(){
+   aController.logout(); 
   }
 }

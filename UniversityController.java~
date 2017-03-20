@@ -61,10 +61,9 @@ public class UniversityController{
    * Sends a confirmation message to the user
    * @return confirmation message
    */
-  public boolean confirmationMessage()
+  public String confirmationMessage()
   {
-    //"Are you sure want to make those change(s)"
-    return true;
+    return "Are you sure?";
   }
   
 }

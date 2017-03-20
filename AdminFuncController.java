@@ -8,41 +8,38 @@ import Project.*;
  * @version 2/25/2017
  */
 public class AdminFuncController {
+  //instance of DBController
   private DBController dbController;
+  //instance of UniversityController
   private UniversityController uController;
+  //instance of AccountController
   private AccountController aController;
   
   /**
-   * Constructor
-   * 
+   * Default Constructor
    */
   public AdminFuncController(){
     dbController = new DBController();
     aController = new AccountController();
+    uController = new UniversityController();
   }
   
   /**
-   * An admin can create an account 
-   *
-   * @param user
-   * 
-   * @return true if added else return false
+   * Creates an account 
+   * @param first the first name of the user
+   * @param last the last name of the user
+   * @param username the username of the user
+   * @param the password for the account
+   * @param type the type of user
+   * @return Whether the account was successfully created, an error if not
    */
-  public String addAccount(String first, String last, String username, String password, char type){
+  public String addAccount(String first, String last, String username, String password, char type)
+  {
     return dbController.addAccount(first,last,username,password,type);
   }
   
   /**
-   * An Admin can add a new school to the list of schools in the DB
-   * 
-   * @return true if school is added else return false
-   */
-  public boolean addSchool(University school){
-    return true;
-  }
-  
-  /**
-   *An Admin can edit a University from the BD 
+   * Edits the University
    * 
    * @param name the name of the University
    * @param state the state the University is located int
@@ -62,12 +59,12 @@ public class AdminFuncController {
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    * 
-   * @return true if school was successfully editted else return false
+   * @return Whether the university was successfully edited, error if not successful
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases){
+                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                               int socialScale, int lifeScale, ArrayList<String> emphases){
     return uController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,
                                       expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
                                       socialScale,lifeScale,emphases);
@@ -76,26 +73,26 @@ public class AdminFuncController {
   /**
    * The admin can view a list Users
    * 
-   * @returns a set of accounts from the BD
+   * @returns an ArrayList of accounts from the BD
    */
   public ArrayList viewUsers(){
     return dbController.getAllUsers();
   }
   
   /**
-   *Displays the info of the account 
+   * Displays the info of the account 
    * 
    * @param first the first name of the user
    * @param last the last name of the user
+   * @param username the username of the user
    * @param password the password of the user
    * @param type U for user, A for admin
    * @param status true if active, false if deactivated
-   * @param account the Account object of the user
    * 
    * @return the details of the account
    */
-  public String displayInfo(String first, String last, String username, String password, char type, boolean status){
-    return null; 
+  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
+    return dbController.getAccount(username); 
   }
   
   /**
@@ -103,14 +100,14 @@ public class AdminFuncController {
    * 
    * @param first the first name of the user
    * @param last the last name of the user
+   * @param username the username of the user
    * @param password the password of the user
    * @param type U for user, A for admin
    * @param status true if active, false if deactivated
-   * @param account the Account object of the user
    * 
-   * @return true of the account was editted successifully else return false
+   * @return whether the account was successfully edited, error if not
    */
-  public int editAccount(String first, String last, String username, String password, char type, char status){
+  public String editAccount(String first, String last, String username, String password, char type, char status){
     return aController.editAccount(first,last,username,password,type,status);
   }
   
@@ -124,12 +121,6 @@ public class AdminFuncController {
   }
   
   /**
-   * resets the field to their default settings 
-   */
-  public void resetFields(){
-  }
-  
-  /**
    * A no name error
    * 
    * @return a noNameError 
@@ -138,16 +129,6 @@ public class AdminFuncController {
     return "No name was inputted. Please enter a name"; 
   }
   
-  /**
-   * displays the name of the University
-   * 
-   * @param name name of the University
-   * 
-   * @return name of the University
-   */
-  public String displayUnversity(String name){
-    return name;
-  }
   
   /**
    * An empty field error. 
@@ -166,5 +147,5 @@ public class AdminFuncController {
   public String[][] viewUniversities(){
     return dbController.getAllUniversities();
     
-     }
-    }
+  }
+}

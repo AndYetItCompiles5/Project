@@ -7,10 +7,12 @@ import Project.*;
  * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
  * @version 2/22/17
  */
-public class UniversityController{
+public class UniversityController
+{
   private DBController dbController;
-  public UniversityController(){
-    
+  
+  public UniversityController()
+  {
     
   }
   /**
@@ -66,21 +68,20 @@ public class UniversityController{
    * 
    * @return a string
    */
-  public String editUniversity(String name, String state, String loc, String control, int numStudents,
+  public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.editUniversity(name,state,loc,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
+    return dbController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
                                        socialScale,lifeScale,emphases);
   }
   /**  
    * Sends a confirmation message to the user
    * @return confirmation message
    */
-  public boolean confirmationMessage()
+  public String confirmationMessage()
   {
-    //"Are you sure want to make those change(s)"
-    return true;
+    return "Are you sure?";
   }
 }

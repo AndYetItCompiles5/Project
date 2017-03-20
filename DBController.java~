@@ -100,6 +100,9 @@ public class DBController
     }
   }
   
+  /**
+   * 
+   */
   public int saveSchool(String user, String school)
   {
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
@@ -118,7 +121,31 @@ public class DBController
       }
     }
     
-    dataBase.user_saveSchool(user, school);
+    return dataBase.user_saveSchool(user, school);
+  }
+  
+  /**
+   * This methods gets the user's saved schools from the db
+   * @param user
+   * @returns a array of user's saved schools
+   */
+  public ArrayList<String> getUserSavedSchools(String user)
+  {
+    ArrayList<String> listSchools = new ArrayList<String>();
+    String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
+    
+    for(int i = 0; i < namesWithSchools.length; i++)
+    {
+      if(namesWithSchools[i][0].equals(user))
+      {
+        for(int j = 0; j < namesWithSchools[i].length; j++)
+        {
+          listSchools.add(namesWithSchools[i][j]);
+        }
+      }
+    }
+    
+    return listSchools;
   }
   
   /**
@@ -166,9 +193,21 @@ public class DBController
    * @param username the username being used to search for the account
    * @returns an the account based off the username
    */
-  public Account getAccount(String username)
+  public ArrayList<String> getAccount(String username)
   {
-    return null;
+    ArrayList<String> info = new ArrayList<String>();
+    String[][] users = dataBase.user_getUsers();
+    for(int i= 0; i<users.length;i++){
+      if(users[i][2].equals(username)){
+       info.add(users[i][0]);   
+       info.add(users[i][1]);
+       info.add(users[i][2]); 
+       info.add(users[i][3]); 
+       info.add(users[i][4]); 
+       info.add(users[i][5]); 
+      }
+    }
+    return info;
   }
   
   /**
@@ -273,33 +312,14 @@ public class DBController
       return false; 
     }
   }
-  
-  /**
-   * Displays the Set of University objects
-   * @param setOfSchools the set of University objects 
-   * @returns the Set of University objects
-   */
-  public Set<University> displayResults(Set<String> setOfSchools)
-  {
-    return null;
-  }
+
   
   /**
    * Confirms stuff -----
    */
-  public void confirm()
+  public String confirm()
   {
-    
-  }
-  
-  /**
-   * Takes a University object and displays it's name
-   * @param school the University whose name is to be displayed
-   * @returns the name of school
-   */
-  public String displayUniversity(University school)
-  {
-    return ""; 
+    return "Are you sure?";
   }
   
   public int removeSchool(String user, String school)
@@ -409,9 +429,10 @@ public class DBController
    * @param account the Account object of the user
    * @returns true if the user was successfully edited
    */
-  public int editAccount(String first, String last, String username, String password, char type, char status)
+  public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-    return dataBase.user_editUser(username,first,last,password,type,status);
+    dataBase.user_editUser(username,first,last,password,type,status);
+    return "Edit Successful!";
   }
   
   /**
@@ -420,7 +441,7 @@ public class DBController
    */
   public String confirmationMessage()
   {
-    return "";
+    return "Are you sure?";
   }
   
   /**

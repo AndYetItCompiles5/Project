@@ -153,12 +153,11 @@ public class UserUI{
    * @param status if the account is active or not
    * @param account the Account object of the user
    * 
-   * @return int : returns -1 if nothing was changed
+   * @return string
    */
-  public int editAccount(String first,String last, String username, String password, char type, char status){
+  public String editAccount(String first,String last, String username, String password, char type, char status){
     return dbController.editAccount(first,last,username,password,type,status);
-  }
-  
+  } 
   /**
    * confirmation message
    * 

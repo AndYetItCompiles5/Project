@@ -31,14 +31,18 @@ public class AccountController{
   {
    ArrayList user = new ArrayList();
    user = dbController.getUser(username);
-   String loginName = user.get(0);
-   String loginPass = user.get(1);
-   char type = user.get(2);
-   char status = user.get(3);
-   if(!loginPass.equals(password)){
+   Object loginName = user.get(0);
+   String loginName1 = loginName.toString();
+   Object loginPass = user.get(1);
+   String loginPass1 = loginName.toString();
+   Object type = user.get(2);
+   char type1 = type.toString().charAt(0);
+   Object status = user.get(3);
+   char status1 = status.toString().charAt(0);
+   if(!loginPass1.equals(password)){
     return wrongLoginInfoError();
    }
-   if(status==('n')){
+   if(status1==('n')){
     return deactivateError();
    }
    setLoggedIn(username);
@@ -53,30 +57,7 @@ public class AccountController{
   {
     loggedIn=null; 
   }
-  
-  /**
-   * Lets the admin add a new account
-   * @param account: the account that will be added
-   * @return true if the account was added
-   */
-  public boolean addAccount(Account account)
-  {
-    return false; 
-  }
-  /**
-   * Logs the person in as an admin
-   */
-  public void aLogin()
-  {
-    
-  }
-  /**
-   * Logs the person in as a user
-   */
-  public void uLogin()
-  {
-    
-  }
+
   /**
    * Sets the account given as logged in
    * @param account: the account that will be set as logged in
@@ -85,6 +66,7 @@ public class AccountController{
   {
     loggedIn = username;
   }
+  
   /**
    * Gives an error if the login info was wrong
    * @return error message
@@ -108,9 +90,9 @@ public class AccountController{
    * @param password: the user's password
    * @return true if the user was edited
    */
-  public boolean editUser(String first, String last, String password)
+  public String editUser(String first, String last, String password)
   {
-    return false; 
+    return dbController.editAccount(first,last,loggedIn,password,'u','y');
   }
   /**
    * Gives a message asking the user to confirm their changes
@@ -131,18 +113,11 @@ public class AccountController{
    * @return true if the account was edited successfully
    * 
    */
-  public boolean editAccount(Account account, String first, String last, String password, char type, boolean status)
+  public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-    return false; 
+    return dbController.editAccount(first,last,username,password,type,status); 
   }
-  /**
-   * Gives a message asking the user to confirm their changes
-   * @return confirmation message
-   */
-  public String confirmationMessage()
-  {
-    return ("Are you sure?"); 
-  }
+
   /**
    * Gives an error saying the account is already deactivated
    * @return error message

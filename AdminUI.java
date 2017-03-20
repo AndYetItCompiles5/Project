@@ -16,6 +16,7 @@ public class AdminUI{
   
   //Creates an instance of the UniversityController
   private UniversityController uController;
+  
   /// change return type to Set<University> in class diagram
   /* An AdminUI constructor
    */
@@ -120,7 +121,7 @@ public class AdminUI{
    * 
    * @return int -1 if nothing changed
    */
-  public int editAccount(String first, String last,String username, String password, char type, char status){
+  public String editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
   }
   
@@ -147,10 +148,14 @@ public class AdminUI{
    * @param type of the account
    * @param status the status of the account
    * 
+<<<<<<< HEAD
    * @return string
+=======
+   * @returns the info of the user
+>>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    */
-  public String displayInfo(String first, String last, String username, String password, char type, char status){
-    return null; 
+  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
+    return aFuncController.displayInfo(first,last,username,password,type,status);
   }
   
   /**
@@ -164,7 +169,8 @@ public class AdminUI{
    * 
    * @return true if added else return false
    */
-  public String addAccount(String first, String last, String username, String password, char type){
+  public String addAccount(String first, String last, String username, String password, char type)
+  {
     return aFuncController.addAccount(first,last,username,password,type);
   }
   
@@ -191,8 +197,8 @@ public class AdminUI{
    * 
    * @return true if change is confirmed else return false
    */
-  public boolean confirmChange(){
-    return true; 
+  public String confirmChange(){
+    return "Are you sure?"; 
   }
   
   /**
@@ -214,6 +220,7 @@ public class AdminUI{
   }
   
   /**
+<<<<<<< HEAD
    * display University's name
    *
    * @param name of the university
@@ -225,6 +232,8 @@ public class AdminUI{
   }
   
   /**
+=======
+>>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    * No name error. No user with that given name
    * 
    * @return "no name error"
