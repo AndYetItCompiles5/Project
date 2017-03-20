@@ -10,9 +10,10 @@ import Project.*;
 
 public class LoginUI
 {
-  
+ //Creates an instance of AccountController
  private AccountController aController;
  
+ //Default constructor
   public LoginUI(){
     aController = new AccountController();
   }
@@ -41,7 +42,10 @@ public class LoginUI
   {
     return ("User deactivated, please contact an administrator"); 
   }
-  
+  /**
+   * Logs the user out
+   * 
+   */
   public void logout(){
    aController.logout(); 
   }

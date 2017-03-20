@@ -11,10 +11,12 @@ import java.lang.*;
 
 public class DBController
 {
-  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
+  //Creates an instance of the Database Library
+  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");\
+  //Creates an instance of UniversityController
   private UniversityController uController = new UniversityController();
   /**
-   * Constructor if needed
+   * Default constructor
    */
   public DBController()
   {
@@ -22,9 +24,9 @@ public class DBController
   }
   
   /**
-   * Returns the user to themselves when they are logging in/editing their profile
-   * 
-   * @returns the User object to the current User
+   * Returns the info of a specific user
+   * @param username:the username of the user that is being found
+   * @returns the specified user to the actual user
    */
   public ArrayList getUser(String username)
   {
@@ -43,9 +45,9 @@ public class DBController
   }
   
   /**
-   * Method that takes a University as a parameter and returns that same University
-   * @param school the school to be retrieved
-   * @returns the University that the account is looking for
+   * Finds a university that matches the given name
+   * @param name:the school name that is being found
+   * @returns an array list of the university that the account is looking for
    */
   public ArrayList getUniversity(String name)
   {
@@ -60,11 +62,27 @@ public class DBController
     }
     return result;
   }
-//change return type to Set<University> in class diagram
+
   /**
-   * Method that takes a Universty object and edits it's info in the database
-   * @param school the school to be edited
-   * @returns true if the University has been successfully edited
+   * Edits a given university with the specified parameters unless they are null/0
+   * @param name the name of the University
+   * @param state the state the University is located int
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+   * @param numStudents number of students enrolled in the University
+   * @param perFemale percentage of enrolled students that are females (between 0 and 100)
+   * @param satVerbal average SAT verbal score for enrolled students(between 0 and 800)
+   * @param satMath average SAT math score for enrolled students(between 0 and 800)
+   * @param expenses annual expenses or tuition to attend the school
+   * @param perFA percentage of enrolled students receiving financial aid
+   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param perAdmitted percent of applicants that get admitted
+   * @param perEnrolled percent of applicants that decide to enroll
+   * @param academicScale integer between 1 and 5 indicating the academic scale of the University
+   * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
+   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
+   * @param emphases up to five areas of study the University excels at (all Strings)
+   * @returns a success message
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -73,13 +91,29 @@ public class DBController
   {
     dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
                                        numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return "Are you sure you want to make these changes?";
+    return "Changes successful";
   }
   
   /**
    * Method to add a a new University object to the database
-   * @param school the new University object to be added to the database
-   * @returns true if the school has been added successfully
+   * @param name the name of the University
+   * @param state the state the University is located int
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+   * @param numStudents number of students enrolled in the University
+   * @param perFemale percentage of enrolled students that are females (between 0 and 100)
+   * @param satVerbal average SAT verbal score for enrolled students(between 0 and 800)
+   * @param satMath average SAT math score for enrolled students(between 0 and 800)
+   * @param expenses annual expenses or tuition to attend the school
+   * @param perFA percentage of enrolled students receiving financial aid
+   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param perAdmitted percent of applicants that get admitted
+   * @param perEnrolled percent of applicants that decide to enroll
+   * @param academicScale integer between 1 and 5 indicating the academic scale of the University
+   * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
+   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
+   * @param emphases up to five areas of study the University excels at (all Strings)
+   * @returns success message if the school has been added successfully
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -100,7 +134,10 @@ public class DBController
   }
   
   /**
-   * 
+   * Saves a school to the user's list of saved schools
+   * @param user:the username of the user where the school is being added to
+   * @param school: the school name of the school being added
+   * @return an int
    */
   public int saveSchool(String user, String school)
   {
@@ -124,9 +161,9 @@ public class DBController
   }
   
   /**
-   * This methods gets the user's saved schools from the db
-   * @param user
-   * @returns a array of user's saved schools
+   * This methods gets the user's saved schools from the DB
+   * @param user:the username of the user where the saved schools are being obtained from
+   * @returns an array of the user's saved schools
    */
   public ArrayList<String> getUserSavedSchools(String user)
   {
@@ -154,13 +191,19 @@ public class DBController
    */
   public boolean isUsername(String username)
   {
-    return false;
+	  String[][] usernameList = dataBase.user_getUsers();
+	    for(int i = 0; i<universityList.length;i++){
+	      if(universityList[i][2].equals(name)){
+	        return true;
+	      }
+	    }
+	    return false;
   }
   
   /**
-   * Returns an Account object based off of a username
+   * Returns an array list of the account wanted
    * @param username the username being used to search for the account
-   * @returns an the account based off the username
+   * @returns an array list based off the username
    */
   public ArrayList<String> getAccount(String username)
   {
@@ -237,6 +280,7 @@ public class DBController
    * @param lifeScaleLow user search input of minimum life scale number
    * @param lifeScaleHigh user search input of maximum life scale number
    * @param emphases up to five areas of study the University excels at (all Strings)
+   * @return a hashset of the found schools
    */
   public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
                                 int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
@@ -272,6 +316,14 @@ public class DBController
     return answer;
   }
   
+  /**
+   * Checks if the school's actual data is within the range of the low and high that the user searched for
+   * @param low: the low bound the user inputted
+   * @param high: the high bound the user inputted
+   * @param actual: the concrete number of the school
+   * @return true if the actual is between the low and the high
+   * 
+   */
   public boolean isWithinRange(double low, double high, String actual){
     double newActual = Double.parseDouble(actual);
     if(newActual>=low && newActual<=high){
@@ -284,13 +336,21 @@ public class DBController
 
   
   /**
-   * Confirms stuff -----
+   * Confirmation message
+   * @return string asking if the user is sure about their decision
    */
   public String confirm()
   {
     return "Are you sure?";
   }
   
+  /**
+   * Removes the specified school from the user's list
+   * @param user: the username of the user where the school is being deleted from
+   * @param school: the school name that is being removed
+   * @return an integer
+   * 
+   */
   public int removeSchool(String user, String school)
   {
     return dataBase.user_removeSchool(user, school);
@@ -298,8 +358,8 @@ public class DBController
   
   /**
    * Finds whether or not the schools has been saved
-   * @param school the University we want to save to the database
-   * @returns true if the school has been saved
+   * @param name the university name that is being saved
+   * @returns true if the school has already been saved
    */
   public boolean isSchoolSaved(String name)
   {
@@ -322,7 +382,7 @@ public class DBController
   }
   
   /**
-   * returns a set of all the users in the database
+   * Returns a set of all the users in the database
    * @return a set of all the users in the database
    */
   public ArrayList getAllUsers()
@@ -339,8 +399,12 @@ public class DBController
   
   /**
    * Add an account to the database
-   * @param account the account to be added to the database
-   * @returns true if successfully added to the database
+   * @param first:the first name of the user being added
+   * @param last: the last name of the user being added
+   * @param username: the username of the user being added
+   * @param password: the password of the user being added
+   * @param type: boolean of the user's activation or deactivation
+   * @returns confirmation message if successfully added to the database
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
@@ -390,12 +454,12 @@ public class DBController
   
   /**
    * Method to edit an existing user
-   * @param first the first name of the user
-   * @param last the last name of the user
+   * @param first: the first name of the user
+   * @param last: the last name of the user
+   * @param username: the username of the user
    * @param password the password of the user
-   * @param type U for user, A for admin
-   * @param status true if active, false if deactivated
-   * @param account the Account object of the user
+   * @param type: U for user, A for admin
+   * @param status: true if active, false if deactive
    * @returns true if the user was successfully edited
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
@@ -415,7 +479,7 @@ public class DBController
   
   /**
    * Checks to see if an Account is deactivated
-   * @param account the Account to be checked
+   * @param username: the username of the user that the admin is checking
    * @returns true if account is deactivated
    */
   public boolean isDeactivated(String username)
@@ -434,8 +498,12 @@ public class DBController
   
   /**
    * Deactivates a given Account
-   * @param account the account to be deactivated
-   * @returns true if successfully deactivated
+   * @param first: the first name of the user
+   * @param last: the last name of the user
+   * @param username: the username of the user
+   * @param password the password of the user
+   * @param type: U for user, A for admin
+   * @returns confirmation message if the user was deactivated or not
    */
   public String deactivateUser(String first, String last, String username, String password, char type)
   {

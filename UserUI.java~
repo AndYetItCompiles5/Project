@@ -3,23 +3,67 @@ import java.util.*;
 import Project.*;
 
 /**
- * A controller class that lets the user search for universities with their provided information
- * @author Zak Luetmer, TJ Schmitz, Nathan Hansen, Colton Alseth
- * @version 2/22/17
+ * UserUI
+ * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+ * @version 2/25/2017
  */
-
-public class SearchController{
-  
-  //Creates an instance of DBController
+public class UserUI{
   private DBController dbController;
-  
-  //Default constructor
-  public SearchController()
-  {
-    dbController = new DBController();
-  }
+
+  private UserFuncController uFuncController;
+
+  private SearchController searchController;
+
   /**
-   * Searches for schools with the provided information
+   * UserUI constructor
+   */
+  public UserUI(){
+    dbController = new DBController();
+    searchController = new SearchController();
+  }
+  
+  /**
+   * View school information
+   *
+   * @param University object school
+   * 
+   * @return the schools info
+   */
+  public ArrayList viewSchoolInfo(String name){
+    return dbController.getUniversity(name);
+  }
+  
+  /**
+   * save the school to the user                                      
+   *
+   * @param University object school
+   */
+  public int saveSchool(String user, String school)
+  {
+    return uFuncController.saveSchool(user, school);
+  }
+  
+  /**
+   * remove school from the users list 
+   */
+  public int removeSchool(String user, String school){
+    return uFuncController.removeSchool(user, school);
+  }
+  
+  /**
+   * view a list of univerities the user has saved
+   *
+   * @param University object school
+   * 
+   * @return school
+   */
+  public Set<String> viewSavedSchools(University school){
+    return null;
+  }
+  
+  /**
+   * An admin can create an account 
+   *
    * @param name the name of the University
    * @param state the state the University is located int
    * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
@@ -49,46 +93,93 @@ public class SearchController{
    * @param lifeScaleLow user search input of minimum life scale number
    * @param lifeScaleHigh user search input of maximum life scale number
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @return hashset of the schools that were found
    */
   public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
                      int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
                      int satMathLow, int satMathHigh, int expensesLow, int expensesHigh, double perFALow, double perFAHigh,
                      int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh, double perEnrolledLow, double perEnrolledHigh,
                      int academicScaleLow, int academicScaleHigh, int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases){
-    return dbController.search(name, state, location, control, numStudentsLow,numStudentsHigh, perFemaleLow,perFemaleHigh, satVerbalLow,satVerbalHigh,
+    
+    return searchController.search(name, state, location, control, numStudentsLow,numStudentsHigh, perFemaleLow,perFemaleHigh, satVerbalLow,satVerbalHigh,
                                    satMathLow,satMathHigh,expensesLow,expensesHigh,
                                    perFALow,perFAHigh, numApplicantsLow,numApplicantsHigh, perAdmittedLow,perAdmittedHigh,perEnrolledLow,perEnrolledHigh,
                                    academicScaleLow,academicScaleHigh,socialScaleLow,socialScaleHigh, lifeScaleLow,lifeScaleHigh,
                                    emphases);
   }
+  
   /**
-   * Gets any recommended schools
-   * @param name the name of the University
-   * @param state the state the University is located int
-   * @param loc can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
-   * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
-   * @param numStudents number of students enrolled in the University
-   * @param perFemale percentage of enrolled students that are females (between 0 and 100)
-   * @param satVerbal average SAT verbal score for enrolled students(between 0 and 800)
-   * @param satMath average SAT math score for enrolled students(between 0 and 800)
-   * @param expenses annual expenses or tuition to attend the school
-   * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicants total number of applicants that apply to the school anually
-   * @param perAdmitted percent of applicants that get admitted
-   * @param perEnrolled percent of applicants that decide to enroll
-   * @param academicScale integer between 1 and 5 indicating the academic scale of the University
-   * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
-   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
-   * @param emphases up to five areas of study the University excels at (all Strings)
-   * @return set of recommended schools
+   * displays results
+   *
+   * @param a set of string called list
+   * 
+   * @return list
    */
-  public Set<String> findReccomendations(String name, String state, String loc, String control, int numStudents,
-                                         double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                         int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                         int socialScale, int lifeScale, ArrayList<String> emphases)
-  {
-    return null;
+  public String displayResults(Set<String> list){
+    return "";
   }
-
+  
+  /**
+   * show universities
+   *
+   * @param University object school
+   * 
+   * @return the school
+   */
+  public String showSchools(University school){
+    return ""; 
+  }
+  
+  /**
+   * The user can edit their acccount
+   * 
+   * @return true if they made any changes else return false
+   */
+  public int editAccount(String firstName,String lastName, String username, String password, char type, char status){
+    return dbController.editAccount(firstName,lastName,username,password,type,status);
+  }
+  
+  /**
+   * confirmation message
+   * 
+   * @return a comfirmation message
+   */
+  public String confirm(){
+    return "confirm"; 
+  }
+  
+  /**
+   *  display University
+   *
+   *@param University object school
+   * 
+   * @return 
+   */
+  public String displayUniversity(University school){
+    return ""; 
+  }
+  
+  /**
+   * Already saved error message when the user tries to save the same school twice
+   * 
+   * @return "Universities already saved"
+   */
+  public String alreadySavedError(){
+    return "already saved Error"; 
+  }
+  
+  /**
+   * Is the user sure they want to make those changes? confirmation message
+   * 
+   * @return a confirmation message
+   */
+  public String confirmationMessage(){
+    return "confirmation Message"; 
+  }
+  
+  /**
+   *confirmation message to change
+   */
+  public String confirmChange(){
+    return "are you sure?"; 
+  }
 }
