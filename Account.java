@@ -20,7 +20,7 @@ public class Account{
   private String password;
   //type of the account 'a' for admin, 'u' for user
   private char type;
-  //status of the account (activated or deactivated)
+  //status of the account (activated or deactivated) 'y' or 'n'
   private char status;
   
   /**
