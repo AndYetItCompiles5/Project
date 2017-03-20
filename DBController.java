@@ -11,9 +11,13 @@ import java.lang.*;
 
 public class DBController
 {
-  //Creates an instance of the Database Library
+  /**
+   * Creates an instance of the Database Library
+   */
   private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
-  //Creates an instance of UniversityController
+  /**
+   * Creates an instance of UniversityController
+   */
   private UniversityController uController = new UniversityController();
   /**
    * Default constructor

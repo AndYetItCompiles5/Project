@@ -8,11 +8,17 @@ import Project.*;
  * @version 2/25/2017
  */
 public class AdminFuncController {
-  //instance of DBController
+  /**
+   * instance of DBController
+   */
   private DBController dbController;
-  //instance of UniversityController
+  /**
+   * instance of UniversityController
+   */
   private UniversityController uController;
-  //instance of AccountController
+  /**
+   * instance of AccountController
+   */
   private AccountController aController;
   
   /**

@@ -9,11 +9,14 @@ import Project.*;
  */
 
 public class AccountController{
-  //who is logged into the system
+  /**
+   * who is logged into the system
+   */
   private String loggedIn = null;
-  //creates an instance of a DBController
+  /**
+   * creates an instance of a DBController
+   */
   private DBController dbController;
-  
   /**
    * default empty constructor
    */

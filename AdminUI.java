@@ -8,17 +8,24 @@ import Project.*;
  * @version 2/25/2017
  */
 public class AdminUI{
-  //Creates an instance of the AdminFucController
+  /**
+   * Creates an instance of the AdminFucController
+   */
   private AdminFuncController aFuncController;
   
-  //Creates an instance of the AccountController
+  /**
+   * Creates an instance of the AccountController
+   */
   private AccountController aController;
   
-  //Creates an instance of the UniversityController
+  /**
+   * Creates an instance of the UniversityController
+   */
   private UniversityController uController;
   
   /// change return type to Set<University> in class diagram
-  /* An AdminUI constructor
+  /** 
+   * An AdminUI constructor
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();
