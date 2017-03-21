@@ -11,58 +11,108 @@ import java.lang.*;
 
 public class DBController
 {
-  //Creates an instance of the Database Library
-  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");\
-  //Creates an instance of UniversityController
-  private UniversityController uController = new UniversityController();
   /**
-   * Default constructor
+   * Creates an instance of the Database Library
    */
-  public DBController()
-  {
-    
-  }
+  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   
   /**
-   * Returns the info of a specific user
-   * @param username:the username of the user that is being found
-   * @returns the specified user to the actual user
+   * Creates an instance of UniversityController
    */
-  public ArrayList getUser(String username)
+<<<<<<< HEAD
+ // private UniversityController uController = new UniversityController();
+=======
+  private UniversityController uController = new UniversityController();
+
+>>>>>>> 6828410f931e9e3c26e753a905dceea54c4cdd63
+  /**
+   * Returns an account
+   * 
+   * @param username:the username of the account that is being found
+   * 
+   * @returns the Account object associated with the username
+   */
+  public Account getAccount(String username)
   {
-    ArrayList userInfo = new ArrayList();
+    String first = "";
+    String last = "";
+    String password = "";
+    char type = 'z';
+    char status = 'z';
+    
     String[][] users = dataBase.user_getUsers();
+    
     for(int i = 0; i < users.length;i++){
       if(users[i][2].equals(username))
       {
-        userInfo.add(users[i][2].toString());
-        userInfo.add(users[i][3].toString());
-        userInfo.add(users[i][4].charAt(0));
-        userInfo.add(users[i][5].charAt(0));
+        first = users[i][0].toString();
+        last = users[i][1].toString();
+        password = users[i][3].toString();
+        type = users[i][4].charAt(0);
+        status = users[i][5].charAt(0);
       }
     }
-    return userInfo;
+    
+    Account account = new Account(first, last, username, password, type, status);
+    
+    return account;
   }
   
   /**
    * Finds a university that matches the given name
    * @param name:the school name that is being found
-   * @returns an array list of the university that the account is looking for
+   * @returns an university object
    */
-  public ArrayList getUniversity(String name)
+  public University getUniversity(String name)
   {
+    String state =  "";  
+    String loc = "";  
+    String control = "";   
+    int numStudents = 0;
+    double perFemale = 0; 
+    int satVerbal = 0;
+    int satMath = 0;
+    int expenses = 0;
+    double perFA = 0;
+    int numApplicants = 0;
+    double perAdmitted = 0;
+    double perEnrolled = 0;
+    int academicScale = 0;
+    int socialScale = 0;
+    int lifeScale = 0; 
+    ArrayList<String> emp = new ArrayList<String>();;
+    
     String[][] universities = dataBase.university_getUniversities();
-    ArrayList result = new ArrayList();
+    
     for(int i=0;i<universities.length;i++){
       if(universities[i][0].equals(name)){
-        for(int j=0;j<universities[i].length;j++){
-          result.add(universities[i][j]);
-        }
+        name = universities[i][0];
+        state = universities[i][1];
+        loc = universities[i][2];
+        control = universities[i][3];
+        numStudents = Integer.parseInt(universities[i][4]);
+        perFemale = Double.parseDouble(universities[i][5]);  
+        satVerbal = Integer.parseInt(universities[i][6]);
+        satMath = Integer.parseInt(universities[i][7]);
+        expenses = Integer.parseInt(universities[i][8]);
+        perFA = Double.parseDouble(universities[i][9]);
+        numApplicants = Integer.parseInt(universities[i][10]);
+        perAdmitted = Double.parseDouble(universities[i][11]);
+        perEnrolled = Double.parseDouble(universities[i][12]);
+        academicScale = Integer.parseInt(universities[i][13]);
+        socialScale = Integer.parseInt(universities[i][14]);
+        lifeScale = Integer.parseInt(universities[i][15]);
+      }
+      else{
+        return null;
       }
     }
-    return result;
+    University university = new University(name,state,loc,control,numStudents,perFemale, satVerbal,
+                                           satMath,expenses, perFA,numApplicants,perAdmitted,perEnrolled,
+                                           academicScale,socialScale,lifeScale,emp);
+    return university;
   }
-
+  
   /**
    * Edits a given university with the specified parameters unless they are null/0
    * @param name the name of the University
@@ -85,13 +135,20 @@ public class DBController
    * @returns a success message
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases)
+                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                               int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
-                                       numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return "Changes successful";
+    
+    String[][] universities = dataBase.university_getUniversities();
+    for(int i=0;i<universities.length;i++){
+      if(universities[i][0].equals(name)){
+        dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
+                                           numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
+              return "Changes successful";
+      }      
+    }
+    return "Universities doesnt exist";
   }
   
   /**
@@ -118,7 +175,7 @@ public class DBController
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale, ArrayList<String> emphases)
+                              int socialScale, int lifeScale)
   {
     if(isSchoolSaved(name)){
       return alreadySavedError();
@@ -129,7 +186,7 @@ public class DBController
                                         perFemale, satVerbal, satMath, expenses, perFA,
                                         numApplicants, perAdmitted, perEnrolled, academicScale,
                                         socialScale, lifeScale);
-      return "Save Successful!";
+      return name + " was added successfully";
     }
   }
   
@@ -165,9 +222,9 @@ public class DBController
    * @param user:the username of the user where the saved schools are being obtained from
    * @returns an array of the user's saved schools
    */
-  public ArrayList<String> getUserSavedSchools(String user)
+  public ArrayList<University> getUserSavedSchools(String user)
   {
-    ArrayList<String> listSchools = new ArrayList<String>();
+    ArrayList<University> listSchools = new ArrayList<University>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
     
     for(int i = 0; i < namesWithSchools.length; i++)
@@ -176,11 +233,11 @@ public class DBController
       {
         for(int j = 0; j < namesWithSchools[i].length; j++)
         {
-          listSchools.add(namesWithSchools[i][j]);
+          //listSchools.add(namesWithSchools[i][j]);
+          listSchools.add(getUniversity(namesWithSchools[i][0]));
         }
       }
-    }
-    
+    } 
     return listSchools;
   }
   
@@ -191,37 +248,15 @@ public class DBController
    */
   public boolean isUsername(String username)
   {
-	  String[][] usernameList = dataBase.user_getUsers();
-	    for(int i = 0; i<universityList.length;i++){
-	      if(universityList[i][2].equals(name)){
-	        return true;
-	      }
-	    }
-	    return false;
-  }
-  
-  /**
-   * Returns an array list of the account wanted
-   * @param username the username being used to search for the account
-   * @returns an array list based off the username
-   */
-  public ArrayList<String> getAccount(String username)
-  {
-    ArrayList<String> info = new ArrayList<String>();
-    String[][] users = dataBase.user_getUsers();
-    for(int i= 0; i<users.length;i++){
-      if(users[i][2].equals(username)){
-       info.add(users[i][0]);   
-       info.add(users[i][1]);
-       info.add(users[i][2]); 
-       info.add(users[i][3]); 
-       info.add(users[i][4]); 
-       info.add(users[i][5]); 
+    String[][] usernameList = dataBase.user_getUsers();
+    for(int i = 0; i<usernameList.length;i++){
+      if(usernameList[i][2].equals(username)){
+        return true;
       }
     }
-    return info;
+    return false;
   }
-  
+
   /**
    * Returns a string stating that the login info was incorrect
    * @returns a message saying some part of login info is wrong
@@ -333,7 +368,7 @@ public class DBController
       return false; 
     }
   }
-
+  
   
   /**
    * Confirmation message
@@ -382,18 +417,22 @@ public class DBController
   }
   
   /**
-   * Returns a set of all the users in the database
+   * Returns an ArrayList of all the users(admin and regular users) in the database
+   * 
    * @return a set of all the users in the database
    */
-  public ArrayList getAllUsers()
+  public ArrayList<Account> getAllUsers()
   {
     String[][] users = dataBase.user_getUsers();
-    ArrayList result = new ArrayList();
-    for(int i=0;i< users.length;i++){
-      for(int j=0;j<users[i].length;j++){
-        result.add(users[i][j]);
-      }
+    Account account;
+    ArrayList<Account> result = new ArrayList<Account>();
+    
+    for(int i=0;i< users.length;i++)
+    {
+      account = getAccount(users[i][2]);
+      result.add(account);
     }
+    
     return result;
   }
   
@@ -409,7 +448,10 @@ public class DBController
   public String addAccount(String first, String last, String username, String password, char type)
   {
     boolean taken = isUsernameTaken(username);
-    if(!taken){
+    if(username.equals("")|| password.equals("")){
+    	return userNotCompleteError();
+    }
+    else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
@@ -487,7 +529,7 @@ public class DBController
     String[][] userList = dataBase.user_getUsers();
     for(int i = 0; i<userList.length;i++){
       if(userList[i][2].equals(username)){
-        if(userList[i][5].equals('n')){
+        if(userList[i][5].equals("n")){
           return true;
         }
       }
@@ -498,20 +540,29 @@ public class DBController
   
   /**
    * Deactivates a given Account
-   * @param first: the first name of the user
-   * @param last: the last name of the user
+   * 
    * @param username: the username of the user
-   * @param password the password of the user
-   * @param type: U for user, A for admin
+   * 
    * @returns confirmation message if the user was deactivated or not
    */
-  public String deactivateUser(String first, String last, String username, String password, char type)
+  public String deactivateUser(String username)
   {
-    if(isDeactivated(username)){
+    if(isDeactivated(username))
+    {
       return alreadyDeactivatedError();
     }
-    else{
+    
+    else
+    {
+      Account account = getAccount(username);
+      
+      String first = account.getFirstName();
+      String last  = account.getLastName();
+      String password = account.getPassword();
+      char type = account.getType();
+      
       dataBase.user_editUser(username,first,last,password,type,'n');
+      
       return "Deactivation Successful!";
     }
   }

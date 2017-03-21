@@ -8,19 +8,13 @@ import Project.*;
  * @version 2/25/2017
  */
 public class UserUI{
-  /**
-   * Creates an instance of the Database Library
-   */
+  //Creates an instance of the DBController
   private DBController dbController;
 
-  /**
-   * Creates an instance of the UserFuncController
-   */
+  //Creates an instance of the UserFuncController
   private UserFuncController uFuncController;
 
-  /**
-   * Creates an instance of the SearchController
-   */
+  //creates an instance of the Search Controller
   private SearchController searchController;
 
   /**
@@ -40,7 +34,7 @@ public class UserUI{
    * 
    * @return the schools info
    */
-  public University viewSchoolInfo(String name){
+  public ArrayList viewSchoolInfo(String name){
     return dbController.getUniversity(name);
   }
   
@@ -76,7 +70,7 @@ public class UserUI{
    * 
    * @return ArrayList of saved schools
    */
-  public ArrayList<University> viewSavedSchools(String user)
+  public ArrayList<String> viewSavedSchools(String user)
   {
     return dbController.getUserSavedSchools(user);
   }

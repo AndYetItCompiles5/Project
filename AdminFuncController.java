@@ -88,17 +88,25 @@ public class AdminFuncController {
   /**
    * Displays the info of the account 
    * 
-   * @param first the first name of the user
-   * @param last the last name of the user
-   * @param username the username of the user
-   * @param password the password of the user
-   * @param type U for user, A for admin
-   * @param status true if active, false if deactivated
+   * @param username the username of the accoubt we need information from
    * 
-   * @return the details of the account
+   * @return an ArrayList of all the account details
    */
-  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
-    return dbController.getAccount(username); 
+  public ArrayList<String> displayInfo(String username)
+  {
+    Account account = dbController.getAccount(username);
+    
+    ArrayList<String> accountInfo = new ArrayList<String>();
+    
+    accountInfo.add(account.getFirstName());
+    accountInfo.add(account.getLastName());
+    accountInfo.add(account.getUsername());
+    
+    // change from char to String for type and status
+    accountInfo.add(account.getType() + "");
+    accountInfo.add(account.getStatus() + "");
+    
+    return accountInfo;
   }
   
   /**

@@ -9,58 +9,81 @@ import Project.*;
  */
 
 public class AccountController{
-
+  /**
+   * who is logged into the system
+   */
   private String loggedIn = null;
-
+  /**
+   * creates an instance of a DBController
+   */
   private DBController dbController;
   /**
    * default empty constructor
    */
-  public AccountController(){
+  public AccountController()
+  {
     loggedIn=null;
     dbController = new DBController();
   }
   
   /**
    * Logs the user in with the specified username and password
+   * 
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
-   * @return true if the user was able to login successfully
+   * 
+   * @return confirmation that login was successful or error depending on what went wrong
    */
   public String login(String username, String password)
   {
-   ArrayList user = new ArrayList();
-   user = dbController.getUser(username);
-   Object loginName = user.get(0);
-   String loginName1 = loginName.toString();
-   Object loginPass = user.get(1);
-   String loginPass1 = loginName.toString();
-   Object type = user.get(2);
-   char type1 = type.toString().charAt(0);
-   Object status = user.get(3);
-   char status1 = status.toString().charAt(0);
-   if(!loginPass1.equals(password)){
-    return wrongLoginInfoError();
-   }
-   if(status1==('n')){
-    return deactivateError();
-   }
-   setLoggedIn(username);
-   return "Successful login!";
-   }
-
+<<<<<<< HEAD
+    ArrayList<String> user = new ArrayList<String>();
+    user = dbController.getUser(username);
+    String loginName = user.get(0);
+    String loginName1 = loginName.toString();
+    String loginPass = user.get(1);
+    String loginPass1 = loginName.toString();
+    String type = user.get(2);
+    char type1 = type.toString().charAt(0);
+    String status = user.get(3);
+    char status1 = status.toString().charAt(0);
+    if(!loginPass1.equals(password)){
+=======
+    Account account = dbController.getAccount(username);
+    
+    String username1 = account.getUsername();
+    String password1 = account.getPassword();
+    char   type      = account.getType();
+    char   status    = account.getStatus();
+    
+    if(!password1.equals(password) || !username1.equals(username))
+    {
+>>>>>>> 6828410f931e9e3c26e753a905dceea54c4cdd63
+      return wrongLoginInfoError();
+    }
+    
+    if(status == 'n')
+    {
+      return deactivateError();
+    }
+    
+    setLoggedIn(username);
+    
+    return "Successful login!";
+  }
+  
   
   /**
-   * Logs the user out with the specified username and password
+   * Logout whoever is logged in
    */
   public void logout()
   {
     loggedIn=null; 
   }
-
+  
   /**
    * Sets the account given as logged in
-   * @param account: the account that will be set as logged in
+   * @param username: the account that will be set as logged in
    */
   public void setLoggedIn(String username)
   {
@@ -88,12 +111,13 @@ public class AccountController{
    * @param first:the user's first name
    * @param last: the user's last name
    * @param password: the user's password
-   * @return true if the user was edited
+   * @return Whether the user was successfuly logged in
    */
   public String editUser(String first, String last, String password)
   {
     return dbController.editAccount(first,last,loggedIn,password,'u','y');
   }
+  
   /**
    * Gives a message asking the user to confirm their changes
    * @return confirmation message
@@ -104,20 +128,19 @@ public class AccountController{
   }
   /**
    * Edits any account with the given information
-   * @param account: the account being edited
    * @param first:the user's first name
    * @param last: the user's last name
+   * @param username: the user's username
    * @param password: the user's password
    * @param type: the type of the account
    * @param status: the status of the account
-   * @return true if the account was edited successfully
-   * 
+   * @return whether the account was successfuly edited or an error if not
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
     return dbController.editAccount(first,last,username,password,type,status); 
   }
-
+  
   /**
    * Gives an error saying the account is already deactivated
    * @return error message
@@ -127,9 +150,15 @@ public class AccountController{
     return ("User is already deactivated"); 
   }
   
-  public String deactivateUser(String first, String last, String username, String password, char type){
-
-   return dbController.deactivateUser(first, last, username, password, type);
-
+  /**
+   * Deactivates a user by setting status to 'n'
+   * 
+   * @param username the username of the user
+   * 
+   * @return whether the user was deactivated or if there was an error
+   */
+  public String deactivateUser(String username)
+  {
+    return dbController.deactivateUser(username);
   }
 }

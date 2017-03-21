@@ -9,6 +9,9 @@ import Project.*;
  */
 public class UniversityController
 {
+    /**
+   * Creates an instance of the Database Library
+   */
   private DBController dbController;
   
   public UniversityController()

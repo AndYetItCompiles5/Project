@@ -10,10 +10,14 @@ import Project.*;
 
 public class SearchController{
   
-  //Creates an instance of DBController
+  /**
+   * Creates an instance of the Database Library
+   */
   private DBController dbController;
   
-  //Default constructor
+  /**
+   * Default constuctor. Initialized the DB Controller.
+   */
   public SearchController()
   {
     dbController = new DBController();

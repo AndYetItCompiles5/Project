@@ -8,39 +8,89 @@ import Project.*;
  * @version 2/22/2017
  */
 public class University{
-  //name of the University
+  /**
+   * name of the University
+   */
   private String name;
-  //state the University is located in
+  
+  /**
+   * state the University is located in
+   */
   private String state;
-  //can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+  
+  /**
+   * can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown 
+   */
   private String location;
-  //can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+  
+  /**
+    * can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
+    */
   private String control;
-  //number of students enrolled in the University
+  
+  /**
+    * number of students enrolled in the University
+    */
   private int numberOfStudents;
-  //percentage of enrolled students that are females (between 0 and 100)
+  
+  /**
+    * percentage of enrolled students that are females (between 0 and 100)
+    */
   private double percentFemale;
-  //average SAT verbal score for enrolled students(between 0 and 800)
+  
+  /**
+    * average SAT verbal score for enrolled students(between 0 and 800)
+    */
   private int satVerbal;
-  //average SAT math score for enrolled students(between 0 and 800)
+  
+  /**
+    * average SAT math score for enrolled students(between 0 and 800)
+    */
   private int satMath;
-  //annual expenses or tuition to attend the school
+  
+  /**
+    * annual expenses or tuition to attend the school
+    */
   private int expenses;
-  //percentage of enrolled students receiving financial aid
+  
+  /**
+    * percentage of enrolled students receiving financial aid
+    */
   private double percentFA;
-  //total number of applicants that apply to the school anually
+  
+  /**
+    * total number of applicants that apply to the school anually
+    */
   private int numApplicants;
-  //percent of applicants that get admitted
+  
+  /**
+    * percent of applicants that get admitted
+    */
   private double percentAdmitted;
-  //percent of applicants that decide to enroll
+  
+  /**
+    * percent of applicants that decide to enroll
+    */
   private double percentEnrolled;
-  //integer between 1 and 5 indicating the academic scale of the University
+  
+  /**
+   * integer between 1 and 5 indicating the academic scale of the University
+   */
   private int academicScale;
-  //integer between 1 and 5 indicating the quality of social life at the University
+  
+  /**
+   * integer between 1 and 5 indicating the quality of social life at the University
+   */
   private int socialScale;
-  //integer between 1 and 5 indicating the quality of life at the University
+  
+  /**
+   * integer between 1 and 5 indicating the quality of life at the University
+   */
   private int lifeScale;
-  //up to five areas of study the University excels at (all Strings)
+  
+  /**
+   * up to five areas of study the University excels at (all Strings)
+   */
   private ArrayList<String> emphases;
   
   /**
@@ -64,7 +114,7 @@ public class University{
    * @param emp up to five areas of study the University excels at (all Strings)
    * @throws IllegalArgumentException if name is not given
    */
-  public University(String name, String state, String location, String control, int numStudents, double perFemale, 
+  public University(String name, String state, String loc, String control, int numStudents, double perFemale, 
                     int satVerbal, int satMath, int expenses, double perFA, int numApplicants, double perAdmitted,
                     double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emp){
     if(name.equals("")||name==null)
@@ -89,7 +139,11 @@ public class University{
       this.emphases=emp;
     }
   }
-  
+  /**
+   * Constructor. Creates an univerites with just a name.
+   * 
+   * @param Name
+   */
   public University(String name){
     this.name=name;
     this.state=null;

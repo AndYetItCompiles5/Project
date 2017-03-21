@@ -11,7 +11,11 @@ import Project.*;
 public class Admin extends Account{
   
   /**
-   *Constructor 
+   * Default constructor
+   * @param first the first name of the Admin
+   * @param last the last name of the Admin
+   * @param username of the Admin
+   * @param password the password of the admin
    */
   public Admin(String first, String last, String username, String password)
   {
