@@ -20,11 +20,7 @@ public class DBController
    * Creates an instance of UniversityController
    */
   private UniversityController uController = new UniversityController();
-<<<<<<< HEAD
-=======
-  
->>>>>>> fdaeca3d1522bde7ab80fceb2e8bc8a1516d0584
-  
+
   /**
    * Returns an account
    * 
@@ -256,33 +252,7 @@ public class DBController
     }
     return false;
   }
-<<<<<<< HEAD
 
-=======
-  
-  /**
-   * Returns an array list of the account wanted
-   * @param username the username being used to search for the account
-   * @returns an array list based off the username
-   */
-  public ArrayList<String> getAccount(String username)
-  {
-    ArrayList<String> info = new ArrayList<String>();
-    String[][] users = dataBase.user_getUsers();
-    for(int i= 0; i<users.length;i++){
-      if(users[i][2].equals(username)){
-        info.add(users[i][0]);   
-        info.add(users[i][1]);
-        info.add(users[i][2]); 
-        info.add(users[i][3]); 
-        info.add(users[i][4]); 
-        info.add(users[i][5]); 
-      }
-    }
-    return info;
-  }
-  
->>>>>>> fdaeca3d1522bde7ab80fceb2e8bc8a1516d0584
   /**
    * Returns a string stating that the login info was incorrect
    * @returns a message saying some part of login info is wrong

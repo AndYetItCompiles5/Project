@@ -30,11 +30,11 @@ public class DBController
    */
   public Account getAccount(String username)
   {
-    String first;
-    String last;
-    String password;
-    char type;
-    char status;
+    String first = "";
+    String last = "";
+    String password = "";
+    char type = 'z';
+    char status = 'z';
     
     String[][] users = dataBase.user_getUsers();
     
