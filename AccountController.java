@@ -20,36 +20,41 @@ public class AccountController{
   /**
    * default empty constructor
    */
-  public AccountController(){
+  public AccountController()
+  {
     loggedIn=null;
     dbController = new DBController();
   }
   
   /**
    * Logs the user in with the specified username and password
+   * 
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
+   * 
    * @return confirmation that login was successful or error depending on what went wrong
    */
   public String login(String username, String password)
   {
-    ArrayList user = new ArrayList();
-    user = dbController.getUser(username);
-    Object loginName = user.get(0);
-    String loginName1 = loginName.toString();
-    Object loginPass = user.get(1);
-    String loginPass1 = loginName.toString();
-    Object type = user.get(2);
-    char type1 = type.toString().charAt(0);
-    Object status = user.get(3);
-    char status1 = status.toString().charAt(0);
-    if(!loginPass1.equals(password)){
+    Account account = dbController.getAccount(username);
+    
+    String username1 = account.getUsername();
+    String password1 = account.getPassword();
+    char   type      = account.getType();
+    char   status    = account.getStatus();
+    
+    if(!password1.equals(password) || !username1.equals(username))
+    {
       return wrongLoginInfoError();
     }
-    if(status1==('n')){
+    
+    if(status == 'n')
+    {
       return deactivateError();
     }
+    
     setLoggedIn(username);
+    
     return "Successful login!";
   }
   
@@ -133,14 +138,13 @@ public class AccountController{
   
   /**
    * Deactivates a user by setting status to 'n'
-   * @param first the first name of the user
-   * @param last the last name of the user
-   * @param usernmae the username of the user
-   * @param password the password of the user
-   * @param type of user
+   * 
+   * @param username the username of the user
+   * 
    * @return whether the user was deactivated or if there was an error
    */
-  public String deactivateUser(String first, String last, String username, String password, char type){
-    return dbController.deactivateUser(first, last, username, password, type);
+  public String deactivateUser(String username)
+  {
+    return dbController.deactivateUser(username);
   }
 }

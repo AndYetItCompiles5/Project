@@ -43,14 +43,14 @@ public class Account{
    * @param password the passworld of the Account
    * @param type what type of Account this is 'a' for admin, 'u' for user
    */
-  public Account(String first, String last, String username, String password, char type)
+  public Account(String first, String last, String username, String password, char type, char status)
   {
     this.firstName = first;
     this.lastName = last;
     this.username = username;
     this.password = password;
     this.type = type;
-    this.status = 'y';    
+    this.status = status;    
   }
   
   /**
@@ -111,7 +111,7 @@ public class Account{
    * Gets the username of the account
    * @return the account's username
    */
-  public String getUsername(String username)
+  public String getUsername()
   {
     return username; 
   }

@@ -23,7 +23,7 @@ public class User extends Account{
    */
   public User(String first, String last, String username, String password)
   {
-    super(first,last,username,password,'u');
+    super(first,last,username,password,'u', 'y');
     HashSet<String> savedSchools = new HashSet<String>();
   }
   

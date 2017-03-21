@@ -135,34 +135,23 @@ public class AdminUI{
   /**
    * An admin can deactivate a user
    *
-   * @param first the first name of the user
-   * @param last the last name of the user
    * @param username of the user
-   * @param password the password of the user
-   * @param type of the account
    */
-  public void deactivateUser(String first, String last, String username, String password, char type){
-    aController.deactivateUser(first, last, username, password, type);
+  public void deactivateUser(String username)
+  {
+    aController.deactivateUser(username);
   }
   
   /**
    * Display the account information
    *
-   * @param first the first name of the user
-   * @param last the last name of the user
    * @param username of the user
-   * @param password the password of the user
-   * @param type of the account
-   * @param status the status of the account
    * 
-<<<<<<< HEAD
-   * @return string
-=======
    * @returns the info of the user
->>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    */
-  public ArrayList<String> displayInfo(String first, String last, String username, String password, char type, char status){
-    return aFuncController.displayInfo(first,last,username,password,type,status);
+  public ArrayList<String> displayInfo(String username)
+  {
+    return aFuncController.displayInfo(username);
   }
   
   /**

@@ -10,17 +10,29 @@ import Project.*;
 
 public class Account{
   
-  //First name of user
+  /**
+   * First name of user
+   */
   private String firstName;
-  //Last name of user
+  /**
+   * Last name of user
+   */
   private String lastName;
-  //Username of user
+  /**
+   * Username of user
+   */
   private String username;
-  //The password for the user
+  /**
+   * The password for the user
+   */
   private String password;
-  //type of the account 'a' for admin, 'u' for user
+  /**
+   * type of the account 'a' for admin, 'u' for user
+   */
   private char type;
-  //status of the account (activated or deactivated)
+  /**
+   * status of the account (activated or deactivated) 'y' or 'n'
+   */
   private char status;
   
   /**

@@ -19,33 +19,38 @@ public class DBController
    * Creates an instance of UniversityController
    */
   private UniversityController uController = new UniversityController();
-  /**
-   * Default constructor
-   */
-  public DBController()
-  {
-    
-  }
   
   /**
-   * Returns the info of a specific user
-   * @param username:the username of the user that is being found
-   * @returns the specified user to the actual user
+   * Returns an account
+   * 
+   * @param username:the username of the account that is being found
+   * 
+   * @returns the Account object associated with the username
    */
-  public ArrayList getUser(String username)
+  public Account getAccount(String username)
   {
-    ArrayList userInfo = new ArrayList();
+    String first;
+    String last;
+    String password;
+    char type;
+    char status;
+    
     String[][] users = dataBase.user_getUsers();
+    
     for(int i = 0; i < users.length;i++){
       if(users[i][2].equals(username))
       {
-        userInfo.add(users[i][2].toString());
-        userInfo.add(users[i][3].toString());
-        userInfo.add(users[i][4].charAt(0));
-        userInfo.add(users[i][5].charAt(0));
+        first = users[i][0].toString();
+        last = users[i][1].toString();
+        password = users[i][3].toString();
+        type = users[i][4].charAt(0);
+        status = users[i][5].charAt(0);
       }
     }
-    return userInfo;
+    
+    Account account = new Account(first, last, username, password, type, status);
+    
+    return account;
   }
   
   /**
@@ -203,29 +208,7 @@ public class DBController
      }
      return false;
   }
-  
-  /**
-   * Returns an array list of the account wanted
-   * @param username the username being used to search for the account
-   * @returns an array list based off the username
-   */
-  public ArrayList<String> getAccount(String username)
-  {
-    ArrayList<String> info = new ArrayList<String>();
-    String[][] users = dataBase.user_getUsers();
-    for(int i= 0; i<users.length;i++){
-      if(users[i][2].equals(username)){
-       info.add(users[i][0]);   
-       info.add(users[i][1]);
-       info.add(users[i][2]); 
-       info.add(users[i][3]); 
-       info.add(users[i][4]); 
-       info.add(users[i][5]); 
-      }
-    }
-    return info;
-  }
-  
+
   /**
    * Returns a string stating that the login info was incorrect
    * @returns a message saying some part of login info is wrong
@@ -386,18 +369,22 @@ public class DBController
   }
   
   /**
-   * Returns a set of all the users in the database
+   * Returns an ArrayList of all the users(admin and regular users) in the database
+   * 
    * @return a set of all the users in the database
    */
-  public ArrayList getAllUsers()
+  public ArrayList<Account> getAllUsers()
   {
     String[][] users = dataBase.user_getUsers();
-    ArrayList result = new ArrayList();
-    for(int i=0;i< users.length;i++){
-      for(int j=0;j<users[i].length;j++){
-        result.add(users[i][j]);
-      }
+    Account account;
+    ArrayList<Account> result = new ArrayList<Account>();
+    
+    for(int i=0;i< users.length;i++)
+    {
+      account = getAccount(users[i][2]);
+      result.add(account);
     }
+    
     return result;
   }
   
@@ -502,20 +489,29 @@ public class DBController
   
   /**
    * Deactivates a given Account
-   * @param first: the first name of the user
-   * @param last: the last name of the user
+   * 
    * @param username: the username of the user
-   * @param password the password of the user
-   * @param type: U for user, A for admin
+   * 
    * @returns confirmation message if the user was deactivated or not
    */
-  public String deactivateUser(String first, String last, String username, String password, char type)
+  public String deactivateUser(String username)
   {
-    if(isDeactivated(username)){
+    if(isDeactivated(username))
+    {
       return alreadyDeactivatedError();
     }
-    else{
+    
+    else
+    {
+      Account account = getAccount(username);
+      
+      String first = account.getFirstName();
+      String last  = account.getLastName();
+      String password = account.getPassword();
+      char type = account.getType();
+      
       dataBase.user_editUser(username,first,last,password,type,'n');
+      
       return "Deactivation Successful!";
     }
   }
