@@ -41,7 +41,7 @@ public class AdminFuncController {
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
-    return dbController.addAccount(first,last,username,password,type);
+		return dbController.addAccount(first,last,username,password,type);
   }
   
   /**

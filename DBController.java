@@ -18,7 +18,7 @@ public class DBController
   /**
    * Creates an instance of UniversityController
    */
-  private UniversityController uController = new UniversityController();
+ // private UniversityController uController = new UniversityController();
   /**
    * Default constructor
    */
@@ -122,7 +122,7 @@ public class DBController
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale, ArrayList<String> emphases)
+                              int socialScale, int lifeScale)
   {
     if(isSchoolSaved(name)){
       return alreadySavedError();
@@ -413,7 +413,10 @@ public class DBController
   public String addAccount(String first, String last, String username, String password, char type)
   {
     boolean taken = isUsernameTaken(username);
-    if(!taken){
+    if(username.equals("")|| password.equals("")){
+    	return userNotCompleteError();
+    }
+    else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
@@ -491,7 +494,7 @@ public class DBController
     String[][] userList = dataBase.user_getUsers();
     for(int i = 0; i<userList.length;i++){
       if(userList[i][2].equals(username)){
-        if(userList[i][5].equals('n')){
+        if(userList[i][5].equals("n")){
           return true;
         }
       }

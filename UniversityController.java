@@ -13,7 +13,7 @@ public class UniversityController
   
   public UniversityController()
   {
-    
+    dbController = new DBController();
   }
   /**
    * Lets the admin add a university with the given information
@@ -39,12 +39,12 @@ public class UniversityController
   public String addUniversity(String name, String state, String loc, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                               int socialScale, int lifeScale, ArrayList<String> emphases)
+                               int socialScale, int lifeScale)
   {
     return dbController.addUniversity(name,state, loc, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale, emphases);
+                                socialScale, lifeScale);
   }
   /**
    * Lets the admin edit the given university

@@ -33,15 +33,15 @@ public class AccountController{
    */
   public String login(String username, String password)
   {
-    ArrayList user = new ArrayList();
+    ArrayList<String> user = new ArrayList<String>();
     user = dbController.getUser(username);
-    Object loginName = user.get(0);
+    String loginName = user.get(0);
     String loginName1 = loginName.toString();
-    Object loginPass = user.get(1);
+    String loginPass = user.get(1);
     String loginPass1 = loginName.toString();
-    Object type = user.get(2);
+    String type = user.get(2);
     char type1 = type.toString().charAt(0);
-    Object status = user.get(3);
+    String status = user.get(3);
     char status1 = status.toString().charAt(0);
     if(!loginPass1.equals(password)){
       return wrongLoginInfoError();

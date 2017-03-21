@@ -68,12 +68,12 @@ public class AdminUI{
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale, ArrayList<String> emphases){
+                              int socialScale, int lifeScale){
     
     return uController.addUniversity(name,state, location, control, numStudents,
                                      perFemale, satVerbal, satMath, expenses, perFA,
                                      numApplicants, perAdmitted, perEnrolled, academicScale,
-                                     socialScale, lifeScale, emphases);
+                                     socialScale, lifeScale);
   }
   
   /**
@@ -141,8 +141,8 @@ public class AdminUI{
    * @param password the password of the user
    * @param type of the account
    */
-  public void deactivateUser(String first, String last, String username, String password, char type){
-    aController.deactivateUser(first, last, username, password, type);
+  public String deactivateUser(String first, String last, String username, String password, char type){
+    return aController.deactivateUser(first, last, username, password, type);
   }
   
   /**
