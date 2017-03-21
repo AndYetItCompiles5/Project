@@ -23,9 +23,8 @@ public class AdminUI{
    */
   private UniversityController uController;
   
-  /// change return type to Set<University> in class diagram
   /** 
-   * An AdminUI constructor
+   * initialized all of the instances
    */
   public AdminUI(){
     aFuncController = new AdminFuncController();

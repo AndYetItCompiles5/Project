@@ -10,10 +10,14 @@ import Project.*;
 
 public class LoginUI
 {
- //Creates an instance of AccountController
+  /**
+   * Creates an instance of the AccountController
+   */
  private AccountController aController;
  
- //Default constructor
+  /**
+   * Default constuctor. Initialized the AccountController
+   */
   public LoginUI(){
     aController = new AccountController();
   }

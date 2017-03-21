@@ -15,17 +15,12 @@ public class DBController
    * Creates an instance of the Database Library
    */
   private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
+  
   /**
    * Creates an instance of UniversityController
    */
   private UniversityController uController = new UniversityController();
-  /**
-   * Default constructor
-   */
-  public DBController()
-  {
-    
-  }
+  
   
   /**
    * Returns the info of a specific user
@@ -51,22 +46,58 @@ public class DBController
   /**
    * Finds a university that matches the given name
    * @param name:the school name that is being found
-   * @returns an array list of the university that the account is looking for
+   * @returns an university object
    */
-  public ArrayList getUniversity(String name)
+  public University getUniversity(String name)
   {
+    String state =  "";  
+    String loc = "";  
+    String control = "";   
+    int numStudents = 0;
+    double perFemale = 0; 
+    int satVerbal = 0;
+    int satMath = 0;
+    int expenses = 0;
+    double perFA = 0;
+    int numApplicants = 0;
+    double perAdmitted = 0;
+    double perEnrolled = 0;
+    int academicScale = 0;
+    int socialScale = 0;
+    int lifeScale = 0; 
+    ArrayList<String> emp = new ArrayList<String>();;
+    
     String[][] universities = dataBase.university_getUniversities();
-    ArrayList result = new ArrayList();
+    
     for(int i=0;i<universities.length;i++){
       if(universities[i][0].equals(name)){
-        for(int j=0;j<universities[i].length;j++){
-          result.add(universities[i][j]);
-        }
+        name = universities[i][0];
+        state = universities[i][1];
+        loc = universities[i][2];
+        control = universities[i][3];
+        numStudents = Integer.parseInt(universities[i][4]);
+        perFemale = Double.parseDouble(universities[i][5]);  
+        satVerbal = Integer.parseInt(universities[i][6]);
+        satMath = Integer.parseInt(universities[i][7]);
+        expenses = Integer.parseInt(universities[i][8]);
+        perFA = Double.parseDouble(universities[i][9]);
+        numApplicants = Integer.parseInt(universities[i][10]);
+        perAdmitted = Double.parseDouble(universities[i][11]);
+        perEnrolled = Double.parseDouble(universities[i][12]);
+        academicScale = Integer.parseInt(universities[i][13]);
+        socialScale = Integer.parseInt(universities[i][14]);
+        lifeScale = Integer.parseInt(universities[i][15]);
+      }
+      else{
+        return null;
       }
     }
-    return result;
+    University university = new University(name,state,loc,control,numStudents,perFemale, satVerbal,
+                                           satMath,expenses, perFA,numApplicants,perAdmitted,perEnrolled,
+                                           academicScale,socialScale,lifeScale,emp);
+    return university;
   }
-
+  
   /**
    * Edits a given university with the specified parameters unless they are null/0
    * @param name the name of the University
@@ -89,13 +120,20 @@ public class DBController
    * @returns a success message
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
-                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
-                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                                int socialScale, int lifeScale, ArrayList<String> emphases)
+                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
+                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
+                               int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
-                                       numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-    return "Changes successful";
+    
+    String[][] universities = dataBase.university_getUniversities();
+    for(int i=0;i<universities.length;i++){
+      if(universities[i][0].equals(name)){
+        dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
+                                           numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
+              return "Changes successful";
+      }      
+    }
+    return "Universities doesnt exist";
   }
   
   /**
@@ -133,7 +171,7 @@ public class DBController
                                         perFemale, satVerbal, satMath, expenses, perFA,
                                         numApplicants, perAdmitted, perEnrolled, academicScale,
                                         socialScale, lifeScale);
-      return "Save Successful!";
+      return name + " was added successfully";
     }
   }
   
@@ -169,9 +207,9 @@ public class DBController
    * @param user:the username of the user where the saved schools are being obtained from
    * @returns an array of the user's saved schools
    */
-  public ArrayList<String> getUserSavedSchools(String user)
+  public ArrayList<University> getUserSavedSchools(String user)
   {
-    ArrayList<String> listSchools = new ArrayList<String>();
+    ArrayList<University> listSchools = new ArrayList<University>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
     
     for(int i = 0; i < namesWithSchools.length; i++)
@@ -180,11 +218,11 @@ public class DBController
       {
         for(int j = 0; j < namesWithSchools[i].length; j++)
         {
-          listSchools.add(namesWithSchools[i][j]);
+          //listSchools.add(namesWithSchools[i][j]);
+          listSchools.add(getUniversity(namesWithSchools[i][0]));
         }
       }
-    }
-    
+    } 
     return listSchools;
   }
   
@@ -195,13 +233,13 @@ public class DBController
    */
   public boolean isUsername(String username)
   {
-   String[][] usernameList = dataBase.user_getUsers();
-     for(int i = 0; i<usernameList.length;i++){
-       if(usernameList[i][2].equals(username)){
-         return true;
-       }
-     }
-     return false;
+    String[][] usernameList = dataBase.user_getUsers();
+    for(int i = 0; i<usernameList.length;i++){
+      if(usernameList[i][2].equals(username)){
+        return true;
+      }
+    }
+    return false;
   }
   
   /**
@@ -215,12 +253,12 @@ public class DBController
     String[][] users = dataBase.user_getUsers();
     for(int i= 0; i<users.length;i++){
       if(users[i][2].equals(username)){
-       info.add(users[i][0]);   
-       info.add(users[i][1]);
-       info.add(users[i][2]); 
-       info.add(users[i][3]); 
-       info.add(users[i][4]); 
-       info.add(users[i][5]); 
+        info.add(users[i][0]);   
+        info.add(users[i][1]);
+        info.add(users[i][2]); 
+        info.add(users[i][3]); 
+        info.add(users[i][4]); 
+        info.add(users[i][5]); 
       }
     }
     return info;
@@ -337,7 +375,7 @@ public class DBController
       return false; 
     }
   }
-
+  
   
   /**
    * Confirmation message

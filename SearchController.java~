@@ -10,8 +10,10 @@ import Project.*;
 
 public class SearchController{
   
+  //Creates an instance of DBController
   private DBController dbController;
   
+  //Default constructor
   public SearchController()
   {
     dbController = new DBController();
@@ -47,6 +49,7 @@ public class SearchController{
    * @param lifeScaleLow user search input of minimum life scale number
    * @param lifeScaleHigh user search input of maximum life scale number
    * @param emphases up to five areas of study the University excels at (all Strings)
+   * @return hashset of the schools that were found
    */
   public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
                      int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
@@ -87,22 +90,5 @@ public class SearchController{
   {
     return null;
   }
-  /**
-   * Displays the search results
-   * @param list: the list of universities that will be displayed
-   * @return the set of universities being displayed
-   * 
-   */
-  public Set<String> displayResults(Set<String> list)
-  {
-    return null;
-  }
-  /**
-   * Resets the search fields
-   * 
-   */
-  public void resetFields()
-  {
-    
-  }
+
 }

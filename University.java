@@ -64,7 +64,7 @@ public class University{
    * @param emp up to five areas of study the University excels at (all Strings)
    * @throws IllegalArgumentException if name is not given
    */
-  public University(String name, String state, String location, String control, int numStudents, double perFemale, 
+  public University(String name, String state, String loc, String control, int numStudents, double perFemale, 
                     int satVerbal, int satMath, int expenses, double perFA, int numApplicants, double perAdmitted,
                     double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emp){
     if(name.equals("")||name==null)
@@ -89,7 +89,11 @@ public class University{
       this.emphases=emp;
     }
   }
-  
+  /**
+   * Constructor. Creates an univerites with just a name.
+   * 
+   * @param Name
+   */
   public University(String name){
     this.name=name;
     this.state=null;

@@ -10,14 +10,10 @@ import Project.*;
 
 public class UserFuncController{
   
-  //Creates an instance of the DBController
+  /**
+   * Creates an instance of the Database Library
+   */
   private DBController dbController;
-  
-  //Constructor
-  public UserFuncController()
-  {
-    
-  }
   
   /**
    * Edits the user with the given information
