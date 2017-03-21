@@ -9,12 +9,11 @@ import Project.*;
  */
 public class UniversityController
 {
+    /**
+   * Creates an instance of the Database Library
+   */
   private DBController dbController;
   
-  public UniversityController()
-  {
-    
-  }
   /**
    * Lets the admin add a university with the given information
    *@param name the name of the University
