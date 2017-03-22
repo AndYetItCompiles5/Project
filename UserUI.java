@@ -22,6 +22,11 @@ public class UserUI{
    * Creates an instance of the SearchController
    */
   private SearchController searchController;
+  
+  /**
+   * Creates an instance of the AccountController
+   */
+  private AccountController aController;
 
   /**
    * UserUI constructor
@@ -52,9 +57,9 @@ public class UserUI{
    * 
    * @returns an int. -1 if not saved. 
    */
-  public int saveSchool(String user, String school)
+  public String saveSchool(String user, String school)
   {
-    return uFuncController.saveSchool(user, school);
+    return uFuncController.saveSchool(user,school);
   }
   
   /**
@@ -76,7 +81,7 @@ public class UserUI{
    * 
    * @return ArrayList of saved schools
    */
-  public ArrayList<University> viewSavedSchools(String user)
+  public ArrayList<String> viewSavedSchools(String user)
   {
     return dbController.getUserSavedSchools(user);
   }
