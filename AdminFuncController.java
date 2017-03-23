@@ -81,8 +81,8 @@ public class AdminFuncController {
    * 
    * @returns an ArrayList of accounts from the BD
    */
-  public ArrayList viewUsers(){
-    return dbController.getAllUsers();
+  public String[][] viewUsers(){
+	  return dbController.getAllUsers();
   }
   
   /**
@@ -158,7 +158,7 @@ public class AdminFuncController {
    * 
    * @return a list of Universities
    */
-  public String[][] viewUniversities(){
+  public ArrayList<String> viewUniversities(){
     return dbController.getAllUniversities();
     
   }

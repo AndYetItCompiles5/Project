@@ -20,7 +20,7 @@ public class DBController
    * Creates an instance of UniversityController
    */
 
-  private UniversityController uController = new UniversityController();
+  //private UniversityController uController = new UniversityController();
 
 
   /**
@@ -35,17 +35,17 @@ public class DBController
     String first = "";
     String last = "";
     String password = "";
-    char type = 'z';
-    char status = 'z';
+    char type = ' ';
+    char status = ' ';
     
     String[][] users = dataBase.user_getUsers();
     
     for(int i = 0; i < users.length;i++){
       if(users[i][2].equals(username))
       {
-        first = users[i][0].toString();
-        last = users[i][1].toString();
-        password = users[i][3].toString();
+        first = users[i][0];
+        last = users[i][1];
+        password = users[i][3];
         type = users[i][4].charAt(0);
         status = users[i][5].charAt(0);
       }
@@ -59,7 +59,7 @@ public class DBController
   /**
    * Finds a university that matches the given name
    * @param name:the school name that is being found
-   * @returns an university object
+   * @returns a university object
    */
   public University getUniversity(String name)
   {
@@ -84,7 +84,6 @@ public class DBController
     
     for(int i=0;i<universities.length;i++){
       if(universities[i][0].equals(name)){
-        name = universities[i][0];
         state = universities[i][1];
         loc = universities[i][2];
         control = universities[i][3];
@@ -101,14 +100,62 @@ public class DBController
         socialScale = Integer.parseInt(universities[i][14]);
         lifeScale = Integer.parseInt(universities[i][15]);
       }
-      else{
-        return null;
-      }
     }
     University university = new University(name,state,loc,control,numStudents,perFemale, satVerbal,
                                            satMath,expenses, perFA,numApplicants,perAdmitted,perEnrolled,
                                            academicScale,socialScale,lifeScale,emp);
     return university;
+  }
+  
+  /**
+   * Displays a single university
+   * @param name:the school name that is being displayed
+   * @returns an array list of the school's information
+   */
+  
+  public ArrayList<String> displayUniversity(String name){
+	  
+	  ArrayList<String> univs = new ArrayList<String>();
+	  University univ = getUniversity(name);
+	  String state = univ.getState();
+	  String loc = univ.getLocation();
+	  String control = univ.getControl();
+	  int numStudents = univ.getNumStudents();
+	  double perFemale = univ.getPercentFemale();
+	  int satVerbal = univ.getSatVerbal();
+	  int satMath = univ.getSatMath();
+	  int expenses = univ.getExpenses();
+	  double perFA = univ.getFinancialAid();
+	  int numApplicants = univ.getNumApplicants();
+	  double perAdmitted = univ.getPercentAdmitted();
+	  double perEnrolled = univ.getPercentEnrolled();
+	  int academicScale = univ.getAcademicScale();
+	  int socialScale = univ.getSocialScale();
+	  int lifeScale = univ.getLifeScale();
+	  String[][] emphases = dataBase.university_getNamesWithEmphases();
+	  univs.add(name);
+	  univs.add(state);
+	  univs.add(loc);
+	  univs.add(control);
+	  univs.add(Integer.toString(numStudents));
+	  univs.add(Double.toString(perFemale));
+	  univs.add(Integer.toString(satVerbal));
+	  univs.add(Integer.toString(satMath));
+	  univs.add(Integer.toString(expenses));
+	  univs.add(Double.toString(perFA));
+	  univs.add(Integer.toString(numApplicants));
+	  univs.add(Double.toString(perAdmitted));
+	  univs.add(Double.toString(perEnrolled));
+	  univs.add(Integer.toString(academicScale));
+	  univs.add(Integer.toString(socialScale));
+	  univs.add(Integer.toString(lifeScale));
+	  for(int i = 0;i<emphases.length;i++){
+		  if (emphases[i][0].equals(name)){
+				  univs.add(emphases[i][1]);
+		  }
+		  
+	  }
+	  return univs;
   }
   
   /**
@@ -123,7 +170,7 @@ public class DBController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param numAppicantds total number of applicants that apply to the school annually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
@@ -173,7 +220,7 @@ public class DBController
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale)
+                              int socialScale, int lifeScale,ArrayList<String> emphases)
   {
     if(isSchoolSaved(name)){
       return alreadySavedError();
@@ -184,9 +231,13 @@ public class DBController
                                         perFemale, satVerbal, satMath, expenses, perFA,
                                         numApplicants, perAdmitted, perEnrolled, academicScale,
                                         socialScale, lifeScale);
-      return name + " was added successfully";
+      for(int i = 0; i<emphases.size();i++){
+    	  dataBase.university_addUniversityEmphasis(name, emphases.get(i));
+      
     }
+      return name + " was added successfully!";
   }
+ }
   
   /**
    * Saves a school to the user's list of saved schools
@@ -194,25 +245,12 @@ public class DBController
    * @param school: the school name of the school being added
    * @return an int
    */
-  public int saveSchool(String user, String school)
-  {
-    String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
-    
-    for(int i = 0; i < namesWithSchools.length; i++)
-    {
-      if(namesWithSchools[i][0].equals(user))
-      {
-        for(int j = 0; j < namesWithSchools[i].length; j++)
-        {
-          if(namesWithSchools[i][j].equals(school))
-          {
-            return -1;
-          }
-        }
-      }
-    }
-    
-    return dataBase.user_saveSchool(user, school);
+  public String saveSchool(String user, String school){
+   	int r = dataBase.user_saveSchool(user, school);
+  if(r==-1){
+	  return "School has already been saved to the user's list";
+  }
+    return "School Saved!";
   }
   
   /**
@@ -220,20 +258,18 @@ public class DBController
    * @param user:the username of the user where the saved schools are being obtained from
    * @returns an array of the user's saved schools
    */
-  public ArrayList<University> getUserSavedSchools(String user)
+  public ArrayList<String> getUserSavedSchools(String user)
   {
-    ArrayList<University> listSchools = new ArrayList<University>();
+    ArrayList<String> listSchools = new ArrayList<String>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
-    
+    if(namesWithSchools==null){
+    	return listSchools;
+    }
     for(int i = 0; i < namesWithSchools.length; i++)
     {
       if(namesWithSchools[i][0].equals(user))
       {
-        for(int j = 0; j < namesWithSchools[i].length; j++)
-        {
-          //listSchools.add(namesWithSchools[i][j]);
-          listSchools.add(getUniversity(namesWithSchools[i][0]));
-        }
+          listSchools.add(namesWithSchools[i][1]);
       }
     } 
     return listSchools;
@@ -257,7 +293,8 @@ public class DBController
 
   /**
    * Returns a string stating that the login info was incorrect
-   * @returns a message saying some part of login info is wrong
+   * @returns a message saying some part of login info is		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info")); wrong
    */
   public String wrongLoginInfoError()
   {
@@ -277,13 +314,23 @@ public class DBController
    * Returns a Set of all the University objects in the database
    * @returns a Set of all the University objects in the database
    */
-  public String[][] getAllUniversities() 
+  public ArrayList<String> getAllUniversities() 
   {
-    return dataBase.university_getUniversities();
+	  String[][] universities = dataBase.university_getUniversities();
+	    ArrayList<String> result = new ArrayList<String>();
+	    String name;
+	    for(int i=0;i< universities.length;i++)
+	    {
+	      name = universities[i][0];
+	      result.add(name);
+	    }
+	    
+	    return result;
   }
   
   /**
-   * Returns a Set of all the University objects that match the search criteria in the database
+   * Returns a Set of all the University objects that mat		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));ch the search criteria in the database
    * @param name the name of the University
    * @param state the state the University is located int
    * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
@@ -312,7 +359,8 @@ public class DBController
    * @param socialScaleHigh user search input of maximimum social scale number
    * @param lifeScaleLow user search input of minimum life scale number
    * @param lifeScaleHigh user search input of maximum life scale number
-   * @param emphases up to five areas of study the University excels at (all Strings)
+   * @param emphases up to five areas of study the Univer		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));sity excels at (all Strings)
    * @return a hashset of the found schools
    */
   public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
@@ -347,7 +395,7 @@ public class DBController
       }
     }
     return answer;
-  }
+  }		
   
   /**
    * Checks if the school's actual data is within the range of the low and high that the user searched for
@@ -419,19 +467,11 @@ public class DBController
    * 
    * @return a set of all the users in the database
    */
-  public ArrayList<Account> getAllUsers()
+  public String[][] getAllUsers()
   {
     String[][] users = dataBase.user_getUsers();
-    Account account;
-    ArrayList<Account> result = new ArrayList<Account>();
-    
-    for(int i=0;i< users.length;i++)
-    {
-      account = getAccount(users[i][2]);
-      result.add(account);
-    }
-    
-    return result;
+
+    return users;
   }
   
   /**

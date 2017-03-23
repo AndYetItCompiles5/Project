@@ -15,6 +15,8 @@ public class LoginUI
    */
  private AccountController aController;
  
+ private String loggedIn;
+ 
   /**
    * Default constuctor. Initialized the AccountController
    */
@@ -26,9 +28,11 @@ public class LoginUI
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
    */
-  public void Login(String username, String password)
+  public String Login(String username, String password)
   {
-    aController.login(username,password);
+    String result = aController.login(username,password);
+    loggedIn = username;
+    return result;
   }
   /**
    * Displays an error if the user enters the wrong login informaion
@@ -52,5 +56,9 @@ public class LoginUI
    */
   public void logout(){
    aController.logout(); 
+  }
+  
+  public String getLoggedIn(){
+	  return loggedIn;
   }
 }

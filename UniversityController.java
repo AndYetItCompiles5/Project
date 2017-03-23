@@ -39,15 +39,15 @@ public class UniversityController
    * @param emphases up to five areas of study the University excels at (all Strings)
    * @return true if the university was added
    */
-  public String addUniversity(String name, String state, String loc, String control, int numStudents,
+  public String addUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                               int socialScale, int lifeScale)
+                               int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.addUniversity(name,state, loc, control, numStudents,
+    return dbController.addUniversity(name,state, location, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale);
+                                socialScale, lifeScale,emphases);
   }
   /**
    * Lets the admin edit the given university
@@ -86,5 +86,9 @@ public class UniversityController
   public String confirmationMessage()
   {
     return "Are you sure?";
+  }
+  
+  public ArrayList<String> displayUniversity(String name){
+	  return dbController.displayUniversity(name);
   }
 }

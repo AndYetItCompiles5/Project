@@ -35,9 +35,9 @@ public class AdminUI{
   /**
    * view a set of Universities
    * 
-   * @return a set of Univserities
+   * @return a set of Universities
    */
-  public String[][] viewUniversities(){
+  public ArrayList<String> viewUniversities(){
     return aFuncController.viewUniversities();
   }
   
@@ -67,12 +67,12 @@ public class AdminUI{
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale){
+                              int socialScale, int lifeScale, ArrayList<String> emphases){
     
     return uController.addUniversity(name,state, location, control, numStudents,
                                      perFemale, satVerbal, satMath, expenses, perFA,
                                      numApplicants, perAdmitted, perEnrolled, academicScale,
-                                     socialScale, lifeScale);
+                                     socialScale, lifeScale,emphases);
   }
   
   /**
@@ -111,7 +111,7 @@ public class AdminUI{
   /**
    * View all users
    */
-  public ArrayList viewUsers(){
+  public String[][] viewUsers(){
     return aFuncController.viewUsers();
   }
   
@@ -216,20 +216,17 @@ public class AdminUI{
   }
   
   /**
-<<<<<<< HEAD
    * display University's name
    *
    * @param name of the university
    * 
    * @return name the name of the University
    */
-  public String displayUniversity(String name){
-    return name; 
+  public ArrayList<String> displayUniversity(String name){
+    return uController.displayUniversity(name); 
   }
   
   /**
-=======
->>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    * No name error. No user with that given name
    * 
    * @return "no name error"

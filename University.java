@@ -114,9 +114,9 @@ public class University{
    * @param emp up to five areas of study the University excels at (all Strings)
    * @throws IllegalArgumentException if name is not given
    */
-  public University(String name, String state, String loc, String control, int numStudents, double perFemale, 
+  public University(String name, String state, String location, String control, int numStudents, double perFemale, 
                     int satVerbal, int satMath, int expenses, double perFA, int numApplicants, double perAdmitted,
-                    double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emp){
+                    double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emphases){
     if(name.equals("")||name==null)
       throw new IllegalArgumentException("Name of the university is required");
     else{
@@ -136,7 +136,7 @@ public class University{
       this.academicScale=academicScale;
       this.socialScale=socialScale;
       this.lifeScale=lifeScale;
-      this.emphases=emp;
+      this.emphases=emphases;
     }
   }
   /**

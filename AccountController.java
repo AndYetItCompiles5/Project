@@ -10,9 +10,10 @@ import Project.*;
 
 public class AccountController{
   /**
-   * who is logged into the system
+   * wh		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));o is logged into the system
    */
-  private String loggedIn = null;
+  private String loggedIn;
   /**
    * creates an instance of a DBController
    */
@@ -22,7 +23,7 @@ public class AccountController{
    */
   public AccountController()
   {
-    loggedIn=null;
+    //loggedIn = "";
     dbController = new DBController();
   }
   
@@ -148,4 +149,13 @@ public class AccountController{
   {
     return dbController.deactivateUser(username);
   }
-}
+  
+  /**
+   * Returns who is logged on
+   * @return the username of the user logged on
+   */
+  public String getLoggedIn(){
+	  return loggedIn;
+  }
+ }
+
