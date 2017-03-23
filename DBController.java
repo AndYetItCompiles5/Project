@@ -222,11 +222,14 @@ public class DBController
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                               int socialScale, int lifeScale,ArrayList<String> emphases)
   {
-    if(isSchoolSaved(name)){
+  if(name.equals("")){
+	  return "Name is required";
+  }
+  else if(isSchoolSaved(name)){
       return alreadySavedError();
       
     }
-    else{
+  else{
       dataBase.university_addUniversity(name,state, location, control, numStudents,
                                         perFemale, satVerbal, satMath, expenses, perFA,
                                         numApplicants, perAdmitted, perEnrolled, academicScale,
@@ -384,13 +387,18 @@ public class DBController
            (isWithinRange(perAdmittedLow,perAdmittedHigh,schoolList[i][11])|| (perAdmittedLow==0 && perAdmittedHigh==0)) && (isWithinRange(perEnrolledLow,perEnrolledHigh,schoolList[i][12])||
                                                                                                                              (perEnrolledLow==0 && perEnrolledHigh==0)) && (isWithinRange(academicScaleLow,academicScaleHigh,schoolList[i][13])|| (academicScaleLow==0 && academicScaleHigh==0)) &&
            (isWithinRange(socialScaleLow,socialScaleHigh,schoolList[i][14])|| (socialScaleLow==0 && socialScaleHigh==0)) && (isWithinRange(lifeScaleLow,lifeScaleHigh,schoolList[i][15])|| (lifeScaleLow==0 && lifeScaleHigh==0))){
-          for(int k=0;k<emphasesList.length;k++){
+          if(emphases!=(null)){
+        	for(int k=0;k<emphasesList.length;k++){
             if(schoolList[k][0].toLowerCase().contains(name.toLowerCase())){
               if(emphases.contains(schoolList[k][1])){
                 answer.add(schoolList[k][0]);
               }
             }
-          } 
+            }
+          }
+          else{
+        	  answer.add(schoolList[i][0]);
+          }
         }
       }
     }
@@ -544,6 +552,9 @@ public class DBController
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
+	  if(username.equals("")||password.equals("")||type==(' ')){
+		  return "Missing username, password, or type";
+	  }
     dataBase.user_editUser(username,first,last,password,type,status);
     return "Edit Successful!";
   }

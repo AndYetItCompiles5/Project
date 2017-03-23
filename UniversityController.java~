@@ -45,12 +45,12 @@ public class UniversityController
   public String addUniversity(String name, String state, String loc, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                               int socialScale, int lifeScale)
+                               int socialScale, int lifeScale, ArrayList<String> emphases)
   {
     return dbController.addUniversity(name,state, loc, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
-                                socialScale, lifeScale);
+                                socialScale, lifeScale,emphases);
   }
   /**
    * Lets the admin edit the given university
