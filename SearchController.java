@@ -1,5 +1,6 @@
 package Project;
 import java.util.*;
+import dblibrary.project.csci230.UniversityDBLibrary;
 import Project.*;
 
 /**
@@ -8,12 +9,15 @@ import Project.*;
  * @version 2/22/17
  */
 
-public class SearchController{
-  
+public class SearchController
+{
   /**
    * Creates an instance of the Database Library
    */
   private DBController dbController;
+  
+  /** Instance variable of the database */
+  private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
   
   /**
    * Default constuctor. Initialized the DB Controller.
@@ -74,11 +78,11 @@ public class SearchController{
    */
   public ArrayList<University> findReccomendations(String name)
   {
-	 String[][] rec = dbController.getAllUniversities();
-	 Object[][] values = new Object[rec.length][];
-	 ArrayList<University> topFive = new ArrayList<University>();
-	 
-	 University currentUniversity = dbController.getUniversity(name);
+  String[][] rec = dataBase.university_getUniversities();
+  Object[][] values = new Object[rec.length][];
+  ArrayList<University> topFive = new ArrayList<University>();
+  
+  University currentUniversity = dbController.getUniversity(name);
     
     String loc = currentUniversity.getLocation(); //1
     String state = currentUniversity.getState(); //2
@@ -98,206 +102,206 @@ public class SearchController{
     ArrayList<String> emp = currentUniversity.getEmphases(); //16
     
     
-	int maxNumStudents = 0,maxSatVerbal=0,maxSatMath=0,maxExpenses=0,maxNumApplicants=0,maxAcademicScale=5, maxSocialScale=5,maxLifeScale=5;
-	double minPercentFemale, maxPercentFemale=0, minPerFA, maxPerFA=0, minPerAdmitted, maxPerAdmitted=0, minPerEnrolled, maxPerEnrolled=0;
-	
-	int minNumStudents,minSatVerbal,minSatMath, minExpenses, minNumApplicants, minAcademicScale = 1, minSocialScale = 1, minLifeScale = 1;
-	minPerEnrolled=minPerAdmitted=minPerFA=minPercentFemale=minNumStudents=minSatVerbal=minSatMath =minExpenses=minNumApplicants = 999999999;
+ int maxNumStudents = 0,maxSatVerbal=0,maxSatMath=0,maxExpenses=0,maxNumApplicants=0,maxAcademicScale=5, maxSocialScale=5,maxLifeScale=5;
+ double minPercentFemale, maxPercentFemale=0, minPerFA, maxPerFA=0, minPerAdmitted, maxPerAdmitted=0, minPerEnrolled, maxPerEnrolled=0;
+ 
+ int minNumStudents,minSatVerbal,minSatMath, minExpenses, minNumApplicants, minAcademicScale = 1, minSocialScale = 1, minLifeScale = 1;
+ minPerEnrolled=minPerAdmitted=minPerFA=minPercentFemale=minNumStudents=minSatVerbal=minSatMath =minExpenses=minNumApplicants = 999999999;
     
-	//getting maxs and mins
+ //getting maxs and mins
     for(int i = 0; i < rec.length; i++){
-    	for(int j = 4; j < rec[i].length;j++){
-    		
-    		switch(j)
-    		{
-    			//numStudents
-    			case 4:
-    				if(Integer.parseInt(rec[i][j]) > maxNumStudents)
-    				{
-    					maxNumStudents = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minNumStudents)
-    				{
-    					minNumStudents = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//percentFemale
-    			case 5:
-    				if(Double.parseDouble(rec[i][j]) > maxPercentFemale)
-    				{
-    					maxPercentFemale = Double.parseDouble(rec[i][j]);
-    				}
-    				else if(Double.parseDouble(rec[i][j]) < minPercentFemale)
-    				{
-    					minPercentFemale = Double.parseDouble(rec[i][j]);
-    				}
-    				break;
-    			//satVerbal
-    			case 6:
-    				if(Integer.parseInt(rec[i][j]) > maxSatVerbal)
-    				{
-    					maxSatVerbal = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minSatVerbal)
-    				{
-    					minSatVerbal = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//satMath
-    			case 7:
-    				if(Integer.parseInt(rec[i][j]) > maxSatMath)
-    				{
-    					maxSatMath = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minSatMath)
-    				{
-    					minSatMath = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//expenses
-    			case 8:
-    				if(Integer.parseInt(rec[i][j]) > maxExpenses)
-    				{
-    					maxExpenses = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minExpenses)
-    				{
-    					minExpenses = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//perFA
-    			case 9:
-    				if(Integer.parseInt(rec[i][j]) > maxPerFA)
-    				{
-    					maxPerFA = Double.parseDouble(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minPerFA)
-    				{
-    					minPerFA = Double.parseDouble(rec[i][j]);
-    				}
-    				break;
-    			//numApplicants
-    			case 10:
-    				if(Integer.parseInt(rec[i][j]) > maxNumApplicants)
-    				{
-    					maxNumApplicants = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Integer.parseInt(rec[i][j]) < minNumApplicants)
-    				{
-    					minNumApplicants = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//percentAdmitted
-    			case 11:
-    				if(Double.parseDouble(rec[i][j]) > maxPerAdmitted)
-    				{
-    					maxPerAdmitted = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Double.parseDouble(rec[i][j]) < minPerAdmitted)
-    				{
-    					minPerAdmitted = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    			//percentEnrolled
-    			case 12:
-    				if(Double.parseDouble(rec[i][j]) > maxPerEnrolled)
-    				{
-    					maxPerEnrolled = Integer.parseInt(rec[i][j]);
-    				}
-    				else if(Double.parseDouble(rec[i][j]) < minPerEnrolled)
-    				{
-    					minPerEnrolled = Integer.parseInt(rec[i][j]);
-    				}
-    				break;
-    		}
-    		
-    	}
+     for(int j = 4; j < rec[i].length;j++){
+      
+      switch(j)
+      {
+       //numStudents
+       case 4:
+        if(Integer.parseInt(rec[i][j]) > maxNumStudents)
+        {
+         maxNumStudents = Integer.parseInt(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minNumStudents)
+        {
+         minNumStudents = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //percentFemale
+       case 5:
+        if(Double.parseDouble(rec[i][j]) > maxPercentFemale)
+        {
+         maxPercentFemale = Double.parseDouble(rec[i][j]);
+        }
+        else if(Double.parseDouble(rec[i][j]) < minPercentFemale)
+        {
+         minPercentFemale = Double.parseDouble(rec[i][j]);
+        }
+        break;
+       //satVerbal
+       case 6:
+        if(Integer.parseInt(rec[i][j]) > maxSatVerbal)
+        {
+         maxSatVerbal = Integer.parseInt(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minSatVerbal)
+        {
+         minSatVerbal = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //satMath
+       case 7:
+        if(Integer.parseInt(rec[i][j]) > maxSatMath)
+        {
+         maxSatMath = Integer.parseInt(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minSatMath)
+        {
+         minSatMath = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //expenses
+       case 8:
+        if(Integer.parseInt(rec[i][j]) > maxExpenses)
+        {
+         maxExpenses = Integer.parseInt(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minExpenses)
+        {
+         minExpenses = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //perFA
+       case 9:
+        if(Integer.parseInt(rec[i][j]) > maxPerFA)
+        {
+         maxPerFA = Double.parseDouble(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minPerFA)
+        {
+         minPerFA = Double.parseDouble(rec[i][j]);
+        }
+        break;
+       //numApplicants
+       case 10:
+        if(Integer.parseInt(rec[i][j]) > maxNumApplicants)
+        {
+         maxNumApplicants = Integer.parseInt(rec[i][j]);
+        }
+        else if(Integer.parseInt(rec[i][j]) < minNumApplicants)
+        {
+         minNumApplicants = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //percentAdmitted
+       case 11:
+        if(Double.parseDouble(rec[i][j]) > maxPerAdmitted)
+        {
+         maxPerAdmitted = Integer.parseInt(rec[i][j]);
+        }
+        else if(Double.parseDouble(rec[i][j]) < minPerAdmitted)
+        {
+         minPerAdmitted = Integer.parseInt(rec[i][j]);
+        }
+        break;
+       //percentEnrolled
+       case 12:
+        if(Double.parseDouble(rec[i][j]) > maxPerEnrolled)
+        {
+         maxPerEnrolled = Integer.parseInt(rec[i][j]);
+        }
+        else if(Double.parseDouble(rec[i][j]) < minPerEnrolled)
+        {
+         minPerEnrolled = Integer.parseInt(rec[i][j]);
+        }
+        break;
+      }
+      
+     }
     }
-	
-	
+ 
+ 
     for(int i = 0; i < rec.length; i++)
     {
-    	//don't compare the university to itself
-    	if(!name.equals(rec[i][0]))
-    	{
-    		double value = 0;
-    		
-    		University comparedUniversity = new University(rec[i][0]);
-    		
-    		//compare location
-    		value += (loc.equals(comparedUniversity.getLocation()) || comparedUniversity.getLocation() == null) ? 0 : 1;
-    		
-    		//compare state
-    		value += (state.equals(comparedUniversity.getState()) || comparedUniversity.getState() == null) ? 0 : 1;
-    		
-    		//compare control
-    		value += (control.equals(comparedUniversity.getControl()) || comparedUniversity.getControl() == null) ? 0 : 1;
-    		
-    		//compare numStudents
-    		value += comparedUniversity.getNumStudents() == 0 ? 0 : Math.abs((numStudents-comparedUniversity.getNumStudents()) / (maxNumStudents-minNumStudents));
-    		
-    		//compare percentFemale
-    		value += comparedUniversity.getPercentFemale() == 0 ? 0 : Math.abs((percentFemale-comparedUniversity.getPercentFemale()) / (maxPercentFemale-minPercentFemale));
-    		
-    		//compare satVerbal
-    		value += comparedUniversity.getSatVerbal() == 0 ? 0 : Math.abs((satVerbal-comparedUniversity.getSatVerbal()) / (maxSatVerbal-minSatVerbal));
-    		
-    		//compare satMath
-    		value += comparedUniversity.getSatMath() == 0 ? 0 : Math.abs((satMath-comparedUniversity.getSatMath()) / (maxSatMath-minSatMath));
-    		
-    		//compare expenses
-    		value += comparedUniversity.getExpenses() == 0 ? 0 : Math.abs((expenses-comparedUniversity.getExpenses()) / (maxExpenses-minExpenses));
-    		
-    		//compare perFA
-    		value += comparedUniversity.getFinancialAid() == 0 ? 0 : Math.abs((perFA-comparedUniversity.getFinancialAid()) / (maxPerFA-minPerFA));
-    		
-    		//compare numApplicants
-    		value += comparedUniversity.getNumApplicants() == 0 ? 0 : Math.abs((numApplicants-comparedUniversity.getNumApplicants()) / (maxNumApplicants-minNumApplicants));
-    		
-    		//compare perAdmitted
-    		value += comparedUniversity.getPercentAdmitted() == 0 ? 0 : Math.abs((perAdmitted-comparedUniversity.getPercentAdmitted()) / (maxPerAdmitted-minPerAdmitted));
-    		
-    		//compare perEnrolled
-    		value += comparedUniversity.getPercentEnrolled() == 0 ? 0 : Math.abs((perEnrolled-comparedUniversity.getPercentEnrolled()) / (maxPerEnrolled-minPerEnrolled));
-    		
-    		//compare academicScale
-    		value += comparedUniversity.getAcademicScale() == 0 ? 0 : Math.abs((academicScale-comparedUniversity.getAcademicScale()) / (4));
-    		
-    		//compare socialScale
-    		value += comparedUniversity.getSocialScale() == 0 ? 0 : Math.abs((socialScale-comparedUniversity.getSocialScale()) / (4));
-    		
-    		//compare lifeScale
-    		value += comparedUniversity.getLifeScale() == 0 ? 0 : Math.abs((lifeScale-comparedUniversity.getLifeScale()) / (4));
-    		
-    		//compare emphases
+     //don't compare the university to itself
+     if(!name.equals(rec[i][0]))
+     {
+      double value = 0;
+      
+      University comparedUniversity = new University(rec[i][0]);
+      
+      //compare location
+      value += (loc.equals(comparedUniversity.getLocation()) || comparedUniversity.getLocation() == null) ? 0 : 1;
+      
+      //compare state
+      value += (state.equals(comparedUniversity.getState()) || comparedUniversity.getState() == null) ? 0 : 1;
+      
+      //compare control
+      value += (control.equals(comparedUniversity.getControl()) || comparedUniversity.getControl() == null) ? 0 : 1;
+      
+      //compare numStudents
+      value += comparedUniversity.getNumStudents() == 0 ? 0 : Math.abs((numStudents-comparedUniversity.getNumStudents()) / (maxNumStudents-minNumStudents));
+      
+      //compare percentFemale
+      value += comparedUniversity.getPercentFemale() == 0 ? 0 : Math.abs((percentFemale-comparedUniversity.getPercentFemale()) / (maxPercentFemale-minPercentFemale));
+      
+      //compare satVerbal
+      value += comparedUniversity.getSatVerbal() == 0 ? 0 : Math.abs((satVerbal-comparedUniversity.getSatVerbal()) / (maxSatVerbal-minSatVerbal));
+      
+      //compare satMath
+      value += comparedUniversity.getSatMath() == 0 ? 0 : Math.abs((satMath-comparedUniversity.getSatMath()) / (maxSatMath-minSatMath));
+      
+      //compare expenses
+      value += comparedUniversity.getExpenses() == 0 ? 0 : Math.abs((expenses-comparedUniversity.getExpenses()) / (maxExpenses-minExpenses));
+      
+      //compare perFA
+      value += comparedUniversity.getFinancialAid() == 0 ? 0 : Math.abs((perFA-comparedUniversity.getFinancialAid()) / (maxPerFA-minPerFA));
+      
+      //compare numApplicants
+      value += comparedUniversity.getNumApplicants() == 0 ? 0 : Math.abs((numApplicants-comparedUniversity.getNumApplicants()) / (maxNumApplicants-minNumApplicants));
+      
+      //compare perAdmitted
+      value += comparedUniversity.getPercentAdmitted() == 0 ? 0 : Math.abs((perAdmitted-comparedUniversity.getPercentAdmitted()) / (maxPerAdmitted-minPerAdmitted));
+      
+      //compare perEnrolled
+      value += comparedUniversity.getPercentEnrolled() == 0 ? 0 : Math.abs((perEnrolled-comparedUniversity.getPercentEnrolled()) / (maxPerEnrolled-minPerEnrolled));
+      
+      //compare academicScale
+      value += comparedUniversity.getAcademicScale() == 0 ? 0 : Math.abs((academicScale-comparedUniversity.getAcademicScale()) / (4));
+      
+      //compare socialScale
+      value += comparedUniversity.getSocialScale() == 0 ? 0 : Math.abs((socialScale-comparedUniversity.getSocialScale()) / (4));
+      
+      //compare lifeScale
+      value += comparedUniversity.getLifeScale() == 0 ? 0 : Math.abs((lifeScale-comparedUniversity.getLifeScale()) / (4));
+      
+      //compare emphases
 
-    		values[i][0] = comparedUniversity.getName();
-    		values[i][1] = value;
+      values[i][0] = comparedUniversity.getName();
+      values[i][1] = value;
         }
-    	
-    	
+     
+     
     }
   //get top 5 from the map and put them into an ArrayList: return the arraylist
     for(int i = 0; i < values.length - 1; i++)
     {
-    	for(int j = i+1; j < values.length; j++)
-    	{
-    		if((double)values[i][1] > (double)values[j][1])
-    		{
-    			double tempValue = (double)values[i][1];
-    			String tempName = (String)values[i][0];
-    			
-    			values[i][1] = values[j][0];
-    			values[j][1] = tempValue;
-    			values[i][0] = values[j][1];
-    			values[j][0] = tempName;
-    		}
-    	}
+     for(int j = i+1; j < values.length; j++)
+     {
+      if((double)values[i][1] > (double)values[j][1])
+      {
+       double tempValue = (double)values[i][1];
+       String tempName = (String)values[i][0];
+       
+       values[i][1] = values[j][0];
+       values[j][1] = tempValue;
+       values[i][0] = values[j][1];
+       values[j][0] = tempName;
+      }
+     }
     }
     
     for(int i = 0; i < 5; i++)
     {
-    	topFive.add(dbController.getUniversity((String)values[i][0]));
+     topFive.add(dbController.getUniversity((String)values[i][0]));
     }
     
     return topFive;
