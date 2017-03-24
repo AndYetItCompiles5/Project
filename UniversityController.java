@@ -14,6 +14,9 @@ public class UniversityController
    */
   private DBController dbController;
   
+  /**
+   * Default constructor
+   */
   public UniversityController()
   {
     dbController = new DBController();

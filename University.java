@@ -117,7 +117,7 @@ public class University{
   public University(String name, String state, String location, String control, int numStudents, double perFemale, 
                     int satVerbal, int satMath, int expenses, double perFA, int numApplicants, double perAdmitted,
                     double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emphases){
-    if(name.equals("")||name==null)
+    if(name==null)
       throw new IllegalArgumentException("Name of the university is required");
     else{
       this.name=name;
@@ -140,15 +140,15 @@ public class University{
     }
   }
   /**
-   * Constructor. Creates an univerites with just a name.
+   * Constructor. Creates a university with just a name.
    * 
    * @param Name
    */
   public University(String name){
     this.name=name;
-    this.state=null;
-    this.location=null;
-    this.control=null;
+    this.state="";
+    this.location="";
+    this.control="";
     this.numberOfStudents=0;
     this.percentFemale=0;
     this.satVerbal=0;

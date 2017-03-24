@@ -42,6 +42,7 @@ public class Account{
    * @param username the username of the Account
    * @param password the passworld of the Account
    * @param type what type of Account this is 'a' for admin, 'u' for user
+   * @param status if the user/admin is activated or deactivated
    */
   public Account(String first, String last, String username, String password, char type, char status)
   {

@@ -110,13 +110,14 @@ public class AdminUI{
   
   /**
    * View all users
+   * @return a string of all users
    */
   public String[][] viewUsers(){
     return aFuncController.viewUsers();
   }
   
   /**
-   * An admin can edit any account
+   * Admin can edit an account
    *
    * @param first the first name of the user
    * @param last the last name of the user
@@ -125,7 +126,7 @@ public class AdminUI{
    * @param type of the account
    * @param status the status of the account
    * 
-   * @return int -1 if nothing changed
+   * @return string if edit was successful
    */
   public String editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
@@ -147,7 +148,7 @@ public class AdminUI{
    *
    * @param username of the user
    * 
-   * @returns the info of the user
+   * @returns an array list of the user's info
    */
   public ArrayList<String> displayInfo(String username)
   {
@@ -163,7 +164,7 @@ public class AdminUI{
    * @param password the password of the user
    * @param type of the account
    * 
-   * @return true if added else return false
+   * @return confirmation message if the account was added successfully
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {

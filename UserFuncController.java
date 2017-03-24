@@ -60,7 +60,7 @@ public class UserFuncController{
    * Saves the selected university to the user's list of universities
    * @param user : String
    * @param school : String
-   * @return int -1 if not saved
+   * @return string if school was saved
    */
   public String saveSchool(String user, String school)
   {

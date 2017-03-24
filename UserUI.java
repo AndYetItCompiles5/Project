@@ -22,14 +22,8 @@ public class UserUI{
    * Creates an instance of the SearchController
    */
   private SearchController searchController;
-  
-  /**
-   * Creates an instance of the AccountController
-   */
-  private AccountController aController;
 
   /**
-   * UserUI constructor
    *Default constuctor
    */
   public UserUI(){
@@ -52,10 +46,10 @@ public class UserUI{
   /**
    * save the school to the user                                      
    *
-   * @param user 
-   * @param school
+   * @param user: the user's username
+   * @param school: the school being added
    * 
-   * @returns an int. -1 if not saved. 
+   * @return a string if the school was successfully saved
    */
   public String saveSchool(String user, String school)
   {
@@ -75,9 +69,9 @@ public class UserUI{
   }
   
   /**
-   * view a list of univerities the user has saved
+   * view a list of universities the user has saved
    *
-   * @param user
+   * @param user: the user's username 
    * 
    * @return ArrayList of saved schools
    */
@@ -131,29 +125,7 @@ public class UserUI{
                                    academicScaleLow,academicScaleHigh,socialScaleLow,socialScaleHigh, lifeScaleLow,lifeScaleHigh,
                                    emphases);
   }
-  
-  /**
-   * displays results. Do we need these?
-   *
-   * @param list a set of string called list
-   * 
-   * @return a message
-   */
-  public String displayResults(Set<String> list){
-    return "";
-  }
-  
-  /**
-   * show universities
-   *
-   * @param University object school
-   * 
-   * @return a message
-   */
-  public String showSchools(University school){
-    return ""; 
-  }
-  
+   
   /**
    * The user can edit their acccount
    * 
@@ -179,17 +151,6 @@ public class UserUI{
   }
   
   /**
-   *  display University
-   *
-   *@param University object school
-   * 
-   * @return 
-   */
-  public String displayUniversity(University school){
-    return ""; 
-  }
-  
-  /**
    * Already saved error message when the user tries to save the same school twice
    * 
    * @return "Universities already saved"
@@ -212,5 +173,9 @@ public class UserUI{
    */
   public String confirmChange(){
     return "are you sure?"; 
+  }
+  
+  public ArrayList<String> findRecommendations(String name){
+	  return searchController.findReccomendations(name);
   }
 }

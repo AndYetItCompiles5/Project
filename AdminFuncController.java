@@ -102,7 +102,6 @@ public class AdminFuncController {
     accountInfo.add(account.getLastName());
     accountInfo.add(account.getUsername());
     
-    // change from char to String for type and status
     accountInfo.add(account.getType() + "");
     accountInfo.add(account.getStatus() + "");
     
