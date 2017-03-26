@@ -15,10 +15,13 @@ public class LoginUI
    */
  private AccountController aController;
  
+ /**
+  * creates a string for loggedIn
+  */
  private String loggedIn;
  
   /**
-   * Default constuctor. Initialized the AccountController
+   * Initialized the AccountController
    */
   public LoginUI(){
     aController = new AccountController();
@@ -27,6 +30,8 @@ public class LoginUI
    * Logs the user in with the specified username and password
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
+   * 
+   * @returns a string if an account is logged in
    */
   public String Login(String username, String password)
   {
@@ -35,8 +40,8 @@ public class LoginUI
     return result;
   }
   /**
-   * Displays an error if the user enters the wrong login informaion
-   * @return error message
+   * Displays an error if the user enters the wrong login information
+   * @return error message. Cause by wrong log in information
    */
   public String wrongLoginInfoError()
   {
@@ -51,13 +56,16 @@ public class LoginUI
     return ("User deactivated, please contact an administrator"); 
   }
   /**
-   * Logs the user out
-   * 
+   * Logs the user out 
    */
   public void logout(){
    aController.logout(); 
   }
-  
+  /**
+   * gets loggedIn
+   * 
+   * @return a string if an account is logged in
+   */
   public String getLoggedIn(){
 	  return loggedIn;
   }

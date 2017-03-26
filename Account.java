@@ -40,7 +40,7 @@ public class Account{
    * @param first the first name of the user
    * @param last the last name of the user
    * @param username the username of the Account
-   * @param password the passworld of the Account
+   * @param password the password of the Account
    * @param type what type of Account this is 'a' for admin, 'u' for user
    * @param status if the user/admin is activated or deactivated
    */

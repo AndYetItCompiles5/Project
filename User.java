@@ -11,10 +11,13 @@ import Project.*;
 
 public class User extends Account{
   
+/**
+ * a set of saved schools
+ */
   Set<String> savedSchools;
   
   /**
-   * Constructes a user object who can save schools
+   * Constructs a user object who can save schools. Also creates the set of savedSchools
    * 
    * @param first the first name of the user
    * @param last the last name of the user

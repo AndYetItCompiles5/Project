@@ -16,7 +16,7 @@ public class UserFuncController{
   private DBController dbController;
   
   /**
-   * Default constructor
+   * creates dbcontroller instance
    */
   public UserFuncController(){
 	  dbController = new DBController();
@@ -24,25 +24,17 @@ public class UserFuncController{
   }
   /**
    * Edits the user with the given information
+   * @param username: the user's username
    * @param first:the user's first name
    * @param last: the user's last name
    * @param password: the user's password
-   * @return string		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
-		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));
+   * @param type: the user's type
+   * @param status: the user's status
+   * @return string	if the account was successfully edited
    */
   public String editUser(String username, String first, String last, String password,char type, char status)
   {
         return dbController.editAccount(username,first,last,password,type,status);
-  }
-  
-  /**
-   * Lets the user view their saved schools
-   * @return the set of saved schools
-   */
-  
-  public Set<String> viewSchools()
-  {
-    return null; 
   }
   
   /**

@@ -94,7 +94,7 @@ public class University{
   private ArrayList<String> emphases;
   
   /**
-   * Contructor to create a University object. Name must be filled in
+   * Constructor to create a University object. Name must be filled in
    * @param name the name of the University
    * @param state the state the University is located int
    * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown

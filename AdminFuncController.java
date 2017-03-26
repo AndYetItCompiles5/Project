@@ -22,7 +22,7 @@ public class AdminFuncController {
   private AccountController aController;
   
   /**
-   * Default Constructor
+   * creates the instance of each controller
    */
   public AdminFuncController(){
     dbController = new DBController();
@@ -79,7 +79,7 @@ public class AdminFuncController {
   /**
    * The admin can view a list Users
    * 
-   * @returns an ArrayList of accounts from the BD
+   * @returns a 2-d array of of strings from the database
    */
   public String[][] viewUsers(){
 	  return dbController.getAllUsers();
@@ -88,7 +88,7 @@ public class AdminFuncController {
   /**
    * Displays the info of the account 
    * 
-   * @param username the username of the accoubt we need information from
+   * @param username the username of the account we need information from
    * 
    * @return an ArrayList of all the account details
    */

@@ -17,7 +17,7 @@ public class SearchController
   private DBController dbController;
 
   /**
-   * Default constuctor. Initialized the DB Controller.
+   * Default constructor. Initialized the DB Controller.
    */
   public SearchController()
   {

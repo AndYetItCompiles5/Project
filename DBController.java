@@ -617,6 +617,11 @@ public class DBController
     return "Account is already deactivated.";
   }
   
+  /**
+   * Find recommendations of closely related schools 
+   * @param name
+   * @return topFive closely related schools. 
+   */
   public ArrayList<String> findRecommendations(String name){
 	  String[][] rec = dataBase.university_getUniversities();
 	  String[][] values = new String[rec.length][2];

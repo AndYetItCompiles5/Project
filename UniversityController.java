@@ -9,13 +9,13 @@ import Project.*;
  */
 public class UniversityController
 {
-    /**
+  /**
    * Creates an instance of the Database Library
    */
   private DBController dbController;
   
   /**
-   * Default constructor
+   * creates the instance for the database
    */
   public UniversityController()
   {
@@ -40,7 +40,7 @@ public class UniversityController
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @return true if the university was added
+   * @return an string indicating the number of university records inserted or -1 if school name is NOT unique or if a database error is encountered
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -72,7 +72,7 @@ public class UniversityController
    * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    * 
-   * @return a string
+   * @return a string indicating how many fields were change if any
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -91,6 +91,11 @@ public class UniversityController
     return "Are you sure?";
   }
   
+  /**
+   * Displays an array list of university's attributes
+   * @param name of a university in the database.
+   * @return an array list of a given university's attributes
+   */
   public ArrayList<String> displayUniversity(String name){
 	  return dbController.displayUniversity(name);
   }

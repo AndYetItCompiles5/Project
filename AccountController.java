@@ -18,7 +18,7 @@ public class AccountController{
    */
   private DBController dbController;
   /**
-   * default empty constructor
+   * default creates a db object
    */
   public AccountController()
   {
@@ -97,7 +97,7 @@ public class AccountController{
    * @param first:the user's first name
    * @param last: the user's last name
    * @param password: the user's password
-   * @return Whether the user was successfuly logged in
+   * @return Whether the user was successfully edited
    */
   public String editUser(String first, String last, String password)
   {
@@ -120,7 +120,7 @@ public class AccountController{
    * @param password: the user's password
    * @param type: the type of the account
    * @param status: the status of the account
-   * @return whether the account was successfuly edited or an error if not
+   * @return whether the account was successfully edited
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
