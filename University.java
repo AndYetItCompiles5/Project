@@ -255,7 +255,7 @@ public class University{
   }
   
   /**
-   * sets the percent of enrolled students who are female. It will give IllegalArgumentException if per is <0 or >100
+   * sets the percent of enrolled students who are female. It will give IllegalArgumentException if per is  less then 0 or greater 100
    * @param per the percent of enrolled students who are female
    * @throws IllegalArgumentException
    */
@@ -333,7 +333,7 @@ public class University{
   /**
    * set the percent of enrolled students receiving financial aid
    * @param percent the percent of enrolled students receiving financial aid
-   * @throws IllegalArgumentException if percent <0 or >100
+   * @throws IllegalArgumentException if percent less then 0 or greater then 100
    */
   public void setFinancialAid(double percent){
     if(percent<0||percent>100)
@@ -369,7 +369,7 @@ public class University{
   /**
    * set the percent of applicants that get admitted
    * @param per the percent of applicants that get admitted
-   * @throws IllegalArgumentException if per is <0 or >100
+   * @throws IllegalArgumentException if per is less then 0 or greater than 100
    */
   public void setPercentAdmitted(double per){
     if(per<0||per>100)
@@ -389,7 +389,7 @@ public class University{
   /**
    * set the percent of applicants that decide to enroll
    * @param per the percent of applicants that decide to enroll
-   * @throws IllegalArgumentException if per is <0 or >100
+   * @throws IllegalArgumentException if per is less than 0 or is greater than 100
    */
   public void setPercentEnrolled(double per){
     if(per<0||per>100)
