@@ -9,13 +9,13 @@ import Project.*;
  */
 public class UniversityController
 {
-    /**
+  /**
    * Creates an instance of the Database Library
    */
   private DBController dbController;
   
   /**
-   * Default constructor
+   * creates the instance for the database
    */
   public UniversityController()
   {
@@ -25,7 +25,7 @@ public class UniversityController
    * Lets the admin add a university with the given information
    *@param name the name of the University
    * @param state the state the University is located int
-   * @param loc can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
    * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
    * @param numStudents number of students enrolled in the University
    * @param perFemale percentage of enrolled students that are females (between 0 and 100)
@@ -33,14 +33,14 @@ public class UniversityController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
-   * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
+   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @return true if the university was added
+   * @return an string indicating the number of university records inserted or -1 if school name is NOT unique or if a database error is encountered
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -56,7 +56,7 @@ public class UniversityController
    * Lets the admin edit the given university
    *@param name the name of the University
    * @param state the state the University is located int
-   * @param loc can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
+   * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
    * @param control can be one of the following: PRIVATE, STATE, CITY, or -1 if unknown
    * @param numStudents number of students enrolled in the University
    * @param perFemale percentage of enrolled students that are females (between 0 and 100)
@@ -64,15 +64,15 @@ public class UniversityController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
-   * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
+   * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    * 
-   * @return a string
+   * @return a string indicating how many fields were change if any
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -91,7 +91,12 @@ public class UniversityController
     return "Are you sure?";
   }
   
+  /**
+   * Displays an array list of university's attributes
+   * @param name of a university in the database.
+   * @return an array list of a given university's attributes
+   */
   public ArrayList<String> displayUniversity(String name){
-	  return dbController.displayUniversity(name);
+   return dbController.displayUniversity(name);
   }
 }

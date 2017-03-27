@@ -4,7 +4,7 @@ import Project.*;
 
 /**
  * AdminUI
- * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+ * @author Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
 public class AdminUI{
@@ -54,7 +54,7 @@ public class AdminUI{
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicants total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
@@ -88,7 +88,7 @@ public class AdminUI{
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicants total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
@@ -148,7 +148,7 @@ public class AdminUI{
    *
    * @param username of the user
    * 
-   * @returns an array list of the user's info
+   * @return an array list of the user's info
    */
   public ArrayList<String> displayInfo(String username)
   {

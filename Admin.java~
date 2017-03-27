@@ -19,6 +19,6 @@ public class Admin extends Account{
    */
   public Admin(String first, String last, String username, String password)
   {
-    super(first,last,username,password,'a');
+    super(first,last,username,password,'a','y');
   }
 }

@@ -35,9 +35,9 @@ public class AdminUI{
   /**
    * view a set of Universities
    * 
-   * @return a set of Univserities
+   * @return a set of Universities
    */
-  public String[][] viewUniversities(){
+  public ArrayList<String> viewUniversities(){
     return aFuncController.viewUniversities();
   }
   
@@ -67,12 +67,12 @@ public class AdminUI{
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
-                              int socialScale, int lifeScale){
+                              int socialScale, int lifeScale, ArrayList<String> emphases){
     
     return uController.addUniversity(name,state, location, control, numStudents,
                                      perFemale, satVerbal, satMath, expenses, perFA,
                                      numApplicants, perAdmitted, perEnrolled, academicScale,
-                                     socialScale, lifeScale);
+                                     socialScale, lifeScale,emphases);
   }
   
   /**
@@ -110,13 +110,14 @@ public class AdminUI{
   
   /**
    * View all users
+   * @return a string of all users
    */
-  public ArrayList viewUsers(){
+  public String[][] viewUsers(){
     return aFuncController.viewUsers();
   }
   
   /**
-   * An admin can edit any account
+   * Admin can edit an account
    *
    * @param first the first name of the user
    * @param last the last name of the user
@@ -125,7 +126,7 @@ public class AdminUI{
    * @param type of the account
    * @param status the status of the account
    * 
-   * @return int -1 if nothing changed
+   * @return string if edit was successful
    */
   public String editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
@@ -136,14 +137,10 @@ public class AdminUI{
    *
    * @param username of the user
    */
-<<<<<<< HEAD
-  public String deactivateUser(String first, String last, String username, String password, char type){
-    return aController.deactivateUser(first, last, username, password, type);
-=======
-  public void deactivateUser(String username)
+
+  public String deactivateUser(String username)
   {
-    aController.deactivateUser(username);
->>>>>>> 6828410f931e9e3c26e753a905dceea54c4cdd63
+    return aController.deactivateUser(username);
   }
   
   /**
@@ -151,7 +148,7 @@ public class AdminUI{
    *
    * @param username of the user
    * 
-   * @returns the info of the user
+   * @returns an array list of the user's info
    */
   public ArrayList<String> displayInfo(String username)
   {
@@ -167,7 +164,7 @@ public class AdminUI{
    * @param password the password of the user
    * @param type of the account
    * 
-   * @return true if added else return false
+   * @return confirmation message if the account was added successfully
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
@@ -220,20 +217,17 @@ public class AdminUI{
   }
   
   /**
-<<<<<<< HEAD
    * display University's name
    *
    * @param name of the university
    * 
    * @return name the name of the University
    */
-  public String displayUniversity(String name){
-    return name; 
+  public ArrayList<String> displayUniversity(String name){
+    return uController.displayUniversity(name); 
   }
   
   /**
-=======
->>>>>>> 0b71f94e97ef2779b97b0a0fc6518b384949cee7
    * No name error. No user with that given name
    * 
    * @return "no name error"

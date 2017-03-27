@@ -4,7 +4,7 @@ import Project.*;
 
 /**
  * AdminFuncController
- * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+ * @author Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
 public class AdminFuncController {
@@ -22,7 +22,7 @@ public class AdminFuncController {
   private AccountController aController;
   
   /**
-   * Default Constructor
+   * creates the instance of each controller
    */
   public AdminFuncController(){
     dbController = new DBController();
@@ -35,13 +35,13 @@ public class AdminFuncController {
    * @param first the first name of the user
    * @param last the last name of the user
    * @param username the username of the user
-   * @param the password for the account
+   * @param password for the account
    * @param type the type of user
    * @return Whether the account was successfully created, an error if not
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
-		return dbController.addAccount(first,last,username,password,type);
+  return dbController.addAccount(first,last,username,password,type);
   }
   
   /**
@@ -57,7 +57,7 @@ public class AdminFuncController {
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicants total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
@@ -79,16 +79,16 @@ public class AdminFuncController {
   /**
    * The admin can view a list Users
    * 
-   * @returns an ArrayList of accounts from the BD
+   * @return a 2-d array of of strings from the database
    */
   public String[][] viewUsers(){
-	  return dbController.getAllUsers();
+   return dbController.getAllUsers();
   }
   
   /**
    * Displays the info of the account 
    * 
-   * @param username the username of the accoubt we need information from
+   * @param username the username of the account we need information from
    * 
    * @return an ArrayList of all the account details
    */
