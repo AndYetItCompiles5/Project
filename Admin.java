@@ -4,7 +4,7 @@ import Project.*;
 
 /**
  * Admin
- * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+ * @author Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
 

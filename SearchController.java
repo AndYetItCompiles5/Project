@@ -41,8 +41,8 @@ public class SearchController
    * @param expensesHigh user search input of maximum expenses
    * @param perFALow user search input of minimum Financial Aid percentage
    * @param perFAHigh user search input of maximum Financial Aid percentage
-   * @param numAppicantsLow user search input of minimum number of applicants
-   * @param numAppicantsHigh user search input of maximum number of applicants
+   * @param numApplicantsLow user search input of minimum number of applicants
+   * @param numApplicantsHigh user search input of maximum number of applicants
    * @param perAdmittedLow user search input of minimum number of admitted
    * @param perAdmittedHigh user search input of maximum number of admitted
    * @param perEnrolledLow user search input of minimum number of enrolled
@@ -75,7 +75,7 @@ public class SearchController
    */
   public ArrayList<String> findReccomendations(String name)
   {
-	  return dbController.findRecommendations(name);
+   return dbController.findRecommendations(name);
   }
 
 }

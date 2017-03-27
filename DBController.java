@@ -21,7 +21,7 @@ public class DBController
    * 
    * @param username:the username of the account that is being found
    * 
-   * @returns the Account object associated with the username
+   * @return the Account object associated with the username
    */
   public Account getAccount(String username)
   {
@@ -52,7 +52,7 @@ public class DBController
   /**
    * Finds a university that matches the given name
    * @param name:the school name that is being found
-   * @returns a university object
+   * @return a university object
    */
   public University getUniversity(String name)
   {
@@ -103,52 +103,52 @@ public class DBController
   /**
    * Displays a single university
    * @param name:the school name that is being displayed
-   * @returns an array list of the school's information
+   * @return an array list of the school's information
    */
   
   public ArrayList<String> displayUniversity(String name){
-	  
-	  ArrayList<String> univs = new ArrayList<String>();
-	  University univ = getUniversity(name);
-	  String state = univ.getState();
-	  String loc = univ.getLocation();
-	  String control = univ.getControl();
-	  int numStudents = univ.getNumStudents();
-	  double perFemale = univ.getPercentFemale();
-	  int satVerbal = univ.getSatVerbal();
-	  int satMath = univ.getSatMath();
-	  int expenses = univ.getExpenses();
-	  double perFA = univ.getFinancialAid();
-	  int numApplicants = univ.getNumApplicants();
-	  double perAdmitted = univ.getPercentAdmitted();
-	  double perEnrolled = univ.getPercentEnrolled();
-	  int academicScale = univ.getAcademicScale();
-	  int socialScale = univ.getSocialScale();
-	  int lifeScale = univ.getLifeScale();
-	  String[][] emphases = dataBase.university_getNamesWithEmphases();
-	  univs.add(name);
-	  univs.add(state);
-	  univs.add(loc);
-	  univs.add(control);
-	  univs.add(Integer.toString(numStudents));
-	  univs.add(Double.toString(perFemale));
-	  univs.add(Integer.toString(satVerbal));
-	  univs.add(Integer.toString(satMath));
-	  univs.add(Integer.toString(expenses));
-	  univs.add(Double.toString(perFA));
-	  univs.add(Integer.toString(numApplicants));
-	  univs.add(Double.toString(perAdmitted));
-	  univs.add(Double.toString(perEnrolled));
-	  univs.add(Integer.toString(academicScale));
-	  univs.add(Integer.toString(socialScale));
-	  univs.add(Integer.toString(lifeScale));
-	  for(int i = 0;i<emphases.length;i++){
-		  if (emphases[i][0].equals(name)){
-				  univs.add(emphases[i][1]);
-		  }
-		  
-	  }
-	  return univs;
+   
+   ArrayList<String> univs = new ArrayList<String>();
+   University univ = getUniversity(name);
+   String state = univ.getState();
+   String loc = univ.getLocation();
+   String control = univ.getControl();
+   int numStudents = univ.getNumStudents();
+   double perFemale = univ.getPercentFemale();
+   int satVerbal = univ.getSatVerbal();
+   int satMath = univ.getSatMath();
+   int expenses = univ.getExpenses();
+   double perFA = univ.getFinancialAid();
+   int numApplicants = univ.getNumApplicants();
+   double perAdmitted = univ.getPercentAdmitted();
+   double perEnrolled = univ.getPercentEnrolled();
+   int academicScale = univ.getAcademicScale();
+   int socialScale = univ.getSocialScale();
+   int lifeScale = univ.getLifeScale();
+   String[][] emphases = dataBase.university_getNamesWithEmphases();
+   univs.add(name);
+   univs.add(state);
+   univs.add(loc);
+   univs.add(control);
+   univs.add(Integer.toString(numStudents));
+   univs.add(Double.toString(perFemale));
+   univs.add(Integer.toString(satVerbal));
+   univs.add(Integer.toString(satMath));
+   univs.add(Integer.toString(expenses));
+   univs.add(Double.toString(perFA));
+   univs.add(Integer.toString(numApplicants));
+   univs.add(Double.toString(perAdmitted));
+   univs.add(Double.toString(perEnrolled));
+   univs.add(Integer.toString(academicScale));
+   univs.add(Integer.toString(socialScale));
+   univs.add(Integer.toString(lifeScale));
+   for(int i = 0;i<emphases.length;i++){
+    if (emphases[i][0].equals(name)){
+      univs.add(emphases[i][1]);
+    }
+    
+   }
+   return univs;
   }
   
   /**
@@ -163,14 +163,14 @@ public class DBController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicantds total number of applicants that apply to the school annually
+   * @param numApplicants total number of applicants that apply to the school annually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @returns a success message
+   * @return a success message
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -201,14 +201,14 @@ public class DBController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numAppicantds total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school anually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @returns success message if the school has been added successfully
+   * @return success message if the school has been added successfully
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
                               double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -216,7 +216,7 @@ public class DBController
                               int socialScale, int lifeScale,ArrayList<String> emphases)
   {
   if(name.equals("")){
-	  return "Name is required";
+   return "Name is required";
   }
   else if(isSchoolSaved(name)){
       return alreadySavedError();
@@ -228,7 +228,7 @@ public class DBController
                                         numApplicants, perAdmitted, perEnrolled, academicScale,
                                         socialScale, lifeScale);
       for(int i = 0; i<emphases.size();i++){
-    	  dataBase.university_addUniversityEmphasis(name, emphases.get(i));
+       dataBase.university_addUniversityEmphasis(name, emphases.get(i));
       
     }
       return name + " was added successfully!";
@@ -242,9 +242,9 @@ public class DBController
    * @return an int
    */
   public String saveSchool(String user, String school){
-   	int r = dataBase.user_saveSchool(user, school);
+    int r = dataBase.user_saveSchool(user, school);
   if(r==-1){
-	  return "School has already been saved to the user's list";
+   return "School has already been saved to the user's list";
   }
     return "School Saved!";
   }
@@ -252,14 +252,14 @@ public class DBController
   /**
    * This methods gets the user's saved schools from the DB
    * @param user:the username of the user where the saved schools are being obtained from
-   * @returns an array of the user's saved schools
+   * @return an array of the user's saved schools
    */
   public ArrayList<String> getUserSavedSchools(String user)
   {
     ArrayList<String> listSchools = new ArrayList<String>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
     if(namesWithSchools==null){
-    	return listSchools;
+     return listSchools;
     }
     for(int i = 0; i < namesWithSchools.length; i++)
     {
@@ -274,7 +274,7 @@ public class DBController
   /**
    * Method that checks is a username already exists
    * @param username the username being searched for
-   * @returns true if the username already exists
+   * @return true if the username already exists
    */
   public boolean isUsername(String username)
   {
@@ -289,7 +289,7 @@ public class DBController
 
   /**
    * Returns a string stating that the login info was incorrect
-   * @returns a message saying some part of login info is wrong
+   * @return a message saying some part of login info is wrong
    */
   public String wrongLoginInfoError()
   {
@@ -298,7 +298,7 @@ public class DBController
   
   /**
    * Returns a string stating that the account is currently deactivated
-   * @returns a string stating that the account is currently deactivated
+   * @return a string stating that the account is currently deactivated
    */
   public String deactivateError()
   {
@@ -307,25 +307,25 @@ public class DBController
   
   /**
    * Returns a Set of all the University objects in the database
-   * @returns a Set of all the University objects in the database
+   * @return a Set of all the University objects in the database
    */
   public ArrayList<String> getAllUniversities() 
   {
-	  String[][] universities = dataBase.university_getUniversities();
-	    ArrayList<String> result = new ArrayList<String>();
-	    String name;
-	    for(int i=0;i< universities.length;i++)
-	    {
-	      name = universities[i][0];
-	      result.add(name);
-	    }
-	    
-	    return result;
+   String[][] universities = dataBase.university_getUniversities();
+     ArrayList<String> result = new ArrayList<String>();
+     String name;
+     for(int i=0;i< universities.length;i++)
+     {
+       name = universities[i][0];
+       result.add(name);
+     }
+     
+     return result;
   }
   
   /**
-   * Returns a Set of all the University objects that mat		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
-		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));ch the search criteria in the database
+   * Returns a Set of all the University objects that mat  System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+  System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));ch the search criteria in the database
    * @param name the name of the University
    * @param state the state the University is located int
    * @param location can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or -1 if unknown
@@ -342,8 +342,8 @@ public class DBController
    * @param expensesHigh user search input of maximum expenses
    * @param perFALow user search input of minimum Financial Aid percentage
    * @param perFAHigh user search input of maximum Financial Aid percentage
-   * @param numAppicantsLow user search input of minimum number of applicants
-   * @param numAppicantsHigh user search input of maximum number of applicants
+   * @param numApplicantsLow user search input of minimum number of applicants
+   * @param numApplicantsHigh user search input of maximum number of applicants
    * @param perAdmittedLow user search input of minimum number of admitted
    * @param perAdmittedHigh user search input of maximum number of admitted
    * @param perEnrolledLow user search input of minimum number of enrolled
@@ -354,8 +354,8 @@ public class DBController
    * @param socialScaleHigh user search input of maximimum social scale number
    * @param lifeScaleLow user search input of minimum life scale number
    * @param lifeScaleHigh user search input of maximum life scale number
-   * @param emphases up to five areas of study the Univer		System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
-		System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));sity excels at (all Strings)
+   * @param emphases up to five areas of study the Univer  System.out.println("Should return 'User deactivated' error: "+loginUI.Login("calaseth", "password"));
+  System.out.println("Should return 'Wrong login info' error: "+loginUI.Login("wrong", "info"));sity excels at (all Strings)
    * @return a hashset of the found schools
    */
   public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
@@ -380,7 +380,7 @@ public class DBController
                                                                                                                              (perEnrolledLow==0 && perEnrolledHigh==0)) && (isWithinRange(academicScaleLow,academicScaleHigh,schoolList[i][13])|| (academicScaleLow==0 && academicScaleHigh==0)) &&
            (isWithinRange(socialScaleLow,socialScaleHigh,schoolList[i][14])|| (socialScaleLow==0 && socialScaleHigh==0)) && (isWithinRange(lifeScaleLow,lifeScaleHigh,schoolList[i][15])|| (lifeScaleLow==0 && lifeScaleHigh==0))){
           if(emphases!=(null)){
-        	for(int k=0;k<emphasesList.length;k++){
+         for(int k=0;k<emphasesList.length;k++){
             if(schoolList[k][0].toLowerCase().contains(name.toLowerCase())){
               if(emphases.contains(schoolList[k][1])){
                 answer.add(schoolList[k][0]);
@@ -389,13 +389,13 @@ public class DBController
             }
           }
           else{
-        	  answer.add(schoolList[i][0]);
+           answer.add(schoolList[i][0]);
           }
         }
       }
     }
     return answer;
-  }		
+  }  
   
   /**
    * Checks if the school's actual data is within the range of the low and high that the user searched for
@@ -440,7 +440,7 @@ public class DBController
   /**
    * Finds whether or not the schools has been saved
    * @param name the university name that is being saved
-   * @returns true if the school has already been saved
+   * @return true if the school has already been saved
    */
   public boolean isSchoolSaved(String name)
   {
@@ -455,7 +455,7 @@ public class DBController
   
   /**
    * Returns a message letting the admin know that the school already exists
-   * @returns a String that the school is already in the database
+   * @return a String that the school is already in the database
    */
   public String alreadySavedError()
   {
@@ -481,7 +481,7 @@ public class DBController
    * @param username: the username of the user being added
    * @param password: the password of the user being added
    * @param type: boolean of the user's activation or deactivation
-   * @returns confirmation message if successfully added to the database
+   * @return confirmation message if successfully added to the database
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
@@ -516,7 +516,7 @@ public class DBController
   
   /**
    * Displays an error message saying that the username has already been taken
-   * @returns a string stating that the username has already been taken
+   * @return a string stating that the username has already been taken
    */
   public String userAlreadyTakenError()
   {
@@ -525,7 +525,7 @@ public class DBController
   
   /**
    * The user is missing some type of  information(username, password, type, etc.)
-   * @returns a message letting the user know all required information must be filled in
+   * @return a message letting the user know all required information must be filled in
    */
   public String userNotCompleteError()
   {
@@ -540,20 +540,20 @@ public class DBController
    * @param password the password of the user
    * @param type: U for user, A for admin
    * @param status: true if active, false if deactive
-   * @returns true if the user was successfully edited
+   * @return true if the user was successfully edited
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-	  if(username.equals("")||password.equals("")||type==(' ')){
-		  return "Missing username, password, or type";
-	  }
+   if(username.equals("")||password.equals("")||type==(' ')){
+    return "Missing username, password, or type";
+   }
     dataBase.user_editUser(username,first,last,password,type,status);
     return "Edit Successful!";
   }
   
   /**
    * Message displayed when asking if the user wants to confirm something
-   * @returns a message asking a user if they are sure they want to do something
+   * @return a message asking a user if they are sure they want to do something
    */
   public String confirmationMessage()
   {
@@ -563,7 +563,7 @@ public class DBController
   /**
    * Checks to see if an Account is deactivated
    * @param username: the username of the user that the admin is checking
-   * @returns true if account is deactivated
+   * @return true if account is deactivated
    */
   public boolean isDeactivated(String username)
   {
@@ -584,7 +584,7 @@ public class DBController
    * 
    * @param username: the username of the user
    * 
-   * @returns confirmation message if the user was deactivated or not
+   * @return confirmation message if the user was deactivated or not
    */
   public String deactivateUser(String username)
   {
@@ -610,7 +610,7 @@ public class DBController
   
   /**
    * Error message stating that Account is already deactivated
-   * @returns a message stating that the Account is already deactivated
+   * @return a message stating that the Account is already deactivated
    */
   public String alreadyDeactivatedError()
   {
@@ -623,242 +623,242 @@ public class DBController
    * @return topFive closely related schools. 
    */
   public ArrayList<String> findRecommendations(String name){
-	  String[][] rec = dataBase.university_getUniversities();
-	  String[][] values = new String[rec.length][2];
-	  ArrayList<String> topFive = new ArrayList<String>();
-	  
-	  University currentUniversity = getUniversity(name);
-	    
-	    String loc = currentUniversity.getLocation(); //1
-	    String state = currentUniversity.getState(); //2
-	    String control = currentUniversity.getControl(); //3
-	    int numStudents = currentUniversity.getNumStudents(); //4
-	    double percentFemale = currentUniversity.getPercentFemale(); //5
-	    int satVerbal = currentUniversity.getSatVerbal(); //6
-	    int satMath = currentUniversity.getSatMath(); //7
-	    int expenses = currentUniversity.getExpenses(); //8
-	    double perFA = currentUniversity.getFinancialAid(); //9
-	    int numApplicants = currentUniversity.getNumApplicants(); //10
-	    double perAdmitted = currentUniversity.getPercentAdmitted(); //11
-	    double perEnrolled = currentUniversity.getPercentEnrolled(); //12
-	    int academicScale = currentUniversity.getAcademicScale(); //13
-	    int socialScale = currentUniversity.getSocialScale(); //14
-	    int lifeScale = currentUniversity.getLifeScale(); //15
-	    //ArrayList<String> emp = currentUniversity.getEmphases(); //16
-	    
-	    
-	 int maxNumStudents = 0,maxSatVerbal=0,maxSatMath=0,maxExpenses=0,maxNumApplicants=0,maxAcademicScale=5, maxSocialScale=5,maxLifeScale=5;
-	 double minPercentFemale, maxPercentFemale=0, minPerFA, maxPerFA=0, minPerAdmitted, maxPerAdmitted=0, minPerEnrolled, maxPerEnrolled=0;
-	 
-	 int minNumStudents,minSatVerbal,minSatMath, minExpenses, minNumApplicants, minAcademicScale = 1, minSocialScale = 1, minLifeScale = 1;
-	 minPerEnrolled=minPerAdmitted=minPerFA=minPercentFemale=minNumStudents=minSatVerbal=minSatMath =minExpenses=minNumApplicants = 999999999;
-	    
-	 //getting maxes and mins
-	    for(int i = 0; i < rec.length; i++){
-	     for(int j = 4; j < rec[i].length;j++){
-	      
-	      switch(j)
-	      {
-	       //numStudents
-	       case 4:
-	        if(Integer.parseInt(rec[i][j]) > maxNumStudents)
-	        {
-	         maxNumStudents = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minNumStudents)
-	        {
-	         minNumStudents = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //percentFemale
-	       case 5:
-	        if(Double.parseDouble(rec[i][j]) > maxPercentFemale)
-	        {
-	         maxPercentFemale = Double.parseDouble(rec[i][j]);
-	        }
-	        else if(Double.parseDouble(rec[i][j]) < minPercentFemale)
-	        {
-	         minPercentFemale = Double.parseDouble(rec[i][j]);
-	        }
-	        break;
-	       //satVerbal
-	       case 6:
-	        if(Integer.parseInt(rec[i][j]) > maxSatVerbal)
-	        {
-	         maxSatVerbal = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minSatVerbal)
-	        {
-	         minSatVerbal = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //satMath
-	       case 7:
-	        if(Integer.parseInt(rec[i][j]) > maxSatMath)
-	        {
-	         maxSatMath = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minSatMath)
-	        {
-	         minSatMath = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //expenses
-	       case 8:
-	        if(Integer.parseInt(rec[i][j]) > maxExpenses)
-	        {
-	         maxExpenses = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minExpenses)
-	        {
-	         minExpenses = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //perFA
-	       case 9:
-	        if(Integer.parseInt(rec[i][j]) > maxPerFA)
-	        {
-	         maxPerFA = Double.parseDouble(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minPerFA)
-	        {
-	         minPerFA = Double.parseDouble(rec[i][j]);
-	        }
-	        break;
-	       //numApplicants
-	       case 10:
-	        if(Integer.parseInt(rec[i][j]) > maxNumApplicants)
-	        {
-	         maxNumApplicants = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Integer.parseInt(rec[i][j]) < minNumApplicants)
-	        {
-	         minNumApplicants = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //percentAdmitted
-	       case 11:
-	        if(Double.parseDouble(rec[i][j]) > maxPerAdmitted)
-	        {
-	         maxPerAdmitted = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Double.parseDouble(rec[i][j]) < minPerAdmitted)
-	        {
-	         minPerAdmitted = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	       //percentEnrolled
-	       case 12:
-	        if(Double.parseDouble(rec[i][j]) > maxPerEnrolled)
-	        {
-	         maxPerEnrolled = Integer.parseInt(rec[i][j]);
-	        }
-	        else if(Double.parseDouble(rec[i][j]) < minPerEnrolled)
-	        {
-	         minPerEnrolled = Integer.parseInt(rec[i][j]);
-	        }
-	        break;
-	      }
-	      
-	     }
-	    }
-	 
-	 
-	    for(int i = 0; i < rec.length; i++)
-	    {
-	     //don't compare the university to itself
-	     if(name.equals(rec[i][0]))
-	     {
-	    	 values[i][0]=name;
-	    	 values[i][1]="100";
-	     }
-	     else{
-	    	 
-	     
-	      double value = 0;
-	      
-	      University comparedUniversity = getUniversity(rec[i][0]);
-	      
-	      //compare location
-	      value += (loc.equals(comparedUniversity.getLocation()) || comparedUniversity.getLocation() == null) ? 0 : 1;
-	      
-	      //compare state
-	      value += (state.equals(comparedUniversity.getState()) || comparedUniversity.getState() == null) ? 0 : 1;
-	      
-	      //compare control
-	      value += (control.equals(comparedUniversity.getControl()) || comparedUniversity.getControl() == null) ? 0 : 1;
-	      
-	      //compare numStudents
-	      value += comparedUniversity.getNumStudents() == 0 ? 0 : Math.abs((numStudents-comparedUniversity.getNumStudents()) / (maxNumStudents-minNumStudents));
-	      
-	      //compare percentFemale
-	      value += comparedUniversity.getPercentFemale() == 0 ? 0 : Math.abs((percentFemale-comparedUniversity.getPercentFemale()) / (maxPercentFemale-minPercentFemale));
-	      
-	      //compare satVerbal
-	      value += comparedUniversity.getSatVerbal() == 0 ? 0 : Math.abs((satVerbal-comparedUniversity.getSatVerbal()) / (maxSatVerbal-minSatVerbal));
-	      
-	      //compare satMath
-	      value += comparedUniversity.getSatMath() == 0 ? 0 : Math.abs((satMath-comparedUniversity.getSatMath()) / (maxSatMath-minSatMath));
-	      
-	      //compare expenses
-	      value += comparedUniversity.getExpenses() == 0 ? 0 : Math.abs((expenses-comparedUniversity.getExpenses()) / (maxExpenses-minExpenses));
-	      
-	      //compare perFA
-	      value += comparedUniversity.getFinancialAid() == 0 ? 0 : Math.abs((perFA-comparedUniversity.getFinancialAid()) / (maxPerFA-minPerFA));
-	      
-	      //compare numApplicants
-	      value += comparedUniversity.getNumApplicants() == 0 ? 0 : Math.abs((numApplicants-comparedUniversity.getNumApplicants()) / (maxNumApplicants-minNumApplicants));
-	      
-	      //compare perAdmitted
-	      value += comparedUniversity.getPercentAdmitted() == 0 ? 0 : Math.abs((perAdmitted-comparedUniversity.getPercentAdmitted()) / (maxPerAdmitted-minPerAdmitted));
-	      
-	      //compare perEnrolled
-	      value += comparedUniversity.getPercentEnrolled() == 0 ? 0 : Math.abs((perEnrolled-comparedUniversity.getPercentEnrolled()) / (maxPerEnrolled-minPerEnrolled));
-	      
-	      //compare academicScale
-	      value += comparedUniversity.getAcademicScale() == 0 ? 0 : Math.abs((academicScale-comparedUniversity.getAcademicScale()) / (4));
-	      
-	      //compare socialScale
-	      value += comparedUniversity.getSocialScale() == 0 ? 0 : Math.abs((socialScale-comparedUniversity.getSocialScale()) / (4));
-	      
-	      //compare lifeScale
-	      value += comparedUniversity.getLifeScale() == 0 ? 0 : Math.abs((lifeScale-comparedUniversity.getLifeScale()) / (4));
-	      
-	      //compare emphases
-	      values[i][0] = comparedUniversity.getName();
-	      values[i][1] = Double.toString(value);
-	        
-	     
-	     }
-	     
-	    }
-	    double a = 0;
-	    double b = 0;
-	  //get top 5 from the map and put them into an ArrayList: return the arraylist
-	    for(int i = 0; i < values.length - 1; i++)
-	    {
-	     for(int j = i+1; j < values.length; j++)
-	     {
-	    	 a = Double.parseDouble(values[i][1]);
-	    	 b = Double.parseDouble(values[j][1]);
-	      if(a>b)
-	      {
-	       String tempValue = values[i][1];
-	       String tempName = (String)values[i][0];
-	       
-	       values[i][1] = values[j][1];
-	       values[j][1] = tempValue;
-	       values[i][0] = values[j][0];
-	       values[j][0] = tempName;
-	      }
-	     }
-	    }
-	    
-	    for(int i = 0; i < 5; i++)
-	    {
-	     topFive.add((String)values[i][0]);
-	    }
-	    
-	    return topFive;
+   String[][] rec = dataBase.university_getUniversities();
+   String[][] values = new String[rec.length][2];
+   ArrayList<String> topFive = new ArrayList<String>();
+   
+   University currentUniversity = getUniversity(name);
+     
+     String loc = currentUniversity.getLocation(); //1
+     String state = currentUniversity.getState(); //2
+     String control = currentUniversity.getControl(); //3
+     int numStudents = currentUniversity.getNumStudents(); //4
+     double percentFemale = currentUniversity.getPercentFemale(); //5
+     int satVerbal = currentUniversity.getSatVerbal(); //6
+     int satMath = currentUniversity.getSatMath(); //7
+     int expenses = currentUniversity.getExpenses(); //8
+     double perFA = currentUniversity.getFinancialAid(); //9
+     int numApplicants = currentUniversity.getNumApplicants(); //10
+     double perAdmitted = currentUniversity.getPercentAdmitted(); //11
+     double perEnrolled = currentUniversity.getPercentEnrolled(); //12
+     int academicScale = currentUniversity.getAcademicScale(); //13
+     int socialScale = currentUniversity.getSocialScale(); //14
+     int lifeScale = currentUniversity.getLifeScale(); //15
+     //ArrayList<String> emp = currentUniversity.getEmphases(); //16
+     
+     
+  int maxNumStudents = 0,maxSatVerbal=0,maxSatMath=0,maxExpenses=0,maxNumApplicants=0,maxAcademicScale=5, maxSocialScale=5,maxLifeScale=5;
+  double minPercentFemale, maxPercentFemale=0, minPerFA, maxPerFA=0, minPerAdmitted, maxPerAdmitted=0, minPerEnrolled, maxPerEnrolled=0;
+  
+  int minNumStudents,minSatVerbal,minSatMath, minExpenses, minNumApplicants, minAcademicScale = 1, minSocialScale = 1, minLifeScale = 1;
+  minPerEnrolled=minPerAdmitted=minPerFA=minPercentFemale=minNumStudents=minSatVerbal=minSatMath =minExpenses=minNumApplicants = 999999999;
+     
+  //getting maxes and mins
+     for(int i = 0; i < rec.length; i++){
+      for(int j = 4; j < rec[i].length;j++){
+       
+       switch(j)
+       {
+        //numStudents
+        case 4:
+         if(Integer.parseInt(rec[i][j]) > maxNumStudents)
+         {
+          maxNumStudents = Integer.parseInt(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minNumStudents)
+         {
+          minNumStudents = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //percentFemale
+        case 5:
+         if(Double.parseDouble(rec[i][j]) > maxPercentFemale)
+         {
+          maxPercentFemale = Double.parseDouble(rec[i][j]);
+         }
+         else if(Double.parseDouble(rec[i][j]) < minPercentFemale)
+         {
+          minPercentFemale = Double.parseDouble(rec[i][j]);
+         }
+         break;
+        //satVerbal
+        case 6:
+         if(Integer.parseInt(rec[i][j]) > maxSatVerbal)
+         {
+          maxSatVerbal = Integer.parseInt(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minSatVerbal)
+         {
+          minSatVerbal = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //satMath
+        case 7:
+         if(Integer.parseInt(rec[i][j]) > maxSatMath)
+         {
+          maxSatMath = Integer.parseInt(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minSatMath)
+         {
+          minSatMath = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //expenses
+        case 8:
+         if(Integer.parseInt(rec[i][j]) > maxExpenses)
+         {
+          maxExpenses = Integer.parseInt(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minExpenses)
+         {
+          minExpenses = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //perFA
+        case 9:
+         if(Integer.parseInt(rec[i][j]) > maxPerFA)
+         {
+          maxPerFA = Double.parseDouble(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minPerFA)
+         {
+          minPerFA = Double.parseDouble(rec[i][j]);
+         }
+         break;
+        //numApplicants
+        case 10:
+         if(Integer.parseInt(rec[i][j]) > maxNumApplicants)
+         {
+          maxNumApplicants = Integer.parseInt(rec[i][j]);
+         }
+         else if(Integer.parseInt(rec[i][j]) < minNumApplicants)
+         {
+          minNumApplicants = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //percentAdmitted
+        case 11:
+         if(Double.parseDouble(rec[i][j]) > maxPerAdmitted)
+         {
+          maxPerAdmitted = Integer.parseInt(rec[i][j]);
+         }
+         else if(Double.parseDouble(rec[i][j]) < minPerAdmitted)
+         {
+          minPerAdmitted = Integer.parseInt(rec[i][j]);
+         }
+         break;
+        //percentEnrolled
+        case 12:
+         if(Double.parseDouble(rec[i][j]) > maxPerEnrolled)
+         {
+          maxPerEnrolled = Integer.parseInt(rec[i][j]);
+         }
+         else if(Double.parseDouble(rec[i][j]) < minPerEnrolled)
+         {
+          minPerEnrolled = Integer.parseInt(rec[i][j]);
+         }
+         break;
+       }
+       
+      }
+     }
+  
+  
+     for(int i = 0; i < rec.length; i++)
+     {
+      //don't compare the university to itself
+      if(name.equals(rec[i][0]))
+      {
+       values[i][0]=name;
+       values[i][1]="100";
+      }
+      else{
+       
+      
+       double value = 0;
+       
+       University comparedUniversity = getUniversity(rec[i][0]);
+       
+       //compare location
+       value += (loc.equals(comparedUniversity.getLocation()) || comparedUniversity.getLocation() == null) ? 0 : 1;
+       
+       //compare state
+       value += (state.equals(comparedUniversity.getState()) || comparedUniversity.getState() == null) ? 0 : 1;
+       
+       //compare control
+       value += (control.equals(comparedUniversity.getControl()) || comparedUniversity.getControl() == null) ? 0 : 1;
+       
+       //compare numStudents
+       value += comparedUniversity.getNumStudents() == 0 ? 0 : Math.abs((numStudents-comparedUniversity.getNumStudents()) / (maxNumStudents-minNumStudents));
+       
+       //compare percentFemale
+       value += comparedUniversity.getPercentFemale() == 0 ? 0 : Math.abs((percentFemale-comparedUniversity.getPercentFemale()) / (maxPercentFemale-minPercentFemale));
+       
+       //compare satVerbal
+       value += comparedUniversity.getSatVerbal() == 0 ? 0 : Math.abs((satVerbal-comparedUniversity.getSatVerbal()) / (maxSatVerbal-minSatVerbal));
+       
+       //compare satMath
+       value += comparedUniversity.getSatMath() == 0 ? 0 : Math.abs((satMath-comparedUniversity.getSatMath()) / (maxSatMath-minSatMath));
+       
+       //compare expenses
+       value += comparedUniversity.getExpenses() == 0 ? 0 : Math.abs((expenses-comparedUniversity.getExpenses()) / (maxExpenses-minExpenses));
+       
+       //compare perFA
+       value += comparedUniversity.getFinancialAid() == 0 ? 0 : Math.abs((perFA-comparedUniversity.getFinancialAid()) / (maxPerFA-minPerFA));
+       
+       //compare numApplicants
+       value += comparedUniversity.getNumApplicants() == 0 ? 0 : Math.abs((numApplicants-comparedUniversity.getNumApplicants()) / (maxNumApplicants-minNumApplicants));
+       
+       //compare perAdmitted
+       value += comparedUniversity.getPercentAdmitted() == 0 ? 0 : Math.abs((perAdmitted-comparedUniversity.getPercentAdmitted()) / (maxPerAdmitted-minPerAdmitted));
+       
+       //compare perEnrolled
+       value += comparedUniversity.getPercentEnrolled() == 0 ? 0 : Math.abs((perEnrolled-comparedUniversity.getPercentEnrolled()) / (maxPerEnrolled-minPerEnrolled));
+       
+       //compare academicScale
+       value += comparedUniversity.getAcademicScale() == 0 ? 0 : Math.abs((academicScale-comparedUniversity.getAcademicScale()) / (4));
+       
+       //compare socialScale
+       value += comparedUniversity.getSocialScale() == 0 ? 0 : Math.abs((socialScale-comparedUniversity.getSocialScale()) / (4));
+       
+       //compare lifeScale
+       value += comparedUniversity.getLifeScale() == 0 ? 0 : Math.abs((lifeScale-comparedUniversity.getLifeScale()) / (4));
+       
+       //compare emphases
+       values[i][0] = comparedUniversity.getName();
+       values[i][1] = Double.toString(value);
+         
+      
+      }
+      
+     }
+     double a = 0;
+     double b = 0;
+   //get top 5 from the map and put them into an ArrayList: return the arraylist
+     for(int i = 0; i < values.length - 1; i++)
+     {
+      for(int j = i+1; j < values.length; j++)
+      {
+       a = Double.parseDouble(values[i][1]);
+       b = Double.parseDouble(values[j][1]);
+       if(a>b)
+       {
+        String tempValue = values[i][1];
+        String tempName = (String)values[i][0];
+        
+        values[i][1] = values[j][1];
+        values[j][1] = tempValue;
+        values[i][0] = values[j][0];
+        values[j][0] = tempName;
+       }
+      }
+     }
+     
+     for(int i = 0; i < 5; i++)
+     {
+      topFive.add((String)values[i][0]);
+     }
+     
+     return topFive;
   }
 }

@@ -107,7 +107,7 @@ public class ProjectDriver {
   System.out.println("Removes University From User List");
   System.out.println("");
   userUI.removeSchool("zakluetmer", "ADELPHI");
-  System.out.println("U9 U3 , removes a school from the user's list : Should return that Queens has been removed: "+userUI.viewSavedSchools("zakluetmer"));
+  System.out.println("U9 , removes a school from the user's list : Should return that Queens has been removed: "+userUI.viewSavedSchools("zakluetmer"));
   System.out.println("");
   
   //Displays CSB specifically
@@ -134,3 +134,4 @@ public class ProjectDriver {
   driver.run();
  }
 }
+

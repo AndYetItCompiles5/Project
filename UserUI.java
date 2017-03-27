@@ -4,7 +4,7 @@ import Project.*;
 
 /**
  * UserUI
- * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+ * @author Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
  * @version 2/25/2017
  */
 public class UserUI{
@@ -62,7 +62,7 @@ public class UserUI{
    * @param user 
    * @param school
    * 
-   * @returns an int. -1 if not saved. 
+   * @return an int -1 if not saved. 
    */
   public int removeSchool(String user, String school){
     return uFuncController.removeSchool(user, school);
@@ -99,8 +99,8 @@ public class UserUI{
    * @param expensesHigh user search input of maximum expenses
    * @param perFALow user search input of minimum Financial Aid percentage
    * @param perFAHigh user search input of maximum Financial Aid percentage
-   * @param numAppicantsLow user search input of minimum number of applicants
-   * @param numAppicantsHigh user search input of maximum number of applicants
+   * @param numApplicantsLow user search input of minimum number of applicants
+   * @param numApplicantsHigh user search input of maximum number of applicants
    * @param perAdmittedLow user search input of minimum number of admitted
    * @param perAdmittedHigh user search input of maximum number of admitted
    * @param perEnrolledLow user search input of minimum number of enrolled
@@ -131,10 +131,10 @@ public class UserUI{
    * 
    * @param first the first name of the user
    * @param last the last name of the user
+   * @param username the username of user
    * @param password the password of the user
    * @param type U for user, A for admin
    * @param status if the account is active or not
-   * @param account the Account object of the user
    * 
    * @return string
    */
@@ -178,7 +178,7 @@ public class UserUI{
   /**
    * Find schools which are similar to the one that the user is viewing
    * @param name of the university you want to find simular schools too
-   * @returns an arraylist of 5 most similar schools
+   * @return an arraylist of 5 most similar schools
    */
   public ArrayList<String> findRecommendations(String name){
    return searchController.findReccomendations(name);

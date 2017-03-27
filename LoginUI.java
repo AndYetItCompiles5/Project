@@ -31,7 +31,7 @@ public class LoginUI
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
    * 
-   * @returns a string if an account is logged in
+   * @return a string if an account is logged in
    */
   public String Login(String username, String password)
   {
@@ -67,6 +67,6 @@ public class LoginUI
    * @return a string if an account is logged in
    */
   public String getLoggedIn(){
-	  return loggedIn;
+   return loggedIn;
   }
 }

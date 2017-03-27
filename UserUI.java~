@@ -175,7 +175,12 @@ public class UserUI{
     return "are you sure?"; 
   }
   
+  /**
+   * Find schools which are similar to the one that the user is viewing
+   * @param name of the university you want to find simular schools too
+   * @returns an arraylist of 5 most similar schools
+   */
   public ArrayList<String> findRecommendations(String name){
-	  return searchController.findReccomendations(name);
+   return searchController.findReccomendations(name);
   }
 }

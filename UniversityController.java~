@@ -9,18 +9,18 @@ import Project.*;
  */
 public class UniversityController
 {
-    /**
+  /**
    * Creates an instance of the Database Library
    */
   private DBController dbController;
   
-<<<<<<< HEAD
+  /**
+   * creates the instance for the database
+   */
   public UniversityController()
   {
     dbController = new DBController();
   }
-=======
->>>>>>> 6828410f931e9e3c26e753a905dceea54c4cdd63
   /**
    * Lets the admin add a university with the given information
    *@param name the name of the University
@@ -40,14 +40,14 @@ public class UniversityController
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
-   * @return true if the university was added
+   * @return an string indicating the number of university records inserted or -1 if school name is NOT unique or if a database error is encountered
    */
-  public String addUniversity(String name, String state, String loc, String control, int numStudents,
+  public String addUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases)
   {
-    return dbController.addUniversity(name,state, loc, control, numStudents,
+    return dbController.addUniversity(name,state, location, control, numStudents,
                                 perFemale, satVerbal, satMath, expenses, perFA,
                                 numApplicants, perAdmitted, perEnrolled, academicScale,
                                 socialScale, lifeScale,emphases);
@@ -72,7 +72,7 @@ public class UniversityController
    * @param l;ifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    * 
-   * @return a string
+   * @return a string indicating how many fields were change if any
    */
   public String editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
@@ -89,5 +89,14 @@ public class UniversityController
   public String confirmationMessage()
   {
     return "Are you sure?";
+  }
+  
+  /**
+   * Displays an array list of university's attributes
+   * @param name of a university in the database.
+   * @return an array list of a given university's attributes
+   */
+  public ArrayList<String> displayUniversity(String name){
+	  return dbController.displayUniversity(name);
   }
 }
