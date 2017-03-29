@@ -64,7 +64,7 @@ public class AccountController{
    */
   public void logout()
   {
-    loggedIn=null; 
+    loggedIn = null; 
   }
   
   /**
