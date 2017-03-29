@@ -90,22 +90,28 @@ public class AdminFuncController {
    * 
    * @param username the username of the account we need information from
    * 
+   * @throws IllegalArgumentException if the username does not exist
    * @return an ArrayList of all the account details
    */
   public ArrayList<String> displayInfo(String username)
   {
-    Account account = dbController.getAccount(username);
+	  if(dbController.isUsernameTaken(username)){
+		  Account account = dbController.getAccount(username);
     
-    ArrayList<String> accountInfo = new ArrayList<String>();
+		  ArrayList<String> accountInfo = new ArrayList<String>();
     
-    accountInfo.add(account.getFirstName());
-    accountInfo.add(account.getLastName());
-    accountInfo.add(account.getUsername());
+		  accountInfo.add(account.getFirstName());
+		  accountInfo.add(account.getLastName());
+		  accountInfo.add(account.getUsername());
+		  accountInfo.add(account.getPassword());
+		  accountInfo.add(account.getType() + "");
+		  accountInfo.add(account.getStatus() + "");
     
-    accountInfo.add(account.getType() + "");
-    accountInfo.add(account.getStatus() + "");
-    
-    return accountInfo;
+		  return accountInfo;
+	  }
+	  else{
+		  throw new IllegalArgumentException("Username does not exist");
+	  }
   }
   
   /**
@@ -124,33 +130,6 @@ public class AdminFuncController {
     return aController.editAccount(first,last,username,password,type,status);
   }
   
-  /**
-   * a confirmation Message
-   * 
-   * @return a confirmation Message 
-   */
-  public String confirmationMessage(){
-    return "Are you sure?"; 
-  }
-  
-  /**
-   * A no name error
-   * 
-   * @return a noNameError 
-   */
-  public String noNameError(){
-    return "No name was inputted. Please enter a name"; 
-  }
-  
-  
-  /**
-   * An empty field error. 
-   * 
-   * @return please enter something 
-   */
-  public String emptyFieldError(){
-    return "Please enter something";
-  }
   
   /**
    * shows a list of Universities
