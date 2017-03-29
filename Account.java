@@ -43,6 +43,8 @@ public class Account{
    * @param password the password of the Account
    * @param type what type of Account this is 'a' for admin, 'u' for user
    * @param status if the user/admin is activated or deactivated
+   * @throws IllegalArgumentException if type is not 'a' or 'u'
+   * @throws IllegalArgumentException if status is not 'Y' or 'n'
    */
   public Account(String first, String last, String username, String password, char type, char status)
   {
@@ -50,8 +52,16 @@ public class Account{
     this.lastName = last;
     this.username = username;
     this.password = password;
-    this.type = type;
-    this.status = status;    
+    if(type=='a'||type=='u')
+    	this.type = type;
+    else
+    	throw new IllegalArgumentException("Type cannot be "+type);
+    if(status=='Y'||type=='n'){
+		  this.status=status;
+	    }
+	    else{
+	    	throw new IllegalArgumentException("Cannot set status to "+status);
+	    }  
   }
   
   /**
@@ -129,10 +139,16 @@ public class Account{
   /**
    * Sets the type of the account
    * @param type: the type being set
+   * @throws IllegalArgumentException if type != a or u
    */
   public void setType(char type)
   {
-    this.type=type;
+    if(type=='u'|| type=='a'){
+    	this.type=type;
+    }
+    else{
+    	throw new IllegalArgumentException("Cannot set type to "+type);
+    }
   }
   
   /**
@@ -150,6 +166,11 @@ public class Account{
    */
   public void setStatus(char status)
   {
-    this.status=status;
+	  if(status=='Y'||type=='n'){
+		  this.status=status;
+	    }
+	    else{
+	    	throw new IllegalArgumentException("Cannot set status to "+status);
+	    }
   }
 }
