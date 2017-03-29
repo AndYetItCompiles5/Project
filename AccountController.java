@@ -30,10 +30,11 @@ public class AccountController{
    * 
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
-   * 
-   * @return confirmation that login was successful or error depending on what went wrong
+   * @throws IllegalArgumentException if username/password is incorrect
+   * @throws IllegalArgumentException if account is deactivated
+   * @return boolean for if the user successfully logged in
    */
-  public String login(String username, String password)
+  public boolean login(String username, String password)
   {
 
     Account account = dbController.getAccount(username);
@@ -45,26 +46,36 @@ public class AccountController{
     
     if(!password1.equals(password) || !username1.equals(username))
     {
-      return wrongLoginInfoError();
+    	throw new IllegalArgumentException("Username/password Incorrect");
     }
     
     if(status == 'n')
     {
-      return deactivateError();
+    	throw new IllegalArgumentException("Account is deactivated");
     }
     
     setLoggedIn(username);
     
-    return "Successful login!";
+    return true;
   }
   
   
   /**
    * Logout whoever is logged in
+   * @throws NullPointerException if nobody is logged in
+   * @return whoever is logged in
    */
-  public void logout()
+  public String logout()
   {
+<<<<<<< HEAD
     loggedIn = null; 
+=======
+    if(loggedIn==null || loggedIn.equals("")){
+    	throw new NullPointerException("Nobody is logged in");
+    }
+    loggedIn="";
+    return loggedIn;
+>>>>>>> a527f579c2dac8f5777265155f15f4e7bd6981f6
   }
   
   /**
@@ -77,22 +88,6 @@ public class AccountController{
   }
   
   /**
-   * Gives an error if the login info was wrong
-   * @return error message
-   */
-  public String wrongLoginInfoError()
-  {
-    return ("Wrong login information:Please try again"); 
-  }
-  /**
-   * Gives an error if the account is deactivated
-   * @return error message
-   */
-  public String deactivateError()
-  {
-    return ("Account is deactivated, please contact an administrator"); 
-  }
-  /**
    * Edits the user with the given information
    * @param first:the user's first name
    * @param last: the user's last name
@@ -104,14 +99,6 @@ public class AccountController{
     return dbController.editAccount(first,last,loggedIn,password,'u','y');
   }
   
-  /**
-   * Gives a message asking the user to confirm their changes
-   * @return confirmation message
-   */
-  public String confirm()
-  {
-    return ("Are you sure?"); 
-  }
   /**
    * Edits any account with the given information
    * @param first:the user's first name
@@ -128,22 +115,13 @@ public class AccountController{
   }
   
   /**
-   * Gives an error saying the account is already deactivated
-   * @return error message
-   */
-  public String alreadyDeactivatedError()
-  {
-    return ("User is already deactivated"); 
-  }
-  
-  /**
    * Deactivates a user by setting status to 'n'
    * 
    * @param username the username of the user
    * 
    * @return whether the user was deactivated or if there was an error
    */
-  public String deactivateUser(String username)
+  public boolean deactivateUser(String username)
   {
     return dbController.deactivateUser(username);
   }

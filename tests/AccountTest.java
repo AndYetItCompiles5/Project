@@ -2,68 +2,104 @@ package Project.tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.*;
+
+import Project.*;
+
 import org.junit.Test;
 
 public class AccountTest {
 
-	@Test
-	public void testAccount() {
-		fail("Not yet implemented");
+	private Account account;
+	private Account account2;
+	private Account account3;
+	private DBController dbController;
+	
+	@Before
+	public void init(){
+		account = new Account("Zak","Luetmer","zakluetmer","password",'u','Y');
+		dbController = new DBController();
+		dbController.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
 	}
-
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAccountWrongType(){
+		account2 = new Account("Zak","Luetmer","zakluetmer","password",'F','Y');
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAccountWrongStatus(){
+		account3 = new Account("Zak","Luetmer","zakluetmer","password",'u','S');
+	}
+	
 	@Test
 	public void testGetFirstName() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getFirstName().equals("Zak"));
 	}
 
 	@Test
 	public void testSetFirstName() {
-		fail("Not yet implemented");
+		account.setFirstName("zak");
+		Assert.assertTrue(account.getFirstName().equals("zak"));
 	}
 
 	@Test
 	public void testGetLastName() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getLastName().equals("Luetmer"));
 	}
 
 	@Test
 	public void testSetLastName() {
-		fail("Not yet implemented");
+		account.setFirstName("luetmer");
+		Assert.assertTrue(account.getFirstName().equals("luetmer"));
 	}
 
 	@Test
 	public void testGetPassword() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getPassword().equals("password"));
 	}
 
 	@Test
 	public void testSetPassword() {
-		fail("Not yet implemented");
+		account.setPassword("newPass");
+		Assert.assertTrue(account.getPassword().equals("newPass"));
 	}
 
 	@Test
 	public void testGetUsername() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getUsername().equals("zakluetmer"));
 	}
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getType()==('u'));
 	}
 
 	@Test
 	public void testSetType() {
-		fail("Not yet implemented");
+		account.setType('a');
+		Assert.assertTrue(account.getType()==('a'));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetTypeWrongInput() {
+		account.setType('v');
 	}
 
 	@Test
 	public void testGetStatus() {
-		fail("Not yet implemented");
+		Assert.assertTrue(account.getStatus()==('Y'));
 	}
 
 	@Test
 	public void testSetStatus() {
-		fail("Not yet implemented");
+		account.setStatus('Y');
+		Assert.assertTrue(account.getStatus()==('Y'));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSetStatusWrongInput() {
+		account.setStatus('G');
 	}
 
 }

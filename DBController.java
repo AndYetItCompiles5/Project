@@ -661,13 +661,15 @@ public class DBController
    * 
    * @param username: the username of the user
    * 
+   * @throws IllegalArgumentException if account is deactivated
+   * 
    * @return confirmation message if the user was deactivated or not
    */
-  public String deactivateUser(String username)
+  public boolean deactivateUser(String username)
   {
     if(isDeactivated(username))
     {
-      return alreadyDeactivatedError();
+      throw new IllegalArgumentException("Account is deactivated");
     }
     
     else
@@ -681,7 +683,7 @@ public class DBController
       
       dataBase.user_editUser(username,first,last,password,type,'n');
       
-      return "Deactivation Successful!";
+      return true;
     }
   }
   

@@ -31,11 +31,11 @@ public class LoginUI
    * @param username: the Username of the person logging in
    * @param password: the Password of the person logging in
    * 
-   * @return a string if an account is logged in
+   * @return a boolean if an account is logged in
    */
-  public String Login(String username, String password)
+  public boolean Login(String username, String password)
   {
-    String result = aController.login(username,password);
+    boolean result = aController.login(username,password);
     loggedIn = username;
     return result;
   }
