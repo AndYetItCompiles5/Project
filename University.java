@@ -263,7 +263,7 @@ public class University{
     if(per<0||per>100)
       throw new IllegalArgumentException("percent must be greater than zero and less than 100");
     else
-      this .percentFemale=per;
+      this.percentFemale=per;
   }
   
   /**

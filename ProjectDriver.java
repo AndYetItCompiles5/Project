@@ -83,7 +83,7 @@ public class ProjectDriver {
   System.out.println("Edit University");
   System.out.println("");
      adminUI.editUniversity("SJU", "Minnesota", "URBAN", "PRIVATE", 4000, 50.0, 500, 500, 50000, 91.0, 2000, 65.0, 50.0, 4, 4, 1,emphasis);
-     System.out.println("U16 edit schools, changes something about a school : Should change SJU from 'RURAL' to 'URBAN': " + adminUI.displayUniversity("SJU"));
+     System.out.println("U16 edit schools. Should change SJU from 'RURAL' to 'URBAN': " + adminUI.displayUniversity("SJU"));
      System.out.println("");
      
   //Displays all universities including the newly added SJU
@@ -92,7 +92,7 @@ public class ProjectDriver {
      System.out.println("");
   System.out.println("U14, shows the admin the entire list of schools : Displays universities: " + adminUI.viewUniversities());
   System.out.println("");
-   
+
   //Saves Queens and Adelphi to user's list, output changes depending on if the program has been run before and views saved schools
   
   System.out.println("Save Universities");
@@ -107,7 +107,7 @@ public class ProjectDriver {
   System.out.println("Removes University From User List");
   System.out.println("");
   userUI.removeSchool("zakluetmer", "ADELPHI");
-  System.out.println("U9 U3 , removes a school from the user's list : Should return that Queens has been removed: "+userUI.viewSavedSchools("zakluetmer"));
+  System.out.println("U9 U3 , removes a school from the user's list : Should return that Adelphi has been removed: "+userUI.viewSavedSchools("zakluetmer"));
   System.out.println("");
   
   //Displays CSB specifically
@@ -118,13 +118,13 @@ public class ProjectDriver {
   //Searches for "College" using the search function and views results
   System.out.println("Search Function");
   System.out.println("");
-  System.out.println("U2 Search for schools, The user searchs for a school : U4 dispalys the result of the search : Should return all schools with 'College' in their name: " + userUI.search("College", "", "", "", 0, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, null));
+  System.out.println("U2 Search for schools, The user searches for a school : U4 dispalys the result of the search : Should return all schools with 'College' in their name: " + userUI.search("College", "", "", "", 0, 0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, null));
   System.out.println("");
   
   //Finds recommendations for QUEENS
   System.out.println("Recommended School Function");
   System.out.println("");
-  System.out.println("Returns five recommended schools similar to 'QUEENS': " + userUI.findRecommendations("QUEENS"));
+  System.out.println("Returns five recommended schools similar to 'QUEENS': " + userUI.findRecommendations("CSB"));
  
  }
  
