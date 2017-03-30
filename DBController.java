@@ -73,7 +73,7 @@ public class DBController
     int academicScale = 0;
     int socialScale = 0;
     int lifeScale = 0; 
-    ArrayList<String> emp = new ArrayList<String>();;
+    ArrayList<String> emp = new ArrayList<String>();
     
     String[][] universities = dataBase.university_getUniversities();
     

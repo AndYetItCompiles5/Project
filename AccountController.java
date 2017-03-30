@@ -46,12 +46,12 @@ public class AccountController{
     
     if(!password1.equals(password) || !username1.equals(username))
     {
-    	throw new IllegalArgumentException("Username/password Incorrect");
+     throw new IllegalArgumentException("Username/password Incorrect");
     }
     
     if(status == 'n')
     {
-    	throw new IllegalArgumentException("Account is deactivated");
+     throw new IllegalArgumentException("Account is deactivated");
     }
     
     setLoggedIn(username);
@@ -67,13 +67,19 @@ public class AccountController{
    */
   public String logout()
   {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a81c469728ceaee47fa2ff7938386ee330f304f
     if(loggedIn==null || loggedIn.equals("")){
-    	throw new NullPointerException("Nobody is logged in");
+     throw new NullPointerException("Nobody is logged in");
     }
     loggedIn="";
     return loggedIn;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0a81c469728ceaee47fa2ff7938386ee330f304f
   }
   
   /**
@@ -129,7 +135,7 @@ public class AccountController{
    * @return the username of the user logged on
    */
   public String getLoggedIn(){
-	  return loggedIn;
+   return loggedIn;
   }
  }
 

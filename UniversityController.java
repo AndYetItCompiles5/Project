@@ -82,14 +82,6 @@ public class UniversityController
     return dbController.editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,
                                        socialScale,lifeScale,emphases);
   }
-  /**  
-   * Sends a confirmation message to the user
-   * @return confirmation message
-   */
-  public String confirmationMessage()
-  {
-    return "Are you sure?";
-  }
   
   /**
    * Displays an array list of university's attributes
