@@ -67,15 +67,13 @@ public class AccountController{
    */
   public String logout()
   {
-<<<<<<< HEAD
-    loggedIn = null; 
-=======
+
     if(loggedIn==null || loggedIn.equals("")){
     	throw new NullPointerException("Nobody is logged in");
     }
     loggedIn="";
     return loggedIn;
->>>>>>> a527f579c2dac8f5777265155f15f4e7bd6981f6
+
   }
   
   /**
