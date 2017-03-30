@@ -227,7 +227,7 @@ public class DBController
    return "Name is required";
   }
   else if(isSchoolSaved(name)){
-      return alreadySavedError();
+      return "School is already saved";
       
     }
   else{
@@ -297,24 +297,6 @@ public class DBController
       }
     }
     return false;
-  }
-
-  /**
-   * Returns a string stating that the login info was incorrect
-   * @return a message saying some part of login info is wrong
-   */
-  public String wrongLoginInfoError()
-  {
-    return "Wrong login info";
-  }
-  
-  /**
-   * Returns a string stating that the account is currently deactivated
-   * @return a string stating that the account is currently deactivated
-   */
-  public String deactivateError()
-  {
-    return "That account is currently deactivated.";
   }
   
   /**
@@ -476,8 +458,8 @@ public class DBController
   
   /**
    * Checks if the school's actual data is within the range of the low and high that the user searched for
-   * @param low: the low bound the user inputted
-   * @param high: the high bound the user inputted
+   * @param low: the low bound the user inputed
+   * @param high: the high bound the user inputed
    * @param actual: the concrete number of the school
    * @return true if the actual is between the low and the high
    * 
@@ -490,16 +472,6 @@ public class DBController
     else{
       return false; 
     }
-  }
-  
-  
-  /**
-   * Confirmation message
-   * @return string asking if the user is sure about their decision
-   */
-  public String confirm()
-  {
-    return "Are you sure?";
   }
   
   /**
@@ -531,15 +503,6 @@ public class DBController
   }
   
   /**
-   * Returns a message letting the admin know that the school already exists
-   * @return a String that the school is already in the database
-   */
-  public String alreadySavedError()
-  {
-    return "School has already been saved to the database.";
-  }
-  
-  /**
    * Returns an ArrayList of all the users(admin and regular users) in the database
    * 
    * @return a set of all the users in the database
@@ -564,14 +527,14 @@ public class DBController
   {
     boolean taken = isUsernameTaken(username);
     if(username.equals("")|| password.equals("")){
-     return userNotCompleteError();
+     return "Need more information!!";
     }
     else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
     else{
-      return userAlreadyTakenError();
+      return "The username is already in use. Please try a different one.";
     }
   }
   
@@ -592,24 +555,6 @@ public class DBController
   }
   
   /**
-   * Displays an error message saying that the username has already been taken
-   * @return a string stating that the username has already been taken
-   */
-  public String userAlreadyTakenError()
-  {
-    return "That username has already been taken."; 
-  }
-  
-  /**
-   * The user is missing some type of  information(username, password, type, etc.)
-   * @return a message letting the user know all required information must be filled in
-   */
-  public String userNotCompleteError()
-  {
-    return "Please fill in all required information.";
-  }
-  
-  /**
    * Method to edit an existing user
    * @param first: the first name of the user
    * @param last: the last name of the user
@@ -626,15 +571,6 @@ public class DBController
    }
     dataBase.user_editUser(username,first,last,password,type,status);
     return "Edit Successful!";
-  }
-  
-  /**
-   * Message displayed when asking if the user wants to confirm something
-   * @return a message asking a user if they are sure they want to do something
-   */
-  public String confirmationMessage()
-  {
-    return "Are you sure?";
   }
   
   /**
@@ -685,15 +621,6 @@ public class DBController
       
       return true;
     }
-  }
-  
-  /**
-   * Error message stating that Account is already deactivated
-   * @return a message stating that the Account is already deactivated
-   */
-  public String alreadyDeactivatedError()
-  {
-    return "Account is already deactivated.";
   }
   
   /**

@@ -2,6 +2,8 @@ package Project.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,22 +66,14 @@ public class DBControllerTest {
 
 	@Test
 	public void testIsUsername() {
-		fail("Not yet implemented");
+		assertTrue(dbcontroller.isUsername("zakluetmer") == true);
 	}
-
-//del	@Test
-//	public void testWrongLoginInfoError() {
-//		fail("Not yet implemented");
-//	}
-
-//del	@Test
-//	public void testDeactivateError() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testGetAllUniversities() {
-		fail("Not yet implemented");
+		ArrayList<String> testingSize = new ArrayList<String>();
+		testingSize = dbcontroller.getAllUniversities();
+		assertTrue(testingSize.size() > 50);
 	}
 
 //nathan	@Test
@@ -92,11 +86,6 @@ public class DBControllerTest {
 		fail("Not yet implemented");
 	}
 
-//del	@Test
-///	public void testConfirm() {
-//		fail("Not yet implemented");
-//	}
-
 //zak	@Test
 	//public void testRemoveSchool() {
 //		fail("Not yet implemented");
@@ -104,17 +93,14 @@ public class DBControllerTest {
 
 	@Test
 	public void testIsSchoolSaved() {
-		fail("Not yet implemented");
+		assertTrue(dbcontroller.isSchoolSaved("ADELPHI"));
+		assertTrue(dbcontroller.isSchoolSaved("asdfasdfsfasfasd")== false);
 	}
-
-//del	@Test
-//	public void testAlreadySavedError() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testGetAllUsers() {
-		fail("Not yet implemented");
+		String[][] testing = dbcontroller.getAllUsers();
+		assertTrue(testing.length >= 6);
 	}
 
 //zak	@Test
@@ -124,41 +110,22 @@ public class DBControllerTest {
 
 	@Test
 	public void testIsUsernameTaken() {
-		fail("Not yet implemented");
+		assertTrue(dbcontroller.isUsername("zakluetmer") == true); //is there a difference in this method and tisUsername method???
 	}
-
-//del	@Test
-//	public void testUserAlreadyTakenError() {
-//		fail("Not yet implemented");
-//	}
-
-//del		@Test
-//	public void testUserNotCompleteError() {
-	//	fail("Not yet implemented");
-//	}
 
 //colton	@Test
 //	public void testEditAccount() {
 //		fail("Not yet implemented");
 //	}
 
-//del	@Test
-//	public void testConfirmationMessage() {
-//		fail("Not yet implemented");
-//	}
-
 	@Test
 	public void testIsDeactivated() {
-		fail("Not yet implemented");
+		assertTrue(dbcontroller.isDeactivated("zakluetmer") == false);
+		assertTrue(dbcontroller.isDeactivated("calseth"));
 	}
 
 //tj	@Test
 //	public void testDeactivateUser() {
-//		fail("Not yet implemented");
-//	}
-
-//del	@Test
-//	public void testAlreadyDeactivatedError() {
 //		fail("Not yet implemented");
 //	}
 
