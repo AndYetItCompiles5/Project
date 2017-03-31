@@ -11,6 +11,7 @@ import org.junit.Test;
 public class UniversityTest {
 	private University testUniversity;
 	private University emptyUniversity;
+	private University controllerUniversity;
 	ArrayList<String> emphases = new ArrayList<String>();
 	
 	@Before
@@ -19,6 +20,146 @@ public class UniversityTest {
 		emphases.add("Science");
 		testUniversity = new University("SJU","Minnesota","URBAN","PRIVATE",4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases);
 		emptyUniversity = new University("CSB");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorNameFailureNull(){
+		controllerUniversity = new University(null,"Minnesota","URBAN","PRIVATE",4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorLocationFailure(){
+		controllerUniversity = new University("CSB","Minnesota","SOMEWHERE","PRIVATE",4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorNameFailureEmpty(){
+		controllerUniversity = new University("","Minnesota","URBAN","PRIVATE",4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorControlFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","SOMETHING",4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorNumStudentsFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",-4000,2.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFemaleLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,-8.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFemaleHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,110.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSatVerbalLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,8.0,-500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSatVerbalHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,1500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSatMathLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,8.0,500,-400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSatMathHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,1400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorExpensesFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,-50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFALowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,-92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFAHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,192.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorNumApplicantsFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,-7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerAdmittedLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,-62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerAdmittedHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,162.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerEnrolledLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,-50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerEnrolledHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,150.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorAcademicScaleHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,6,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorAcademicScaleLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,-2,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorAcademicScaleZeroFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,0,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSocialScaleHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,4,6,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSocialScaleLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,2,-3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorSocialScaleZeroFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,4,0,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorLifeScaleHighFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,4,3,6,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorLifeScaleLowFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,2,3,-3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorLifeScaleZeroFailure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,50.0,4,3,0,emphases); 
 	}
 
 	@Test
@@ -341,5 +482,11 @@ public class UniversityTest {
 	@Test
 	public void testGetEmphases(){
 		assertTrue("Emphases list should be null", emptyUniversity.getEmphases()==null);
+	}
+	
+	@Test
+	public void testSetEmphases(){
+		emptyUniversity.setEmphases(emphases);
+		assertTrue("Emphases list should be emphases", emptyUniversity.getEmphases().equals(emphases));
 	}
 }

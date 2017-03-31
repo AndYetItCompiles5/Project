@@ -175,7 +175,7 @@ public class University {
 	public University(String name, String state, String location, String control, int numStudents, double perFemale,
 			int satVerbal, int satMath, int expenses, double perFA, int numApplicants, double perAdmitted,
 			double perEnrolled, int academicScale, int socialScale, int lifeScale, ArrayList<String> emphases) {
-		if (name == null) {
+		if (name == null||name.equals("")) {
 			throw new IllegalArgumentException("Name of the university is required");
 		} else {
 			this.name = name;
@@ -183,17 +183,17 @@ public class University {
 		
 		this.state = state;
 		
-		//if (!location.equals("URBAN") || !location.equals("SUBURBAN") || !location.equals("SMALL-CITY")
-		//		|| !location.equals("RURAL") || !location.equals("-1")) {
-		//	throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL"+location);
-		//} else {
+		if (location.equals("URBAN") || location.equals("SUBURBAN") || location.equals("SMALL-CITY")
+				|| location.equals("RURAL") || location.equals("-1")) {
 			this.location = location;
-		//}
-		//if (!control.equals("PRIVATE") || !control.equals("STATE") || !control.equals("CITY") || !control.equals("-1")) {
+		} else {
+			throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL"+location);
+		}
+		if (control.equals("PRIVATE") || control.equals("STATE") || control.equals("CITY") || control.equals("-1")) {
 			this.control = control;
-		//} else {
-		//	throw new IllegalArgumentException("Control must be STATE or PRIVATE or CITY");
-		//}
+		} else {
+			throw new IllegalArgumentException("Control must be STATE or PRIVATE or CITY");
+		}
 		if (numStudents < -1) {
 			throw new IllegalArgumentException("Number of students cannot be negative");
 		} else {
