@@ -166,7 +166,7 @@ public class Account{
    */
   public void setStatus(char status)
   {
-	  if(status=='Y'||type=='n'){
+	  if(status=='Y'||type=='N'){
 		  this.status=status;
 	    }
 	    else{

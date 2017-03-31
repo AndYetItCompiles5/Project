@@ -180,18 +180,20 @@ public class University {
 		} else {
 			this.name = name;
 		}
+		
 		this.state = state;
-		if (location.equals("SUBURBAN") || location.equals("URBAN") || location.equals("SMALL-CITY")
-				|| location.equals("RURAL") || location.equals("-1")) {
+		
+		//if (!location.equals("URBAN") || !location.equals("SUBURBAN") || !location.equals("SMALL-CITY")
+		//		|| !location.equals("RURAL") || !location.equals("-1")) {
+		//	throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL"+location);
+		//} else {
 			this.location = location;
-		} else {
-			throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL");
-		}
-		if (control.equals("PRIVATE") || control.equals("STATE") || control.equals("CITY") || control.equals("-1")) {
+		//}
+		//if (!control.equals("PRIVATE") || !control.equals("STATE") || !control.equals("CITY") || !control.equals("-1")) {
 			this.control = control;
-		} else {
-			throw new IllegalArgumentException("Control must be STATE or PRIVATE or CITY");
-		}
+		//} else {
+		//	throw new IllegalArgumentException("Control must be STATE or PRIVATE or CITY");
+		//}
 		if (numStudents < -1) {
 			throw new IllegalArgumentException("Number of students cannot be negative");
 		} else {

@@ -30,9 +30,9 @@ public class DBController
     String password = "";
     char type = ' ';
     char status = ' ';
+    boolean found = false;
     
     String[][] users = dataBase.user_getUsers();
-    
     for(int i = 0; i < users.length;i++){
       if(users[i][2].equals(username))
       {
@@ -41,7 +41,11 @@ public class DBController
         password = users[i][3];
         type = users[i][4].charAt(0);
         status = users[i][5].charAt(0);
+        found = true;
       }
+    }
+    if(found == false){
+       throw new IllegalArgumentException("The name you have entered was not found."); 
     }
     
     Account account = new Account(first, last, username, password, type, status);
@@ -59,8 +63,8 @@ public class DBController
 	boolean found = false;
 	  
     String state =  "";  
-    String loc = "";  
-    String control = "";   
+    String location = "-1";  
+    String control = "-1";   
     int numStudents = 0;
     double perFemale = 0; 
     int satVerbal = 0;
@@ -83,7 +87,7 @@ public class DBController
       {
     	found = true;
         state = universities[i][1];
-        loc = universities[i][2];
+        location = universities[i][2];
         control = universities[i][3];
         numStudents = Integer.parseInt(universities[i][4]);
         perFemale = Double.parseDouble(universities[i][5]);  
@@ -102,7 +106,7 @@ public class DBController
     
     if(!found) throw new IllegalArgumentException("There is no University by the name of " + name);
     
-    University university = new University(name,state,loc,control,numStudents,perFemale, satVerbal,
+    University university = new University(name,state,location,control,numStudents,perFemale, satVerbal,
                                            satMath,expenses, perFA,numApplicants,perAdmitted,perEnrolled,
                                            academicScale,socialScale,lifeScale,emp);
     return university;
@@ -116,6 +120,18 @@ public class DBController
   
   public ArrayList<String> displayUniversity(String name){
    
+	  String[][] allUniversities = dataBase.university_getUniversities();
+
+	  boolean found = false;
+	  
+	  for(int x=0;x<allUniversities.length;x++){
+	  if(allUniversities[x][0].equals(name)){
+		  found = true;
+	  }
+	  }
+	  
+	  if(!found) throw new IllegalArgumentException("There is no University by the name of " + name);
+	  
    ArrayList<String> univs = new ArrayList<String>();
    University univ = getUniversity(name);
    String state = univ.getState();
@@ -270,33 +286,22 @@ public class DBController
   {
     ArrayList<String> listSchools = new ArrayList<String>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
+    boolean added = false;
     if(namesWithSchools==null){
      return listSchools;
     }
+   
     for(int i = 0; i < namesWithSchools.length; i++)
     {
       if(namesWithSchools[i][0].equals(user))
       {
           listSchools.add(namesWithSchools[i][1]);
+          added = true;
       }
     } 
+    
+    if(added == false) throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
     return listSchools;
-  }
-  
-  /**
-   * Method that checks is a username already exists
-   * @param username the username being searched for
-   * @return true if the username already exists
-   */
-  public boolean isUsername(String username)
-  {
-    String[][] usernameList = dataBase.user_getUsers();
-    for(int i = 0; i<usernameList.length;i++){
-      if(usernameList[i][2].equals(username)){
-        return true;
-      }
-    }
-    return false;
   }
   
   /**
@@ -583,7 +588,7 @@ public class DBController
     String[][] userList = dataBase.user_getUsers();
     for(int i = 0; i<userList.length;i++){
       if(userList[i][2].equals(username)){
-        if(userList[i][5].equals("n")){
+        if(userList[i][5].equals("N")||userList[i][5].equals("n")){
           return true;
         }
       }
