@@ -2,6 +2,8 @@ package Project.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +17,7 @@ public class UserFuncControllerTest {
 	private AdminUI adminUI;
 	private LoginUI loginUI;
 	private DBController dbcontroller;
+	private ArrayList<String> temp;
 	  
 	@Before
 	public void init(){
@@ -23,36 +26,31 @@ public class UserFuncControllerTest {
 		  LoginUI loginUI = new LoginUI();
 		  DBController dbcontroller = new DBController();
 		  adminUI.addAccount("Bill",  "Smith", "bsmith", "1234567890", 'u');
+		  ArrayList<String> temp = new ArrayList<String>();
 	}
 	
-	@Test
-	public void testUserFuncController() {
-		fail("Not yet implemented");
-	}
+	//@Test
+	//public void testUserFuncController() {
+	//	fail("Not yet implemented");
+	//}
 
-	@Test
-	public void testEditUser() {
-		fail("Not yet implemented");
-	}
+	//@Test
+	//public void testEditUser() {
+	//	fail("Not yet implemented");
+	//}
 
 	@Test
 	public void testRemoveSchool() {
-		fail("Not yet implemented");
+		dbcontroller.saveSchool("zakluetmer", "QUEENS");
+		dbcontroller.removeSchool("zakluetmer", "QUEENS");
+		ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
+		assertFalse(dbcontroller.isSchoolSaved("QUEENS"));
 	}
 
-	@Test
-	public void testSaveSchool() {
-		fail("Not yet implemented");
-	}
+	//@Test
+	//public void testSaveSchool() {
+	//	fail("Not yet implemented");
+	//}
 
-	@Test
-	public void testConfirm() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAlreadySavedError() {
-		fail("Not yet implemented");
-	}
 
 }

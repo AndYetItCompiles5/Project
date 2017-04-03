@@ -85,7 +85,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetUserSavedSchools() {
-		ArrayList<String> emptyUserListOfSchools = new ArrayList<String>();
+		dbcontroller.saveSchool("zakluetmer", "QUEENS");
 		assertTrue(dbcontroller.getUserSavedSchools("zakluetmer").contains("QUEENS"));
 	}
 
@@ -106,10 +106,18 @@ public class DBControllerTest {
 //		fail("Not yet implemented");
 //	}
 
-//zak	@Test
-	//public void testRemoveSchool() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testRemoveSchool() {
+		dbcontroller.saveSchool("calseth", "QUEENS");
+		dbcontroller.removeSchool("calseth", "QUEENS");
+		ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
+		assertTrue(!temp.get(0).equals("QUEENS"));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testRemoveSchoolFail(){
+		dbcontroller.removeSchool("Not a user", "School");
+	}
 
 	@Test
 	public void testIsSchoolSaved() {
