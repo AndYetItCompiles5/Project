@@ -280,6 +280,7 @@ public class DBController
   /**
    * This methods gets the user's saved schools from the DB
    * @param user:the username of the user where the saved schools are being obtained from
+   * @throws IllegalArgumentException if user has no saved schools
    * @return an array of the user's saved schools
    */
   public ArrayList<String> getUserSavedSchools(String user)
@@ -300,7 +301,9 @@ public class DBController
       }
     } 
     
-    if(added == false) throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
+    if(added == false){
+    	throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
+    }
     return listSchools;
   }
   
@@ -483,12 +486,19 @@ public class DBController
    * Removes the specified school from the user's list
    * @param user: the username of the user where the school is being deleted from
    * @param school: the school name that is being removed
+   * @throws IllegalArgumentException if the user does not exist
    * @return an integer
    * 
    */
   public int removeSchool(String user, String school)
   {
-    return dataBase.user_removeSchool(user, school);
+	String [][] temp = dataBase.user_getUsers();
+	for (int i = 0; i<temp.length;i++){
+		if(temp[i][2].equals(user)){
+			return dataBase.user_removeSchool(user, school);
+		}
+	}
+	throw new IllegalArgumentException("Invalid Username");
   }
   
   /**
@@ -500,10 +510,10 @@ public class DBController
   {
     String[][] universityList = dataBase.university_getUniversities();
     for(int i = 0; i<universityList.length;i++){
-      if(universityList[i][0].equals(name)){
-        return true;
-      }
-    }
+    	if(universityList[i][0].equals(name)){
+    				return true;
+    			}
+    		}
     return false;
   }
   

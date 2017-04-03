@@ -141,39 +141,6 @@ public class UserUI{
   public String editAccount(String first,String last, String username, String password, char type, char status){
     return dbController.editAccount(first,last,username,password,type,status);
   } 
-  /**
-   * confirmation message
-   * 
-   * @return a comfirmation message
-   */
-  public String confirm(){
-    return "confirm"; 
-  }
-  
-  /**
-   * Already saved error message when the user tries to save the same school twice
-   * 
-   * @return "Universities already saved"
-   */
-  public String alreadySavedError(){
-    return "already saved Error"; 
-  }
-  
-  /**
-   * Is the user sure they want to make those changes? confirmation message
-   * 
-   * @return a confirmation message
-   */
-  public String confirmationMessage(){
-    return "confirmation Message"; 
-  }
-  
-  /**
-   *confirmation message to change
-   */
-  public String confirmChange(){
-    return "are you sure?"; 
-  }
   
   /**
    * Find schools which are similar to the one that the user is viewing

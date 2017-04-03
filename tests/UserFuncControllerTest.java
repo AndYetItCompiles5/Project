@@ -2,6 +2,8 @@ package Project.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 import Project.*;
@@ -12,7 +14,8 @@ public class UserFuncControllerTest {
  private AdminUI adminUI;
  private LoginUI loginUI;
  private DBController dbcontroller;
- private UserFuncController uFuncController;
+  private UserFuncController uFuncController;
+ private ArrayList<String> temp;
    
  @Before
  public void init(){
@@ -20,20 +23,15 @@ public class UserFuncControllerTest {
     adminUI = new AdminUI();
     loginUI = new LoginUI();
     dbcontroller = new DBController();
-    uFuncController = new UserFuncController();
     adminUI.addAccount("Bill",  "Smith", "bsmith", "1234567890", 'u');
-    
-    //need to remove a school from the user before we can test the saveSchool method
-    dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
+    ArrayList<String> temp = new ArrayList<String>();
  }
  
- 
- @Test
- public void testUserFuncController() {
-  fail("Not yet implemented");
- } 
+ //@Test
+ //public void testUserFuncController() {
+ // fail("Not yet implemented");
+ //}
 
- 
  @Test
  public void testEditUser()
  {
@@ -49,31 +47,19 @@ public class UserFuncControllerTest {
               dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
    assertTrue("Account's last name was changed succesfully", 
               dbcontroller.editAccount("Zak", "Litmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
- } 
+ }
 
- 
  @Test
  public void testRemoveSchool() {
-  fail("Not yet implemented");
- } 
-
- @Test
- public void testSaveSchool() 
- {
-  assertTrue("The school was successfully saved to the user's list of saved schools.", 
-             dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School Saved!"));
-  assertTrue("The school has laready been saved to the user's profile", 
-             dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School has already been saved to the user's list!"));
+  dbcontroller.saveSchool("zakluetmer", "QUEENS");
+  dbcontroller.removeSchool("zakluetmer", "QUEENS");
+  ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
+  assertFalse(dbcontroller.isSchoolSaved("QUEENS"));
  }
 
- @Test
- public void testConfirm() {
-  fail("Not yet implemented");
- }
-
- @Test
- public void testAlreadySavedError() {
-  fail("Not yet implemented");
- }
+ //@Test
+ //public void testSaveSchool() {
+ // fail("Not yet implemented");
+ //}
 
 }

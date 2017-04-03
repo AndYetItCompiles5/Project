@@ -28,11 +28,9 @@ public class DBControllerTest {
     
     ArrayList<String> emphasis= new ArrayList<String>();
     
-    //need to remove a school from the user before we can test the saveSchool method
+    // need to remove the school from the user's list of schools before testing saveSchool
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
-    
-    // need to reset the info of zak's profile info before testing
-    dbcontroller.editAccount("Zak","Luetmer","zakluetmer","password",'u','Y');
+      
     
    // do we need these anymore?
    // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
@@ -89,15 +87,19 @@ public class DBControllerTest {
  @Test
  public void testSaveSchool() 
  {
-  assertTrue("The school was successfully saved to the user's list of saved schools.", 
-             dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School Saved!"));
-  assertTrue("The school has laready been saved to the user's profile", 
-             dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School has already been saved to the user's list!"));
+   assertFalse("User does not have _TESTSCHOOL saved to their list of schools", 
+               dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
+   assertTrue("The school was successfully saved to the user's list of saved schools.", 
+              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School Saved!"));
+   assertTrue("User's list of schools contains _TESTSCHOOL", 
+              dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
+   assertTrue("The school has laready been saved to the user's profile", 
+              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School has already been saved to the user's list!"));
  }
-
+ 
  @Test
  public void testGetUserSavedSchools() {
-  ArrayList<String> emptyUserListOfSchools = new ArrayList<String>();
+  dbcontroller.saveSchool("zakluetmer", "QUEENS");
   assertTrue(dbcontroller.getUserSavedSchools("zakluetmer").contains("QUEENS"));
  }
 
@@ -118,10 +120,18 @@ public class DBControllerTest {
 //  fail("Not yet implemented");
 // }
 
-//zak @Test
- //public void testRemoveSchool() {
-//  fail("Not yet implemented");
-// }
+ @Test
+ public void testRemoveSchool() {
+  dbcontroller.saveSchool("calseth", "QUEENS");
+  dbcontroller.removeSchool("calseth", "QUEENS");
+  ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
+  assertTrue(!temp.get(0).equals("QUEENS"));
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testRemoveSchoolFail(){
+  dbcontroller.removeSchool("Not a user", "School");
+ }
 
  @Test
  public void testIsSchoolSaved() {
@@ -134,18 +144,18 @@ public class DBControllerTest {
   String[][] testing = dbcontroller.getAllUsers();
   assertTrue(testing.length >= 6);
  }
- 
+
 //zak @Test
 // public void testAddAccount() {
 //  fail("Not yet implemented");
 // }
- 
+
  @Test
  public void testIsUsernameTaken() {
-   assertTrue(dbcontroller.isUsernameTaken("zakluetmer") == true);
-   assertTrue(dbcontroller.isUsernameTaken("AUserNameThatNoOneWillHave") == false);
+  assertTrue(dbcontroller.isUsernameTaken("zakluetmer") == true);
+  assertTrue(dbcontroller.isUsernameTaken("AUserNameThatNoOneWillHave") == false);
  }
- 
+
  @Test
  public void testEditAccount() {
    Account account = dbcontroller.getAccount("zakluetmer");;
@@ -177,13 +187,13 @@ public class DBControllerTest {
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's type is 'a'", account.getType()==('a'));   
  }
- 
+
  @Test
  public void testIsDeactivated() {
-   assertTrue(dbcontroller.isDeactivated("zakluetmer") == false);
-   assertTrue(dbcontroller.isDeactivated("luser"));
+  assertTrue(dbcontroller.isDeactivated("zakluetmer") == false);
+  assertTrue(dbcontroller.isDeactivated("luser"));
  }
- 
+
  @Test
  public void testDeactivateUser() {
   dbcontroller.editAccount("Lynn", "User", "luser", "user", 'u', 'Y');
@@ -203,6 +213,7 @@ public class DBControllerTest {
    assertTrue("The third reccomended school for _TESTSCHOOL is '_TESTSCHOOL3'",  listRecs.get(2).equals("_TESTSCHOOL3"));
    assertTrue("The fourth reccomended school for _TESTSCHOOL is '_TESTSCHOOL4'", listRecs.get(3).equals("_TESTSCHOOL4"));
    assertTrue("The fifth reccomended school for _TESTSCHOOL is '_TESTSCHOOL5'",  listRecs.get(4).equals("_TESTSCHOOL5"));
+  
  }
 
 }

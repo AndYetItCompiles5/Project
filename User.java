@@ -15,6 +15,7 @@ public class User extends Account{
  * a set of saved schools
  */
   Set<String> savedSchools;
+  //private UserFuncController uFuncController;
   
   /**
    * Constructs a user object who can save schools. Also creates the set of savedSchools
@@ -28,6 +29,7 @@ public class User extends Account{
   {
     super(first,last,username,password,'u', 'y');
     HashSet<String> savedSchools = new HashSet<String>();
+    //uFuncController = new UserFuncController();
   }
   
   /** 
@@ -46,14 +48,14 @@ public class User extends Account{
    * @param school: the university being added
    * @return true if university was added
    */
-  public boolean addNewUniversity(University school)
+  public boolean addNewUniversity(String school)
   {
-    if(savedSchools.contains(school.getName())){
-      return false; 
+    if(savedSchools.contains(school)){
+        return false;
     }
     else{
-      savedSchools.add(school.getName());
-      return true;
+    	savedSchools.add(school);
+    	return true;
     }
   }
   /**
