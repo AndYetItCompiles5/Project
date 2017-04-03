@@ -245,7 +245,8 @@ public class DBController
   else if(isSchoolSaved(name)){
       return "School is already saved";
       
-    }
+    	  
+  }
   else{
       dataBase.university_addUniversity(name,state, location, control, numStudents,
                                         perFemale, satVerbal, satMath, expenses, perFA,

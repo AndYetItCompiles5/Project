@@ -10,12 +10,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Project.*;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
  private UserUI userUI;
  private AdminUI adminUI;
  private LoginUI loginUI;
  private DBController dbcontroller;
+ 
+ private UniversityDBLibrary dataBase = new UniversityDBLibrary("andyic","andyic","csci230");
+ 
  SearchController sController;
    
  @Before
@@ -26,11 +30,9 @@ public class DBControllerTest {
     dbcontroller = new DBController();
     sController = new SearchController();
     
-    ArrayList<String> emphasis= new ArrayList<String>();
-    
     // need to remove the school from the user's list of schools before testing saveSchool
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
-      
+    dataBase.university_deleteUniversity("SEXTON");
     
    // do we need these anymore?
    // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
@@ -48,6 +50,8 @@ public class DBControllerTest {
   dbcontroller.getUserSavedSchools("calseth");
   dbcontroller.deactivateUser("luser");
   dbcontroller.deactivateUser("asdfasdfasdfasdf");
+  ArrayList<String> emphasis = new ArrayList<String>();
+dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
   
  }
  
@@ -77,12 +81,28 @@ public class DBControllerTest {
 // @Test
 // public void testEditUniversity() {
 //  fail("Not yet implemented");
-// }
+// }emphasis
 
-// @Test
-// public void testAddUniversity() {
-//  fail("Not yet implemented");
-// }
+ @Test
+ public void testAddUniversity() {
+	 ArrayList<String> emphasis= new ArrayList<String>();
+	 //invalid name//
+	 assertTrue(dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis).equals("Name is required"));
+	 assertTrue(dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis).equals("School is already saved"));
+	 
+	 
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testAddUniversityIlleaglArguments(){
+	 ArrayList<String> emphasis= new ArrayList<String>();
+	 //invalid location
+	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "EARTH", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+	 
+	 //invalid control
+	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ }
+	 
 
  @Test
  public void testSaveSchool() 
