@@ -42,6 +42,8 @@ public class DBControllerTest {
 		dbcontroller.getAccount("SomethingThatWillNotbeAUserName");
 		dbcontroller.getUniversity("ANameOfAUniversityThatWillNotBeInTheDatabase");
 		dbcontroller.getUserSavedSchools("calseth");
+		dbcontroller.deactivateUser("luser");
+		dbcontroller.deactivateUser("asdfasdfasdfasdf");
 		
 	}
 	
@@ -153,10 +155,14 @@ public class DBControllerTest {
 		assertTrue(dbcontroller.isDeactivated("luser"));
 	}
 
-//tj	@Test
-//	public void testDeactivateUser() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testDeactivateUser() {
+		dbcontroller.editAccount("Lynn", "User", "luser", "user", 'u', 'Y');
+		dbcontroller.deactivateUser("luser");
+		assertTrue(dbcontroller.isDeactivated("luser"));
+		
+		
+	}
 
 	@Test //get from search controller
 	public void testFindRecommendations() {

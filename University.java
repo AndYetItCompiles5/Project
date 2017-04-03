@@ -186,9 +186,15 @@ public class University {
 		//if (location.equals("URBAN") || location.equals("SUBURBAN") || location.equals("SMALL-CITY")
 			//	|| location.equals("RURAL") || location.equals("-1")) {
 			this.location = location;
+<<<<<<< HEAD
 		//} else {
 		//	throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL"+location);
 		//}
+=======
+		} else {
+			throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL "+location);
+		}
+>>>>>>> 7fc3f622d17b30c6f1ff4d7b2189cf7448457ecb
 		if (control.equals("PRIVATE") || control.equals("STATE") || control.equals("CITY") || control.equals("-1")) {
 			this.control = control;
 		} else {
