@@ -184,7 +184,7 @@ public class University {
   this.state = state;
   
   if (location.equals("URBAN") || location.equals("SUBURBAN") || location.equals("SMALL-CITY")
-    || /**location.equals("RURAL") ||*/ location.equals("-1")) {
+    || location.equals("RURAL") || location.equals("-1")) {
    this.location = location;
 
   } else {

@@ -303,7 +303,7 @@ public class DBController
     } 
     
     if(added == false){
-    	throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
+     throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
     }
     return listSchools;
   }
@@ -411,11 +411,11 @@ public class DBController
   HashSet<String> answer = new HashSet<String>();
 
   for (int i = 0; i < schoolList.length; i++) {
-   if (schoolList[i][0].toLowerCase().contains(name.toLowerCase())
+   if (name==null || schoolList[i][0].toLowerCase().contains(name.toLowerCase()) 
      && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
      && (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
        || schoolList[i][2].equals("-1"))
-     && (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
+     &&  (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
        || schoolList[i][3].equals("-1"))) {
 
     if ((isWithinRange(numStudentsLow, numStudentsHigh, schoolList[i][4])
@@ -493,13 +493,13 @@ public class DBController
    */
   public int removeSchool(String user, String school)
   {
-	String [][] temp = dataBase.user_getUsers();
-	for (int i = 0; i<temp.length;i++){
-		if(temp[i][2].equals(user)){
-			return dataBase.user_removeSchool(user, school);
-		}
-	}
-	throw new IllegalArgumentException("Invalid Username");
+ String [][] temp = dataBase.user_getUsers();
+ for (int i = 0; i<temp.length;i++){
+  if(temp[i][2].equals(user)){
+   return dataBase.user_removeSchool(user, school);
+  }
+ }
+ throw new IllegalArgumentException("Invalid Username");
   }
   
   /**
@@ -511,10 +511,10 @@ public class DBController
   {
     String[][] universityList = dataBase.university_getUniversities();
     for(int i = 0; i<universityList.length;i++){
-    	if(universityList[i][0].equals(name)){
-    				return true;
-    			}
-    		}
+     if(universityList[i][0].equals(name)){
+        return true;
+       }
+      }
     return false;
   }
   

@@ -148,6 +148,6 @@ public class UserUI{
    * @return an arraylist of 5 most similar schools
    */
   public ArrayList<String> findRecommendations(String name){
-   return searchController.findReccomendations(name);
+   return searchController.findRecommendations(name);
   }
 }
