@@ -60,8 +60,8 @@ public class DBController
    */
   public University getUniversity(String name)
   {
-	boolean found = false;
-	  
+ boolean found = false;
+   
     String state =  "";  
     String location = "-1";  
     String control = "-1";   
@@ -85,7 +85,7 @@ public class DBController
     {
       if(universities[i][0].equals(name))
       {
-    	found = true;
+     found = true;
         state = universities[i][1];
         location = universities[i][2];
         control = universities[i][3];
@@ -120,18 +120,18 @@ public class DBController
   
   public ArrayList<String> displayUniversity(String name){
    
-	  String[][] allUniversities = dataBase.university_getUniversities();
+   String[][] allUniversities = dataBase.university_getUniversities();
 
-	  boolean found = false;
-	  
-	  for(int x=0;x<allUniversities.length;x++){
-	  if(allUniversities[x][0].equals(name)){
-		  found = true;
-	  }
-	  }
-	  
-	  if(!found) throw new IllegalArgumentException("There is no University by the name of " + name);
-	  
+   boolean found = false;
+   
+   for(int x=0;x<allUniversities.length;x++){
+   if(allUniversities[x][0].equals(name)){
+    found = true;
+   }
+   }
+   
+   if(!found) throw new IllegalArgumentException("There is no University by the name of " + name);
+   
    ArrayList<String> univs = new ArrayList<String>();
    University univ = getUniversity(name);
    String state = univ.getState();
@@ -271,10 +271,10 @@ public class DBController
     
     if(r==-1)
     {
-    	return "School has already been saved to the user's list";
+      return "School has already been saved to the user's list!";
     }
-    
-    return "School Saved!";
+     
+     return "School Saved!";
   }
   
   /**
@@ -322,144 +322,144 @@ public class DBController
      return result;
   }
   
-	/**
-	 * Returns a Set of all the University objects that mat System.out.println(
-	 * "Should return 'User deactivated' error: "+loginUI.Login("calaseth",
-	 * "password")); System.out.println(
-	 * "Should return 'Wrong login info' error: "+loginUI.Login("wrong",
-	 * "info"));ch the search criteria in the database
-	 * 
-	 * @param name
-	 *            the name of the University
-	 * @param state
-	 *            the state the University is located int
-	 * @param location
-	 *            can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or
-	 *            -1 if unknown
-	 * @param control
-	 *            can be one of the following: PRIVATE, STATE, CITY, or -1 if
-	 *            unknown
-	 * @param numStudentsLow
-	 *            user search input of minimum number of students
-	 * @param numStudentsHigh
-	 *            user search input of maximum number of students
-	 * @param perFemaleLow
-	 *            user search input of minimum female percentage
-	 * @param perFemaleHigh
-	 *            user search input of maximum female percentage
-	 * @param satVerbalLow
-	 *            user search input of minimum SAT Verbal score
-	 * @param satVerbalHigh
-	 *            user search input of maximum SAT Verbal score
-	 * @param satMathLow
-	 *            user search input of minimum SAT Math score
-	 * @param satMathHigh
-	 *            user search input of minimum SAT Math score
-	 * @param expensesLow
-	 *            user search input of minimum expenses
-	 * @param expensesHigh
-	 *            user search input of maximum expenses
-	 * @param perFALow
-	 *            user search input of minimum Financial Aid percentage
-	 * @param perFAHigh
-	 *            user search input of maximum Financial Aid percentage
-	 * @param numApplicantsLow
-	 *            user search input of minimum number of applicants
-	 * @param numApplicantsHigh
-	 *            user search input of maximum number of applicants
-	 * @param perAdmittedLow
-	 *            user search input of minimum number of admitted
-	 * @param perAdmittedHigh
-	 *            user search input of maximum number of admitted
-	 * @param perEnrolledLow
-	 *            user search input of minimum number of enrolled
-	 * @param perEnrolledHigh
-	 *            user search input of maximum number of enrolled
-	 * @param academicScaleLow
-	 *            user search input of minimum academic scale number
-	 * @param academicScaleHigh
-	 *            user search input of maximum academic scale number
-	 * @param socialScaleLow
-	 *            user search input of minimum social scale number
-	 * @param socialScaleHigh
-	 *            user search input of maximimum social scale number
-	 * @param lifeScaleLow
-	 *            user search input of minimum life scale number
-	 * @param lifeScaleHigh
-	 *            user search input of maximum life scale number
-	 * @param emphases
-	 *            up to five areas of study the Univer System.out.println(
-	 *            "Should return 'User deactivated' error: "
-	 *            +loginUI.Login("calaseth", "password")); System.out.println(
-	 *            "Should return 'Wrong login info' error: "
-	 *            +loginUI.Login("wrong", "info"));sity excels at (all Strings)
-	 * @return a hashset of the found schools
-	 */
-	public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
-			int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
-			int satMathLow, int satMathHigh, int expensesLow, int expensesHigh, double perFALow, double perFAHigh,
-			int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh,
-			double perEnrolledLow, double perEnrolledHigh, int academicScaleLow, int academicScaleHigh,
-			int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases) 
-	{
-		String[][] schoolList = dataBase.university_getUniversities();
-		String[][] emphasesList = dataBase.university_getNamesWithEmphases();
-		HashSet<String> answer = new HashSet<String>();
+ /**
+  * Returns a Set of all the University objects that mat System.out.println(
+  * "Should return 'User deactivated' error: "+loginUI.Login("calaseth",
+  * "password")); System.out.println(
+  * "Should return 'Wrong login info' error: "+loginUI.Login("wrong",
+  * "info"));ch the search criteria in the database
+  * 
+  * @param name
+  *            the name of the University
+  * @param state
+  *            the state the University is located int
+  * @param location
+  *            can be one of the following: SUBURBAN, URBAN, SMALL-CITY, or
+  *            -1 if unknown
+  * @param control
+  *            can be one of the following: PRIVATE, STATE, CITY, or -1 if
+  *            unknown
+  * @param numStudentsLow
+  *            user search input of minimum number of students
+  * @param numStudentsHigh
+  *            user search input of maximum number of students
+  * @param perFemaleLow
+  *            user search input of minimum female percentage
+  * @param perFemaleHigh
+  *            user search input of maximum female percentage
+  * @param satVerbalLow
+  *            user search input of minimum SAT Verbal score
+  * @param satVerbalHigh
+  *            user search input of maximum SAT Verbal score
+  * @param satMathLow
+  *            user search input of minimum SAT Math score
+  * @param satMathHigh
+  *            user search input of minimum SAT Math score
+  * @param expensesLow
+  *            user search input of minimum expenses
+  * @param expensesHigh
+  *            user search input of maximum expenses
+  * @param perFALow
+  *            user search input of minimum Financial Aid percentage
+  * @param perFAHigh
+  *            user search input of maximum Financial Aid percentage
+  * @param numApplicantsLow
+  *            user search input of minimum number of applicants
+  * @param numApplicantsHigh
+  *            user search input of maximum number of applicants
+  * @param perAdmittedLow
+  *            user search input of minimum number of admitted
+  * @param perAdmittedHigh
+  *            user search input of maximum number of admitted
+  * @param perEnrolledLow
+  *            user search input of minimum number of enrolled
+  * @param perEnrolledHigh
+  *            user search input of maximum number of enrolled
+  * @param academicScaleLow
+  *            user search input of minimum academic scale number
+  * @param academicScaleHigh
+  *            user search input of maximum academic scale number
+  * @param socialScaleLow
+  *            user search input of minimum social scale number
+  * @param socialScaleHigh
+  *            user search input of maximimum social scale number
+  * @param lifeScaleLow
+  *            user search input of minimum life scale number
+  * @param lifeScaleHigh
+  *            user search input of maximum life scale number
+  * @param emphases
+  *            up to five areas of study the Univer System.out.println(
+  *            "Should return 'User deactivated' error: "
+  *            +loginUI.Login("calaseth", "password")); System.out.println(
+  *            "Should return 'Wrong login info' error: "
+  *            +loginUI.Login("wrong", "info"));sity excels at (all Strings)
+  * @return a hashset of the found schools
+  */
+ public HashSet<String> search(String name, String state, String location, String control, int numStudentsLow,
+   int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
+   int satMathLow, int satMathHigh, int expensesLow, int expensesHigh, double perFALow, double perFAHigh,
+   int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh,
+   double perEnrolledLow, double perEnrolledHigh, int academicScaleLow, int academicScaleHigh,
+   int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases) 
+ {
+  String[][] schoolList = dataBase.university_getUniversities();
+  String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+  HashSet<String> answer = new HashSet<String>();
 
-		for (int i = 0; i < schoolList.length; i++) {
-			if (schoolList[i][0].toLowerCase().contains(name.toLowerCase())
-					&& (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
-					&& (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
-							|| schoolList[i][2].equals("-1"))
-					&& (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
-							|| schoolList[i][3].equals("-1"))) {
+  for (int i = 0; i < schoolList.length; i++) {
+   if (schoolList[i][0].toLowerCase().contains(name.toLowerCase())
+     && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
+     && (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
+       || schoolList[i][2].equals("-1"))
+     && (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
+       || schoolList[i][3].equals("-1"))) {
 
-				if ((isWithinRange(numStudentsLow, numStudentsHigh, schoolList[i][4])
-						|| (numStudentsLow == 0 && numStudentsHigh == 0))
-						&& (isWithinRange(perFemaleLow, perFemaleHigh, schoolList[i][5])
-								|| (perFemaleLow == 0 && perFemaleHigh == 0))
-						&& (isWithinRange(satVerbalLow, satVerbalHigh, schoolList[i][6])
-								|| (satVerbalLow == 0 && satVerbalHigh == 0))
-						&& (isWithinRange(satMathLow, satMathHigh, schoolList[i][7])
-								|| (satMathLow == 0 && satMathHigh == 0))
-						&& (isWithinRange(expensesLow, expensesHigh, schoolList[i][8])
-								|| (expensesLow == 0 && expensesHigh == 0))
-						&& (isWithinRange(perFALow, perFAHigh, schoolList[i][9]) || (perFALow == 0 && perFAHigh == 0))
-						&& (isWithinRange(numApplicantsLow, numApplicantsHigh, schoolList[i][10])
-								|| (numApplicantsLow == 0 && numApplicantsHigh == 0))
-						&& (isWithinRange(perAdmittedLow, perAdmittedHigh, schoolList[i][11])
-								|| (perAdmittedLow == 0 && perAdmittedHigh == 0))
-						&& (isWithinRange(perEnrolledLow, perEnrolledHigh, schoolList[i][12])
-								|| (perEnrolledLow == 0 && perEnrolledHigh == 0))
-						&& (isWithinRange(academicScaleLow, academicScaleHigh, schoolList[i][13])
-								|| (academicScaleLow == 0 && academicScaleHigh == 0))
-						&& (isWithinRange(socialScaleLow, socialScaleHigh, schoolList[i][14])
-								|| (socialScaleLow == 0 && socialScaleHigh == 0))
-						&& (isWithinRange(lifeScaleLow, lifeScaleHigh, schoolList[i][15])
-								|| (lifeScaleLow == 0 && lifeScaleHigh == 0))) 
-				{
-					if (emphases != (null)) 
-					{
-						for (int k = 0; k < emphasesList.length; k++) 
-						{
-							if (schoolList[k][0].toLowerCase().contains(name.toLowerCase())) 
-							{
-								if (emphases.contains(schoolList[k][1])) 
-								{
-									answer.add(schoolList[k][0]);
-								}
-							}
-						}
-					} 
-					else 
-					{
-						answer.add(schoolList[i][0]);
-					}
-				}
-			}
-		}
-		return answer;
-	}
+    if ((isWithinRange(numStudentsLow, numStudentsHigh, schoolList[i][4])
+      || (numStudentsLow == 0 && numStudentsHigh == 0))
+      && (isWithinRange(perFemaleLow, perFemaleHigh, schoolList[i][5])
+        || (perFemaleLow == 0 && perFemaleHigh == 0))
+      && (isWithinRange(satVerbalLow, satVerbalHigh, schoolList[i][6])
+        || (satVerbalLow == 0 && satVerbalHigh == 0))
+      && (isWithinRange(satMathLow, satMathHigh, schoolList[i][7])
+        || (satMathLow == 0 && satMathHigh == 0))
+      && (isWithinRange(expensesLow, expensesHigh, schoolList[i][8])
+        || (expensesLow == 0 && expensesHigh == 0))
+      && (isWithinRange(perFALow, perFAHigh, schoolList[i][9]) || (perFALow == 0 && perFAHigh == 0))
+      && (isWithinRange(numApplicantsLow, numApplicantsHigh, schoolList[i][10])
+        || (numApplicantsLow == 0 && numApplicantsHigh == 0))
+      && (isWithinRange(perAdmittedLow, perAdmittedHigh, schoolList[i][11])
+        || (perAdmittedLow == 0 && perAdmittedHigh == 0))
+      && (isWithinRange(perEnrolledLow, perEnrolledHigh, schoolList[i][12])
+        || (perEnrolledLow == 0 && perEnrolledHigh == 0))
+      && (isWithinRange(academicScaleLow, academicScaleHigh, schoolList[i][13])
+        || (academicScaleLow == 0 && academicScaleHigh == 0))
+      && (isWithinRange(socialScaleLow, socialScaleHigh, schoolList[i][14])
+        || (socialScaleLow == 0 && socialScaleHigh == 0))
+      && (isWithinRange(lifeScaleLow, lifeScaleHigh, schoolList[i][15])
+        || (lifeScaleLow == 0 && lifeScaleHigh == 0))) 
+    {
+     if (emphases != (null)) 
+     {
+      for (int k = 0; k < emphasesList.length; k++) 
+      {
+       if (schoolList[k][0].toLowerCase().contains(name.toLowerCase())) 
+       {
+        if (emphases.contains(schoolList[k][1])) 
+        {
+         answer.add(schoolList[k][0]);
+        }
+       }
+      }
+     } 
+     else 
+     {
+      answer.add(schoolList[i][0]);
+     }
+    }
+   }
+  }
+  return answer;
+ }
   
   /**
    * Checks if the school's actual data is within the range of the low and high that the user searched for
@@ -571,9 +571,11 @@ public class DBController
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-   if(username.equals("")||password.equals("")||type==(' ')){
-    return "Missing username, password, or type";
-   }
+    if(username.equals("")||password.equals("")||type==(' '))
+    {
+      return "Missing username, password, or type";
+    }
+    
     dataBase.user_editUser(username,first,last,password,type,status);
     return "Edit Successful!";
   }
@@ -608,9 +610,9 @@ public class DBController
    */
   public boolean deactivateUser(String username)
   {
-	if(!getAccount(username).getUsername().equals(username)){
-		throw new IllegalArgumentException("The name you have entered was not found.");
-	}
+ if(!getAccount(username).getUsername().equals(username)){
+  throw new IllegalArgumentException("The name you have entered was not found.");
+ }
     else if(isDeactivated(username))
     {
       throw new IllegalArgumentException("Account is deactivated");
@@ -838,7 +840,9 @@ public class DBController
        //compare lifeScale
        value += comparedUniversity.getLifeScale() == 0 ? 0 : Math.abs((lifeScale-comparedUniversity.getLifeScale()) / (4));
        
-       //compare emphases
+       // compare emphases
+       // ^^^^ still needs to be implemented
+       
        values[i][0] = comparedUniversity.getName();
        values[i][1] = Double.toString(value);
          
