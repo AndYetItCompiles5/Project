@@ -58,22 +58,5 @@ public class UserFuncController{
   {
     return dbController.saveSchool(user, school); 
   }
-  
-  /**
-   * Lets the user confirm their selection
-   * @return error message
-   */
-  public String confirm()
-  {
-    return "Are you sure?";
-  }
-  
-  /**
-   * Gives the user an error if they try saving an already saved school
-   * @return error message
-   */
-  public String AlreadySavedError()
-  {
-    return "School was already saved"; 
-  }
+
 }

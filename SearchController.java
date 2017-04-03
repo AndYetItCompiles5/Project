@@ -76,7 +76,7 @@ public class SearchController
    * 
    * @return ArrayList of recommended schools
    */
-  public ArrayList<String> findReccomendations(String name)
+  public ArrayList<String> findRecommendations(String name)
   {
    return dbController.findRecommendations(name);
   }
