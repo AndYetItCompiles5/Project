@@ -1,5 +1,6 @@
 package Project.tests;
 
+import java.util.*;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Array;
@@ -16,7 +17,8 @@ public class DBControllerTest {
  private AdminUI adminUI;
  private LoginUI loginUI;
  private DBController dbcontroller;
- SearchController sController;
+ private SearchController sController;
+ private HashSet<String> searchResult;
    
  @Before
  public void init(){
@@ -27,6 +29,8 @@ public class DBControllerTest {
     sController = new SearchController();
     
     ArrayList<String> emphasis= new ArrayList<String>();
+    searchResult = new HashSet<String>();
+    searchResult.clear();
     
     // need to remove the school from the user's list of schools before testing saveSchool
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
@@ -110,10 +114,114 @@ public class DBControllerTest {
   assertTrue(testingSize.size() > 50);
  }
 
-//nathan @Test
-// public void testSearch() {
-//  fail("Not yet implemented");
-// }
+ @Test
+ public void testSearchFullNameCaps() {
+	 searchResult = dbcontroller.search("COLORADO COLLEGE", "", "", "", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("COLORADO COLLEGE"));
+ }
+ 
+ @Test
+ public void testSearchFullName() {
+	 searchResult = dbcontroller.search("colorado college", "", "", "", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("COLORADO COLLEGE"));
+ }
+ 
+ @Test
+ public void testSearchPartialNameCaps() {
+	 searchResult = dbcontroller.search("ARIZONA ST", "", "", "", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("ARIZONA STATE"));
+ }
+ 
+ @Test
+ public void testSearchPartialName() {
+	 searchResult = dbcontroller.search("arizona st", "", "", "", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("ARIZONA STATE"));
+ }
+ 
+ @Test
+ public void testSearchNoneExistantName() {
+	 searchResult = dbcontroller.search("ZXYQU", "-1", "-1", "-1", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.isEmpty());
+ }
+ 
+ @Test
+ public void testSearchNameEmpty() {
+	 searchResult = dbcontroller.search(null, "", "", "", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testStateFullCaps() {
+	 dbcontroller.addUniversity("STATE DUMMY", "COLLEGEVILLE", "URBAN", "PRIVATE", 100, 10.0, 10, 10, 10, 10.0, 10, 10.0, 10.0, 4, 4, 4, null);
+	 searchResult = dbcontroller.search(null, "COLLEGEVILLE", "", "", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("STATE DUMMY"));
+ }
+ 
+ @Test
+ public void testStateFull() {
+	 searchResult = dbcontroller.search(null, "collegeville", "", "", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("STATE DUMMY"));
+ }
+ 
+ @Test
+ public void testStatePart() {
+	 searchResult = dbcontroller.search(null, "college", "", "", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("STATE DUMMY"));
+ }
+ 
+ @Test
+ public void testStatePartCaps() {
+	 searchResult = dbcontroller.search(null, "COLLEGE", "", "", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.contains("STATE DUMMY"));
+ }
+ 
+ @Test
+ public void testStateEmpty() {
+	 searchResult = dbcontroller.search(null, "-1", "-1", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationSuburbanCaps() {
+	 searchResult = dbcontroller.search(null, "-1", "SUBURBAN", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationSuburban() {
+	 searchResult = dbcontroller.search(null, "-1", "suburban", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationUrbanCaps() {
+	 searchResult = dbcontroller.search(null, "-1", "URBAN", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationUrban() {
+	 searchResult = dbcontroller.search(null, "-1", "urban", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationSmallCityCaps() {
+	 searchResult = dbcontroller.search(null, "-1", "SMALL-CITY", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationSmallCity() {
+	 searchResult = dbcontroller.search(null, "-1", "small-city", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
+ 
+ @Test
+ public void testLocationEmpty() {
+	 searchResult = dbcontroller.search(null, "-1", "-1", "-1", -20, 1000100, -20.0, 110.0, -10, 900, -10, 900, -1000, 1000100, -10.0, 110.0, -100, 1000000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+	 assertTrue(searchResult.size()==188);
+ }
 
 //TJ @Test
  //public void testIsWithinRange() {
