@@ -187,7 +187,7 @@ public class University {
 				|| location.equals("RURAL") || location.equals("-1")) {
 			this.location = location;
 		} else {
-			throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL"+location);
+			throw new IllegalArgumentException("Location must be SUBURBAN or URBAN or SMALL-CITY or RURAL "+location);
 		}
 		if (control.equals("PRIVATE") || control.equals("STATE") || control.equals("CITY") || control.equals("-1")) {
 			this.control = control;

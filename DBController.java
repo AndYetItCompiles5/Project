@@ -210,7 +210,7 @@ public class DBController
               return "Changes successful";
       }      
     }
-    return "Universities doesnt exist";
+    return "Universities doesnt exist or invalid changes";
   }
   
   /**
@@ -225,7 +225,7 @@ public class DBController
    * @param satMath average SAT math score for enrolled students(between 0 and 800)
    * @param expenses annual expenses or tuition to attend the school
    * @param perFA percentage of enrolled students receiving financial aid
-   * @param numApplicants total number of applicants that apply to the school anually
+   * @param numApplicants total number of applicants that apply to the school annually
    * @param perAdmitted percent of applicants that get admitted
    * @param perEnrolled percent of applicants that decide to enroll
    * @param academicScale integer between 1 and 5 indicating the academic scale of the University
@@ -608,7 +608,10 @@ public class DBController
    */
   public boolean deactivateUser(String username)
   {
-    if(isDeactivated(username))
+	if(!getAccount(username).getUsername().equals(username)){
+		throw new IllegalArgumentException("The name you have entered was not found.");
+	}
+    else if(isDeactivated(username))
     {
       throw new IllegalArgumentException("Account is deactivated");
     }
