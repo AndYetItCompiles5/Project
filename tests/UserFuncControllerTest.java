@@ -57,9 +57,10 @@ public class UserFuncControllerTest {
   assertFalse(dbcontroller.isSchoolSaved("QUEENS"));
  }
 
- //@Test
- //public void testSaveSchool() {
- // fail("Not yet implemented");
- //}
+ @Test
+ public void testSaveSchool() {	 
+		   assertTrue("The school was successfully saved to the user's list of saved schools.", 
+		              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL"));
+ }
 
 }

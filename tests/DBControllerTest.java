@@ -85,17 +85,25 @@ public class DBControllerTest {
 // }
 
  @Test
- public void testSaveSchool() 
+ public void testSaveSchoolFail() 
  {
    assertFalse("User does not have _TESTSCHOOL saved to their list of schools", 
                dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
+ }
+ public void testSaveSchool(){
+	 
    assertTrue("The school was successfully saved to the user's list of saved schools.", 
-              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School Saved!"));
+              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL"));
+ }
+ public void testSaveSchoolFail2(){
    assertTrue("User's list of schools contains _TESTSCHOOL", 
               dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
-   assertTrue("The school has laready been saved to the user's profile", 
-              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School has already been saved to the user's list!"));
  }
+ public void testSaveSchoolFail3(){
+   assertTrue("The school has already been saved to the user's profile", 
+              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL"));
+ }
+ 
  
  @Test
  public void testGetUserSavedSchools() {

@@ -15,7 +15,7 @@ public class User extends Account{
  * a set of saved schools
  */
   Set<String> savedSchools;
-  //private UserFuncController uFuncController;
+  private UserFuncController uFuncController;
   
   /**
    * Constructs a user object who can save schools. Also creates the set of savedSchools
@@ -28,8 +28,11 @@ public class User extends Account{
   public User(String first, String last, String username, String password)
   {
     super(first,last,username,password,'u', 'y');
-    HashSet<String> savedSchools = new HashSet<String>();
-    //uFuncController = new UserFuncController();
+    uFuncController = new UserFuncController();
+  }
+  
+  public User(){
+	  uFuncController = new UserFuncController();
   }
   
   /** 
@@ -38,9 +41,9 @@ public class User extends Account{
    * 
    * Double check to see where we used this
    */
-  public Set<String> getSavedSchools()
+  public ArrayList<String> getSavedSchools(String user)
   {
-    return savedSchools; 
+    return uFuncController.getUserSchools(user);
   }
   
   /**
@@ -48,31 +51,20 @@ public class User extends Account{
    * @param school: the university being added
    * @return true if university was added
    */
-  public boolean addNewUniversity(String school)
+  public boolean addNewUniversity(String user, String school)
   {
-    if(savedSchools.contains(school)){
-        return false;
-    }
-    else{
-    	savedSchools.add(school);
-    	return true;
-    }
+    return uFuncController.saveSchool(user, school);
   }
   /**
    * Removes a university from the user's saved school list
    * @param school: the university being removed
    * @return true if the university was removed
    */
-  public boolean removeSchool(University school)
+  public boolean removeSchool(String user, String school)
   {
-    if(savedSchools.contains(school.getName())){
-      savedSchools.remove(school.getName());
-      return true;
+    return uFuncController.removeSchool(user, school);
     }
-    else{
-      return false;
-    }
-  }
+  
   
   /**
    * Deactivates the user

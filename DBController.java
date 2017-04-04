@@ -263,18 +263,19 @@ public class DBController
    * Saves a school to the user's list of saved schools
    * @param user:the username of the user where the school is being added to
    * @param school: the school name of the school being added
-   * @return a message stating whether the school was saved or not
+   * @throws IllegalArgumentException if an error occurs
+   * @return a boolean if the school saved
    */
-  public String saveSchool(String user, String school)
+  public boolean saveSchool(String user, String school)
   {
     int r = dataBase.user_saveSchool(user, school);
     
     if(r==-1)
     {
-      return "School has already been saved to the user's list!";
+      return false;
     }
      
-     return "School Saved!";
+     return true;
   }
   
   /**
@@ -490,12 +491,13 @@ public class DBController
    * @return an integer
    * 
    */
-  public int removeSchool(String user, String school)
+  public boolean removeSchool(String user, String school)
   {
 	String [][] temp = dataBase.user_getUsers();
 	for (int i = 0; i<temp.length;i++){
 		if(temp[i][2].equals(user)){
-			return dataBase.user_removeSchool(user, school);
+			dataBase.user_removeSchool(user, school);
+			return true;
 		}
 	}
 	throw new IllegalArgumentException("Invalid Username");
@@ -576,7 +578,7 @@ public class DBController
    * @param username: the username of the user
    * @param password the password of the user
    * @param type: U for user, A for admin
-   * @param status: true if active, false if deactive
+   * @param status: Y if active, N if deactive
    * @return true if the user was successfully edited
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
@@ -585,9 +587,18 @@ public class DBController
     {
       return "Missing username, password, or type";
     }
-    
-    dataBase.user_editUser(username,first,last,password,type,status);
-    return "Edit Successful!";
+    if(status=='Y'|| status=='y' || status=='N' || status=='n'){
+    	if(type=='A'|| type=='a' || type=='U' || type=='u'){
+    		dataBase.user_editUser(username,first,last,password,type,status);
+    		return "Edit Successful!";
+    }
+    	else{
+    		return "Error";
+    	}
+    }
+    else{
+    	return "Error";
+  }
   }
   
   /**
