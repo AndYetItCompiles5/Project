@@ -125,7 +125,9 @@ public class ProjectDriver {
   System.out.println("Recommended School Function");
   System.out.println("");
   System.out.println("Returns five recommended schools similar to 'QUEENS': " + userUI.findRecommendations("CSB"));
- 
+  System.out.println();
+  HashSet<String> result = userUI.search(null, "", "", "", -20, 100000, -20.0, 110.0, -10, 900, -10, 900, -1000, 100000, -10.0, 110.0, -100, 100000, -10.0, 110.0, -10.0, 110.0, -5, 10, -5, 10, -5, 10, null);
+  System.out.println(result.size());
  }
  
  
