@@ -54,7 +54,7 @@ public class UserFuncControllerTest {
   dbcontroller.saveSchool("zakluetmer", "QUEENS");
   dbcontroller.removeSchool("zakluetmer", "QUEENS");
   ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
-  assertFalse(dbcontroller.isSchoolSaved("QUEENS"));
+  assertFalse(temp.contains("QUEENS"));
  }
 
  @Test

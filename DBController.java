@@ -539,20 +539,21 @@ public class DBController
    * @param username: the username of the user being added
    * @param password: the password of the user being added
    * @param type: boolean of the user's activation or deactivation
+   * @throws IllegalArgumentException if username is taken or password or username is empty
    * @return confirmation message if successfully added to the database
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
     boolean taken = isUsernameTaken(username);
     if(username.equals("")|| password.equals("")){
-     return "Need more information!!";
+      throw new IllegalArgumentException("Username or password cannot be empty");
     }
     else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
     else{
-      return "The username is already in use. Please try a different one.";
+      throw new IllegalArgumentException("Username is taken");
     }
   }
   

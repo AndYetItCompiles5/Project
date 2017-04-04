@@ -42,6 +42,9 @@ public class DBControllerTest {
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
     dataBase.university_deleteUniversity("SEXTON");
     
+    //Must remove temporary user
+    dataBase.user_deleteUser("Person");
+    
    // do we need these anymore?
    // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
    // dbcontroller.editUniversity("_TESTSCHOOL1", "MMIN", "URBAN", "PRIVATE", 100001, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
@@ -52,15 +55,34 @@ public class DBControllerTest {
  }
  
  @Test(expected=IllegalArgumentException.class)
- public void testIllegalArgumentExceptions(){
+ public void testGetAccountError(){
   dbcontroller.getAccount("SomethingThatWillNotbeAUserName");
-  dbcontroller.getUniversity("ANameOfAUniversityThatWillNotBeInTheDatabase");
-  dbcontroller.getUserSavedSchools("calseth");
-  dbcontroller.deactivateUser("luser");
-  dbcontroller.deactivateUser("asdfasdfasdfasdf");
-  ArrayList<String> emphasis = new ArrayList<String>();
-dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testGetUniversityError(){
+	 dbcontroller.getUniversity("ANameOfAUniversityThatWillNotBeInTheDatabase");
+ }
   
+ @Test(expected=IllegalArgumentException.class)
+ public void testGetUserSavedSchoolsError(){
+	 dbcontroller.getUserSavedSchools("calseth");
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testDeactivateUserAlreadyDeactivated(){
+	 dbcontroller.deactivateUser("luser");
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testDeactivateUserErrorWrongUser(){
+	 dbcontroller.deactivateUser("asdfasdfasdfasdf");
+ }
+  
+ @Test
+ public void testEditUniversity(){
+	 ArrayList<String> emphasis = new ArrayList<String>();
+	 assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis).equals("Changes successful"));
  }
  
  @Test
@@ -102,13 +124,17 @@ dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 5
  }
  
  @Test(expected=IllegalArgumentException.class)
- public void testAddUniversityIlleaglArguments(){
+ public void testAddUniversityIllegalArgument(){
   ArrayList<String> emphasis= new ArrayList<String>();
   //invalid location
   dbcontroller.addUniversity("SEXTON", "MINNESOTA", "EARTH", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
-  
+ }
+ 
+ @Test(expected=IllegalArgumentException.class)
+ public void testAddUniversityIllegalArgument2(){
   //invalid control
-  dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+	 ArrayList<String> emphasis = new ArrayList<String>();
+	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
  }
   
 
@@ -285,10 +311,26 @@ dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 5
   assertTrue(testing.length >= 6);
  }
 
-//zak @Test
-// public void testAddAccount() {
-//  fail("Not yet implemented");
-// }
+@Test
+ public void testAddAccountSuccess() {
+	  dbcontroller.addAccount("John", "Temporary", "Person", "asdf123", 'A');
+	  assertTrue(dbcontroller.isUsernameTaken("Person"));
+}
+@Test(expected=IllegalArgumentException.class)
+public void testAddAccountUsernameTaken(){
+	dbcontroller.addAccount("John", "Temporary", "zakluetmer", "asdf123", 'A');
+}
+
+@Test(expected=IllegalArgumentException.class)
+public void testAddAccountNoUsername(){
+	dbcontroller.addAccount("John", "Temporary", "", "asdf123", 'A');
+}
+
+@Test(expected=IllegalArgumentException.class)
+public void testAddAccountNoPassword(){
+	dbcontroller.addAccount("John", "Temporary", "zakluetmer", "", 'A');
+}
+ 
 
  @Test
  public void testIsUsernameTaken() {
