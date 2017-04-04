@@ -327,6 +327,59 @@ public class DBController
      return result;
   }
   
+  /**
+   * Returns an ArrayList of University objects of all universities in the database
+   * @return an ArrayList of all universities
+   */
+  public ArrayList<University> getUniversityObjects(){
+	  String[][] universities = dataBase.university_getUniversities();
+	  String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+	  ArrayList<University> result = new ArrayList<University>();
+	  String name;
+	  String state;
+	  String location;
+	  String control;
+	  int numStudents;
+	  double perFemale;
+	  int satVerbal;
+	  int satMath;
+	  int expenses;
+	  double perFA;
+	  int numApplicants;
+	  double perAdmitted;
+	  double perEnrolled;
+	  int academicScale;
+	  int socialScale;
+	  int lifeScale;
+	  ArrayList<String> emphases = new ArrayList<String>();
+	  for(int i=0;i<universities.length;i++){
+		  name = universities[i][0];
+		  state = universities[i][1];
+		  location = universities[i][2];
+		  control = universities[i][3];
+		  numStudents = Integer.parseInt(universities[i][4]);
+		  perFemale = Double.parseDouble(universities[i][5]);
+		  satVerbal = Integer.parseInt(universities[i][6]);
+		  satMath = Integer.parseInt(universities[i][7]);
+		  expenses = Integer.parseInt(universities[i][8]);
+		  perFA = Double.parseDouble(universities[i][9]);
+		  numApplicants = Integer.parseInt(universities[i][10]);
+		  perAdmitted = Double.parseDouble(universities[i][11]);
+		  perEnrolled = Double.parseDouble(universities[i][12]);
+		  academicScale = Integer.parseInt(universities[i][13]);
+		  socialScale = Integer.parseInt(universities[i][14]);
+		  lifeScale = Integer.parseInt(universities[i][15]);
+		  for(int j=0;j<emphasesList.length;j++){
+			  if(emphasesList[j][0].equals(name)){
+				  emphases.add(emphasesList[j][1]);
+			  }
+		  }
+		  University u = new University(name,state,location, control, numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale,emphases);
+		  result.add(u);
+	  }
+	  return result;
+  }
+  
  /**
   * Returns a Set of all the University objects that mat System.out.println(
   * "Should return 'User deactivated' error: "+loginUI.Login("calaseth",
@@ -407,58 +460,56 @@ public class DBController
    double perEnrolledLow, double perEnrolledHigh, int academicScaleLow, int academicScaleHigh,
    int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases) 
  {
-  String[][] schoolList = dataBase.university_getUniversities();
-  String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+
+	 ArrayList<University> allUniversities = new ArrayList<University>();
+	 allUniversities = this.getUniversityObjects();
   HashSet<String> answer = new HashSet<String>();
 
-  for (int i = 0; i < schoolList.length; i++) {
-   if (name==null || schoolList[i][0].toLowerCase().contains(name.toLowerCase()) 
-     && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
-     && (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
-       || schoolList[i][2].equals("-1"))
-     &&  (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
-       || schoolList[i][3].equals("-1"))) {
+  for (int i = 0; i < allUniversities.size(); i++) {
+	  University currentU = allUniversities.get(i);
+   if (currentU.getName().toLowerCase().contains(name.toLowerCase()) || name.equals("-1")
+     && (currentU.getState().toLowerCase().contains(state.toLowerCase()) || state.equals("-1"))
+     && (currentU.getLocation().toLowerCase().equals(location.toLowerCase())
+        || location.equals("-1"))
+     &&  (currentU.getControl().toLowerCase().equals(control.toLowerCase())
+        || control.equals("-1"))) {
 
-    if ((isWithinRange(numStudentsLow, numStudentsHigh, schoolList[i][4])
+    if ((isWithinRangeInt(numStudentsLow, numStudentsHigh, currentU.getNumStudents())
       || (numStudentsLow == 0 && numStudentsHigh == 0))
-      && (isWithinRange(perFemaleLow, perFemaleHigh, schoolList[i][5])
+      && (isWithinRangeDouble(perFemaleLow, perFemaleHigh, currentU.getPercentFemale())
         || (perFemaleLow == 0 && perFemaleHigh == 0))
-      && (isWithinRange(satVerbalLow, satVerbalHigh, schoolList[i][6])
+      && (isWithinRangeInt(satVerbalLow, satVerbalHigh, currentU.getSatVerbal())
         || (satVerbalLow == 0 && satVerbalHigh == 0))
-      && (isWithinRange(satMathLow, satMathHigh, schoolList[i][7])
+      && (isWithinRangeInt(satMathLow, satMathHigh, currentU.getSatMath())
         || (satMathLow == 0 && satMathHigh == 0))
-      && (isWithinRange(expensesLow, expensesHigh, schoolList[i][8])
+      && (isWithinRangeInt(expensesLow, expensesHigh, currentU.getExpenses())
         || (expensesLow == 0 && expensesHigh == 0))
-      && (isWithinRange(perFALow, perFAHigh, schoolList[i][9]) || (perFALow == 0 && perFAHigh == 0))
-      && (isWithinRange(numApplicantsLow, numApplicantsHigh, schoolList[i][10])
+      && (isWithinRangeDouble(perFALow, perFAHigh, currentU.getFinancialAid()) || (perFALow == 0 && perFAHigh == 0))
+      && (isWithinRangeInt(numApplicantsLow, numApplicantsHigh, currentU.getNumApplicants())
         || (numApplicantsLow == 0 && numApplicantsHigh == 0))
-      && (isWithinRange(perAdmittedLow, perAdmittedHigh, schoolList[i][11])
+      && (isWithinRangeDouble(perAdmittedLow, perAdmittedHigh, currentU.getPercentAdmitted())
         || (perAdmittedLow == 0 && perAdmittedHigh == 0))
-      && (isWithinRange(perEnrolledLow, perEnrolledHigh, schoolList[i][12])
+      && (isWithinRangeDouble(perEnrolledLow, perEnrolledHigh, currentU.getPercentEnrolled())
         || (perEnrolledLow == 0 && perEnrolledHigh == 0))
-      && (isWithinRange(academicScaleLow, academicScaleHigh, schoolList[i][13])
+      && (isWithinRangeInt(academicScaleLow, academicScaleHigh, currentU.getAcademicScale())
         || (academicScaleLow == 0 && academicScaleHigh == 0))
-      && (isWithinRange(socialScaleLow, socialScaleHigh, schoolList[i][14])
+      && (isWithinRangeInt(socialScaleLow, socialScaleHigh, currentU.getSocialScale())
         || (socialScaleLow == 0 && socialScaleHigh == 0))
-      && (isWithinRange(lifeScaleLow, lifeScaleHigh, schoolList[i][15])
+      && (isWithinRangeInt(lifeScaleLow, lifeScaleHigh, currentU.getLifeScale())
         || (lifeScaleLow == 0 && lifeScaleHigh == 0))) 
     {
      if (emphases != (null)) 
      {
-      for (int k = 0; k < emphasesList.length; k++) 
-      {
-       if (schoolList[k][0].toLowerCase().contains(name.toLowerCase())) 
-       {
-        if (emphases.contains(schoolList[k][1])) 
-        {
-         answer.add(schoolList[k][0]);
-        }
-       }
-      }
+    	 ArrayList<String> currentUEmphases = currentU.getEmphases();
+    	 for (int e=0; e<emphases.size();e++){
+    		 if(currentUEmphases.contains(emphases.get(e))){
+    			 answer.add(currentU.getName());
+    		 }
+    	 }
      } 
      else 
      {
-      answer.add(schoolList[i][0]);
+      answer.add(currentU.getName());
      }
     }
    }
@@ -474,9 +525,25 @@ public class DBController
    * @return true if the actual is between the low and the high
    * 
    */
-  public boolean isWithinRange(double low, double high, String actual){
-    double newActual = Double.parseDouble(actual);
-    if(newActual>=low && newActual<=high){
+  public boolean isWithinRangeDouble(double low, double high, double actual){
+    if(actual>=low && actual<=high){
+      return true; 
+    }
+    else{
+      return false; 
+    }
+  }
+  
+  /**
+   * Checks if the school's actual data is within the range of the low and high that the user searched for
+   * @param low: the low bound the user inputed
+   * @param high: the high bound the user inputed
+   * @param actual: the concrete number of the school
+   * @return true if the actual is between the low and the high
+   * 
+   */
+  public boolean isWithinRangeInt(int low, int high, int actual){
+    if(actual>=low && actual<=high){
       return true; 
     }
     else{
