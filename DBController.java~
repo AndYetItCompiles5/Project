@@ -410,7 +410,11 @@ public class DBController
   HashSet<String> answer = new HashSet<String>();
 
   for (int i = 0; i < schoolList.length; i++) {
+<<<<<<< HEAD
    if (schoolList[i][0].toLowerCase().contains(name.toLowerCase())
+=======
+   if (schoolList[i][0].toLowerCase().contains(name.toLowerCase()) || name==null
+>>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
      && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
      && (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
        || schoolList[i][2].equals("-1"))

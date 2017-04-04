@@ -49,9 +49,9 @@ public class UserUI{
    * @param user: the user's username
    * @param school: the school being added
    * 
-   * @return a string if the school was successfully saved
+   * @return a boolean if the school was successfully saved
    */
-  public String saveSchool(String user, String school)
+  public boolean saveSchool(String user, String school)
   {
     return uFuncController.saveSchool(user,school);
   }
@@ -59,12 +59,12 @@ public class UserUI{
   /**
    * remove school from the users list 
    * 
-   * @param user 
-   * @param school
+   * @param user:the user of the school being removed
+   * @param school: the school being removed
    * 
-   * @return an int -1 if not saved. 
+   * @return a boolean if it was saved 
    */
-  public int removeSchool(String user, String school){
+  public boolean removeSchool(String user, String school){
     return uFuncController.removeSchool(user, school);
   }
   
@@ -148,6 +148,6 @@ public class UserUI{
    * @return an arraylist of 5 most similar schools
    */
   public ArrayList<String> findRecommendations(String name){
-   return searchController.findReccomendations(name);
+   return searchController.findRecommendations(name);
   }
 }

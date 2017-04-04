@@ -35,6 +35,15 @@ public class Account{
    */
   private char status;
   
+  public Account(){
+	  this.firstName = "";
+	    this.lastName = "";
+	    this.username = "";
+	    this.password = "";
+	    this.type = 'U';
+		this.status='Y';
+  }
+  
   /**
    * Constructor for an Account
    * @param first the first name of the user
@@ -52,15 +61,17 @@ public class Account{
     this.lastName = last;
     this.username = username;
     this.password = password;
-    if(type=='a'||type=='u')
+    if(type=='a'||type=='A'||type=='U'||type=='u'){
     	this.type = type;
-    else
-    	throw new IllegalArgumentException("Type cannot be "+type);
-    if(status=='Y'||type=='n'){
+    }
+    else{
+    	throw new IllegalArgumentException("Type must be A,a,U,or u");
+    }
+    if(status=='Y'||type=='y'|| type=='N' || type=='n'){
 		  this.status=status;
 	    }
 	    else{
-	    	throw new IllegalArgumentException("Cannot set status to "+status);
+	    	throw new IllegalArgumentException("Must set status to Y,y,N, or n");
 	    }  
   }
   
@@ -143,7 +154,7 @@ public class Account{
    */
   public void setType(char type)
   {
-    if(type=='u'|| type=='a'){
+    if(type=='u'|| type=='a' ||type=='U'||type=='A'){
     	this.type=type;
     }
     else{
@@ -166,7 +177,7 @@ public class Account{
    */
   public void setStatus(char status)
   {
-	  if(status=='Y'||type=='N'){
+	  if(status=='Y'|| type=='y' || type=='N' || type=='n'){
 		  this.status=status;
 	    }
 	    else{

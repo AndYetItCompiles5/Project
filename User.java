@@ -11,12 +11,6 @@ import Project.*;
 
 public class User extends Account{
   
-/**
- * a set of saved schools
- */
-  Set<String> savedSchools;
-  //private UserFuncController uFuncController;
-  
   /**
    * Constructs a user object who can save schools. Also creates the set of savedSchools
    * 
@@ -28,58 +22,6 @@ public class User extends Account{
   public User(String first, String last, String username, String password)
   {
     super(first,last,username,password,'u', 'y');
-    HashSet<String> savedSchools = new HashSet<String>();
-    //uFuncController = new UserFuncController();
-  }
-  
-  /** 
-   * Gets the user's saved schools
-   * @return list of saved schools
-   * 
-   * Double check to see where we used this
-   */
-  public Set<String> getSavedSchools()
-  {
-    return savedSchools; 
-  }
-  
-  /**
-   * Adds a new university to the user's saved school list
-   * @param school: the university being added
-   * @return true if university was added
-   */
-  public boolean addNewUniversity(String school)
-  {
-    if(savedSchools.contains(school)){
-        return false;
-    }
-    else{
-    	savedSchools.add(school);
-    	return true;
-    }
-  }
-  /**
-   * Removes a university from the user's saved school list
-   * @param school: the university being removed
-   * @return true if the university was removed
-   */
-  public boolean removeSchool(University school)
-  {
-    if(savedSchools.contains(school.getName())){
-      savedSchools.remove(school.getName());
-      return true;
-    }
-    else{
-      return false;
-    }
-  }
-  
-  /**
-   * Deactivates the user
-   */
-  public void deactivate()
-  {
-    super.setStatus('n');
   }
   
 }

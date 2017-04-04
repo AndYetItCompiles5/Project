@@ -41,9 +41,9 @@ public class UserFuncController{
    * Removes a university from the student's saved schools
    * @param user : String
    * @param school : String
-   * @return int if -1 school was not removed
+   * @return boolean if the school was not removed
    */
-  public int removeSchool(String user, String school)
+  public boolean removeSchool(String user, String school)
   {
     return dbController.removeSchool(user, school); 
   }
@@ -54,9 +54,13 @@ public class UserFuncController{
    * @param school : String
    * @return string if school was saved
    */
-  public String saveSchool(String user, String school)
+  public boolean saveSchool(String user, String school)
   {
     return dbController.saveSchool(user, school); 
+  }
+  
+  public ArrayList<String> getUserSchools(String user){
+	  return dbController.getUserSavedSchools(user);
   }
 
 }

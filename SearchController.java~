@@ -23,6 +23,7 @@ public class SearchController
   {
     dbController = new DBController();
   }
+  
   /**
    * Searches for schools with the provided information
    * @param name the name of the University
@@ -41,8 +42,8 @@ public class SearchController
    * @param expensesHigh user search input of maximum expenses
    * @param perFALow user search input of minimum Financial Aid percentage
    * @param perFAHigh user search input of maximum Financial Aid percentage
-   * @param numAppicantsLow user search input of minimum number of applicants
-   * @param numAppicantsHigh user search input of maximum number of applicants
+   * @param numApplicantsLow user search input of minimum number of applicants
+   * @param numApplicantsHigh user search input of maximum number of applicants
    * @param perAdmittedLow user search input of minimum number of admitted
    * @param perAdmittedHigh user search input of maximum number of admitted
    * @param perEnrolledLow user search input of minimum number of enrolled
@@ -60,13 +61,15 @@ public class SearchController
                      int numStudentsHigh, double perFemaleLow, double perFemaleHigh, int satVerbalLow, int satVerbalHigh,
                      int satMathLow, int satMathHigh, int expensesLow, int expensesHigh, double perFALow, double perFAHigh,
                      int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh, double perEnrolledLow, double perEnrolledHigh,
-                     int academicScaleLow, int academicScaleHigh, int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases){
+                     int academicScaleLow, int academicScaleHigh, int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases)
+  {
     return dbController.search(name, state, location, control, numStudentsLow,numStudentsHigh, perFemaleLow,perFemaleHigh, satVerbalLow,satVerbalHigh,
                                    satMathLow,satMathHigh,expensesLow,expensesHigh,
                                    perFALow,perFAHigh, numApplicantsLow,numApplicantsHigh, perAdmittedLow,perAdmittedHigh,perEnrolledLow,perEnrolledHigh,
                                    academicScaleLow,academicScaleHigh,socialScaleLow,socialScaleHigh, lifeScaleLow,lifeScaleHigh,
                                    emphases);
   }
+  
   /**
    * Gets any recommended schools
    * @param name the name of the University
@@ -75,7 +78,7 @@ public class SearchController
    */
   public ArrayList<String> findReccomendations(String name)
   {
-	  return dbController.findRecommendations(name);
+   return dbController.findRecommendations(name);
   }
 
 }

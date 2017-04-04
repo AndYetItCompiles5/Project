@@ -15,25 +15,28 @@ public class UserTest {
 	@Before
 	public void init(){
 		  dbController = new DBController();
-		  user = new User("Person","2","person2","password");
+		  dbController.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'U', 'Y');
+		  user = new User("Zak","Luetmer","zakluetmer","password");
+		  user.addNewUniversity("zakluetmer", "ADELPHI");
+		  user.removeSchool("zakluetmer", "ADELPHI");
 		  
 	}
 
 	@Test
 	public void testGetSavedSchools() {
-		user.addNewUniversity("ADEPHI");
-		assertTrue(user.getSavedSchools().contains("ADELPHI"));
+		user.addNewUniversity("zakluetmer","ADEPHI");
+		assertTrue(user.getSavedSchools("zakluetmer").contains("ADELPHI"));
 	}
 
 	@Test
 	public void testAddNewUniversity() {
-		assertTrue(user.addNewUniversity("QUEENS"));
+		assertTrue(user.addNewUniversity("zakluetmer","QUEENS"));
 		}
 	
 	@Test
 	public void testAddNewUniversityFail() {
-		user.addNewUniversity("QUEENS");
-		assertFalse(user.addNewUniversity("QUEENS"));
+		user.addNewUniversity("zakluetmer","QUEENS");
+		assertFalse(user.addNewUniversity("zakluetmer","QUEENS"));
 		}
 
 	//@Test

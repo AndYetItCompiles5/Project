@@ -245,7 +245,8 @@ public class DBController
   else if(isSchoolSaved(name)){
       return "School is already saved";
       
-    }
+    	  
+  }
   else{
       dataBase.university_addUniversity(name,state, location, control, numStudents,
                                         perFemale, satVerbal, satMath, expenses, perFA,
@@ -263,18 +264,23 @@ public class DBController
    * Saves a school to the user's list of saved schools
    * @param user:the username of the user where the school is being added to
    * @param school: the school name of the school being added
-   * @return a message stating whether the school was saved or not
+   * @throws IllegalArgumentException if an error occurs
+   * @return a boolean if the school saved
    */
-  public String saveSchool(String user, String school)
+  public boolean saveSchool(String user, String school)
   {
     int r = dataBase.user_saveSchool(user, school);
     
     if(r==-1)
     {
+<<<<<<< HEAD
       throw new IllegalArgumentException("That school has already been saved to that user's profile.");
+=======
+      return false;
+>>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
     }
      
-     return "School Saved!";
+     return true;
   }
   
   /**
@@ -323,6 +329,59 @@ public class DBController
      }
      
      return result;
+  }
+  
+  /**
+   * Returns an ArrayList of University objects of all universities in the database
+   * @return an ArrayList of all universities
+   */
+  public ArrayList<University> getUniversityObjects(){
+	  String[][] universities = dataBase.university_getUniversities();
+	  String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+	  ArrayList<University> result = new ArrayList<University>();
+	  String name;
+	  String state;
+	  String location;
+	  String control;
+	  int numStudents;
+	  double perFemale;
+	  int satVerbal;
+	  int satMath;
+	  int expenses;
+	  double perFA;
+	  int numApplicants;
+	  double perAdmitted;
+	  double perEnrolled;
+	  int academicScale;
+	  int socialScale;
+	  int lifeScale;
+	  ArrayList<String> emphases = new ArrayList<String>();
+	  for(int i=0;i<universities.length;i++){
+		  name = universities[i][0];
+		  state = universities[i][1];
+		  location = universities[i][2];
+		  control = universities[i][3];
+		  numStudents = Integer.parseInt(universities[i][4]);
+		  perFemale = Double.parseDouble(universities[i][5]);
+		  satVerbal = Integer.parseInt(universities[i][6]);
+		  satMath = Integer.parseInt(universities[i][7]);
+		  expenses = Integer.parseInt(universities[i][8]);
+		  perFA = Double.parseDouble(universities[i][9]);
+		  numApplicants = Integer.parseInt(universities[i][10]);
+		  perAdmitted = Double.parseDouble(universities[i][11]);
+		  perEnrolled = Double.parseDouble(universities[i][12]);
+		  academicScale = Integer.parseInt(universities[i][13]);
+		  socialScale = Integer.parseInt(universities[i][14]);
+		  lifeScale = Integer.parseInt(universities[i][15]);
+		  for(int j=0;j<emphasesList.length;j++){
+			  if(emphasesList[j][0].equals(name)){
+				  emphases.add(emphasesList[j][1]);
+			  }
+		  }
+		  University u = new University(name,state,location, control, numStudents,perFemale,satVerbal,satMath,expenses,perFA,numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale,emphases);
+		  result.add(u);
+	  }
+	  return result;
   }
   
  /**
@@ -405,58 +464,56 @@ public class DBController
    double perEnrolledLow, double perEnrolledHigh, int academicScaleLow, int academicScaleHigh,
    int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases) 
  {
-  String[][] schoolList = dataBase.university_getUniversities();
-  String[][] emphasesList = dataBase.university_getNamesWithEmphases();
+
+	 ArrayList<University> allUniversities = new ArrayList<University>();
+	 allUniversities = this.getUniversityObjects();
   HashSet<String> answer = new HashSet<String>();
 
-  for (int i = 0; i < schoolList.length; i++) {
-   if (schoolList[i][0].toLowerCase().contains(name.toLowerCase())
-     && (schoolList[i][1].toLowerCase().contains(state.toLowerCase()) || schoolList[i][1].equals("-1"))
-     && (schoolList[i][2].toLowerCase().contains(location.toLowerCase())
-       || schoolList[i][2].equals("-1"))
-     && (schoolList[i][3].toLowerCase().contains(control.toLowerCase())
-       || schoolList[i][3].equals("-1"))) {
+  for (int i = 0; i < allUniversities.size(); i++) {
+	  University currentU = allUniversities.get(i);
+   if (currentU.getName().toLowerCase().contains(name.toLowerCase()) || name.equals("-1")
+     && (currentU.getState().toLowerCase().contains(state.toLowerCase()) || state.equals("-1"))
+     && (currentU.getLocation().toLowerCase().equals(location.toLowerCase())
+        || location.equals("-1"))
+     &&  (currentU.getControl().toLowerCase().equals(control.toLowerCase())
+        || control.equals("-1"))) {
 
-    if ((isWithinRange(numStudentsLow, numStudentsHigh, schoolList[i][4])
+    if ((isWithinRangeInt(numStudentsLow, numStudentsHigh, currentU.getNumStudents())
       || (numStudentsLow == 0 && numStudentsHigh == 0))
-      && (isWithinRange(perFemaleLow, perFemaleHigh, schoolList[i][5])
+      && (isWithinRangeDouble(perFemaleLow, perFemaleHigh, currentU.getPercentFemale())
         || (perFemaleLow == 0 && perFemaleHigh == 0))
-      && (isWithinRange(satVerbalLow, satVerbalHigh, schoolList[i][6])
+      && (isWithinRangeInt(satVerbalLow, satVerbalHigh, currentU.getSatVerbal())
         || (satVerbalLow == 0 && satVerbalHigh == 0))
-      && (isWithinRange(satMathLow, satMathHigh, schoolList[i][7])
+      && (isWithinRangeInt(satMathLow, satMathHigh, currentU.getSatMath())
         || (satMathLow == 0 && satMathHigh == 0))
-      && (isWithinRange(expensesLow, expensesHigh, schoolList[i][8])
+      && (isWithinRangeInt(expensesLow, expensesHigh, currentU.getExpenses())
         || (expensesLow == 0 && expensesHigh == 0))
-      && (isWithinRange(perFALow, perFAHigh, schoolList[i][9]) || (perFALow == 0 && perFAHigh == 0))
-      && (isWithinRange(numApplicantsLow, numApplicantsHigh, schoolList[i][10])
+      && (isWithinRangeDouble(perFALow, perFAHigh, currentU.getFinancialAid()) || (perFALow == 0 && perFAHigh == 0))
+      && (isWithinRangeInt(numApplicantsLow, numApplicantsHigh, currentU.getNumApplicants())
         || (numApplicantsLow == 0 && numApplicantsHigh == 0))
-      && (isWithinRange(perAdmittedLow, perAdmittedHigh, schoolList[i][11])
+      && (isWithinRangeDouble(perAdmittedLow, perAdmittedHigh, currentU.getPercentAdmitted())
         || (perAdmittedLow == 0 && perAdmittedHigh == 0))
-      && (isWithinRange(perEnrolledLow, perEnrolledHigh, schoolList[i][12])
+      && (isWithinRangeDouble(perEnrolledLow, perEnrolledHigh, currentU.getPercentEnrolled())
         || (perEnrolledLow == 0 && perEnrolledHigh == 0))
-      && (isWithinRange(academicScaleLow, academicScaleHigh, schoolList[i][13])
+      && (isWithinRangeInt(academicScaleLow, academicScaleHigh, currentU.getAcademicScale())
         || (academicScaleLow == 0 && academicScaleHigh == 0))
-      && (isWithinRange(socialScaleLow, socialScaleHigh, schoolList[i][14])
+      && (isWithinRangeInt(socialScaleLow, socialScaleHigh, currentU.getSocialScale())
         || (socialScaleLow == 0 && socialScaleHigh == 0))
-      && (isWithinRange(lifeScaleLow, lifeScaleHigh, schoolList[i][15])
+      && (isWithinRangeInt(lifeScaleLow, lifeScaleHigh, currentU.getLifeScale())
         || (lifeScaleLow == 0 && lifeScaleHigh == 0))) 
     {
      if (emphases != (null)) 
      {
-      for (int k = 0; k < emphasesList.length; k++) 
-      {
-       if (schoolList[k][0].toLowerCase().contains(name.toLowerCase())) 
-       {
-        if (emphases.contains(schoolList[k][1])) 
-        {
-         answer.add(schoolList[k][0]);
-        }
-       }
-      }
+    	 ArrayList<String> currentUEmphases = currentU.getEmphases();
+    	 for (int e=0; e<emphases.size();e++){
+    		 if(currentUEmphases.contains(emphases.get(e))){
+    			 answer.add(currentU.getName());
+    		 }
+    	 }
      } 
      else 
      {
-      answer.add(schoolList[i][0]);
+      answer.add(currentU.getName());
      }
     }
    }
@@ -472,9 +529,25 @@ public class DBController
    * @return true if the actual is between the low and the high
    * 
    */
-  public boolean isWithinRange(double low, double high, String actual){
-    double newActual = Double.parseDouble(actual);
-    if(newActual>=low && newActual<=high){
+  public boolean isWithinRangeDouble(double low, double high, double actual){
+    if(actual>=low && actual<=high){
+      return true; 
+    }
+    else{
+      return false; 
+    }
+  }
+  
+  /**
+   * Checks if the school's actual data is within the range of the low and high that the user searched for
+   * @param low: the low bound the user inputed
+   * @param high: the high bound the user inputed
+   * @param actual: the concrete number of the school
+   * @return true if the actual is between the low and the high
+   * 
+   */
+  public boolean isWithinRangeInt(int low, int high, int actual){
+    if(actual>=low && actual<=high){
       return true; 
     }
     else{
@@ -490,8 +563,9 @@ public class DBController
    * @return an integer
    * 
    */
-  public int removeSchool(String user, String school)
+  public boolean removeSchool(String user, String school)
   {
+<<<<<<< HEAD
  String [][] temp = dataBase.user_getUsers();
  for (int i = 0; i<temp.length;i++){
   if(temp[i][2].equals(user)){
@@ -499,6 +573,16 @@ public class DBController
   }
  }
  throw new IllegalArgumentException("Invalid Username");
+=======
+	String [][] temp = dataBase.user_getUsers();
+	for (int i = 0; i<temp.length;i++){
+		if(temp[i][2].equals(user)){
+			dataBase.user_removeSchool(user, school);
+			return true;
+		}
+	}
+	throw new IllegalArgumentException("Invalid Username");
+>>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
   }
   
   /**
@@ -536,20 +620,21 @@ public class DBController
    * @param username: the username of the user being added
    * @param password: the password of the user being added
    * @param type: boolean of the user's activation or deactivation
+   * @throws IllegalArgumentException if username is taken or password or username is empty
    * @return confirmation message if successfully added to the database
    */
   public String addAccount(String first, String last, String username, String password, char type)
   {
     boolean taken = isUsernameTaken(username);
     if(username.equals("")|| password.equals("")){
-     return "Need more information!!";
+      throw new IllegalArgumentException("Username or password cannot be empty");
     }
     else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
     else{
-      return "The username is already in use. Please try a different one.";
+      throw new IllegalArgumentException("Username is taken");
     }
   }
   
@@ -576,7 +661,7 @@ public class DBController
    * @param username: the username of the user
    * @param password the password of the user
    * @param type: U for user, A for admin
-   * @param status: true if active, false if deactive
+   * @param status: Y if active, N if deactive
    * @return true if the user was successfully edited
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
@@ -585,9 +670,18 @@ public class DBController
     {
       throw new IllegalArgumentException("Username, password, type and status are required.");
     }
-    
-    dataBase.user_editUser(username,first,last,password,type,status);
-    return "Edit Successful!";
+    if(status=='Y'|| status=='y' || status=='N' || status=='n'){
+    	if(type=='A'|| type=='a' || type=='U' || type=='u'){
+    		dataBase.user_editUser(username,first,last,password,type,status);
+    		return "Edit Successful!";
+    }
+    	else{
+    		return "Error";
+    	}
+    }
+    else{
+    	return "Error";
+  }
   }
   
   /**
