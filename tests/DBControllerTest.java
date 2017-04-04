@@ -30,7 +30,9 @@ public class DBControllerTest {
     
     // need to remove the school from the user's list of schools before testing saveSchool
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
-      
+    
+    // reseting the info for test purposes
+    dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
     
    // do we need these anymore?
    // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
@@ -93,8 +95,25 @@ public class DBControllerTest {
               dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School Saved!"));
    assertTrue("User's list of schools contains _TESTSCHOOL", 
               dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
-   assertTrue("The school has laready been saved to the user's profile", 
-              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL").equals("School has already been saved to the user's list!"));
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testSaveSchoolAlreadySavedFail()
+ {
+   dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL");
+   dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL");
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testSaveSchoolInvalidSchoolFail()
+ {
+   dbcontroller.saveSchool("zakluetmer", "NotASchool");
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testSaveSchoolInvalidUserFail()
+ {
+   dbcontroller.saveSchool("LakZuetmer", "_TESTSCHOOL");
  }
  
  @Test
@@ -156,34 +175,66 @@ public class DBControllerTest {
   assertTrue(dbcontroller.isUsernameTaken("AUserNameThatNoOneWillHave") == false);
  }
 
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditAccountEmptyUsernameFail() {
+   dbcontroller.editAccount("Zak", "Luetmer", "","password",'u','Y');
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditAccountEmptyPasswordFail() {
+   dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","",'u','Y');
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditAccountEmptyTypeFail() {
+   dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",' ','Y');
+ }
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditAccountEmptyStatusFail() {
+   dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'u',' ');
+ }
+ 
  @Test
- public void testEditAccount() {
-   Account account = dbcontroller.getAccount("zakluetmer");;
-   
-   assertTrue("Account cannot have a blank 'username' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "","password",'u','Y').equals("Missing username, password, or type"));
-   assertTrue("Account cannot have a blank 'password' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","",'u','Y').equals("Missing username, password, or type"));
-   assertTrue("Account cannot have a blank 'type' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",' ','Y').equals("Missing username, password, or type"));
+ public void testEditAccountPassword() {
+   Account account = dbcontroller.getAccount("zakluetmer");
    
    assertFalse("Account's password is not 'hello'", account.getPassword().equals("hello"));
-   dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","hello",'u','Y');
+   assertTrue("Accounts password was successfully changed", 
+              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","hello",'u','Y').equals("Edit Successful!"));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's password is 'hello'", account.getPassword().equals("hello"));
+ }
+ 
+ @Test
+ public void testEditAccountFirstName() {
+   Account account = dbcontroller.getAccount("zakluetmer");
    
    assertFalse("Account's first name is not 'Virgil'", account.getFirstName().equals("Virgil"));
-   dbcontroller.editAccount("Virgil", "Luetmer", "zakluetmer","password",'u','Y');
+   assertTrue("Accounts last name was successfully changed", 
+              dbcontroller.editAccount("Virgil", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's first name is 'Virgil'", account.getFirstName().equals("Virgil"));
+ }
+ 
+ @Test
+ public void testEditAccountLastName() {
+   Account account = dbcontroller.getAccount("zakluetmer");
    
    assertFalse("Account's last name is not 'Michael-House'", account.getLastName().equals("Michael-House"));
-   dbcontroller.editAccount("Zak", "Michael-House", "zakluetmer","password",'u','Y');
+   assertTrue("Accounts last name was successfully changed", 
+              dbcontroller.editAccount("Zak", "Michael-House", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's password is 'Michael-House'", account.getLastName().equals("Michael-House"));
+ }
+ 
+ @Test
+ public void testEditAccountType() {
+   Account account = dbcontroller.getAccount("zakluetmer");
    
    assertFalse("Account's type is not 'a'", account.getType()==('a'));
-   dbcontroller.editAccount("Zak", "Michael-House", "zakluetmer","password",'a','Y');
+      assertTrue("Accounts last name was successfully changed", 
+                 dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'a','Y').equals("Edit Successful!"));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's type is 'a'", account.getType()==('a'));   
  }
@@ -213,7 +264,5 @@ public class DBControllerTest {
    assertTrue("The third reccomended school for _TESTSCHOOL is '_TESTSCHOOL3'",  listRecs.get(2).equals("_TESTSCHOOL3"));
    assertTrue("The fourth reccomended school for _TESTSCHOOL is '_TESTSCHOOL4'", listRecs.get(3).equals("_TESTSCHOOL4"));
    assertTrue("The fifth reccomended school for _TESTSCHOOL is '_TESTSCHOOL5'",  listRecs.get(4).equals("_TESTSCHOOL5"));
-  
  }
-
 }

@@ -271,7 +271,7 @@ public class DBController
     
     if(r==-1)
     {
-      return "School has already been saved to the user's list!";
+      throw new IllegalArgumentException("That school has already been saved to that user's profile.");
     }
      
      return "School Saved!";
@@ -302,7 +302,7 @@ public class DBController
     } 
     
     if(added == false){
-    	throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
+     throw new IllegalArgumentException("The user: " + user + " does not have any saved schools");
     }
     return listSchools;
   }
@@ -492,13 +492,13 @@ public class DBController
    */
   public int removeSchool(String user, String school)
   {
-	String [][] temp = dataBase.user_getUsers();
-	for (int i = 0; i<temp.length;i++){
-		if(temp[i][2].equals(user)){
-			return dataBase.user_removeSchool(user, school);
-		}
-	}
-	throw new IllegalArgumentException("Invalid Username");
+ String [][] temp = dataBase.user_getUsers();
+ for (int i = 0; i<temp.length;i++){
+  if(temp[i][2].equals(user)){
+   return dataBase.user_removeSchool(user, school);
+  }
+ }
+ throw new IllegalArgumentException("Invalid Username");
   }
   
   /**
@@ -510,10 +510,10 @@ public class DBController
   {
     String[][] universityList = dataBase.university_getUniversities();
     for(int i = 0; i<universityList.length;i++){
-    	if(universityList[i][0].equals(name)){
-    				return true;
-    			}
-    		}
+     if(universityList[i][0].equals(name)){
+        return true;
+       }
+      }
     return false;
   }
   
@@ -581,9 +581,9 @@ public class DBController
    */
   public String editAccount(String first, String last, String username, String password, char type, char status)
   {
-    if(username.equals("")||password.equals("")||type==(' '))
+    if(username.equals("")||password.equals("")||type==(' ')||status==(' '))
     {
-      return "Missing username, password, or type";
+      throw new IllegalArgumentException("Username, password, type and status are required.");
     }
     
     dataBase.user_editUser(username,first,last,password,type,status);

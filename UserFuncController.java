@@ -19,8 +19,8 @@ public class UserFuncController{
    * creates dbcontroller instance
    */
   public UserFuncController(){
-	  dbController = new DBController();
-	  
+   dbController = new DBController();
+   
   }
   /**
    * Edits the user with the given information
@@ -30,11 +30,11 @@ public class UserFuncController{
    * @param password: the user's password
    * @param type: the user's type
    * @param status: the user's status
-   * @return string	if the account was successfully edited
+   * @return string if the account was successfully edited
    */
-  public String editUser(String username, String first, String last, String password,char type, char status)
+  public String editUser(String first, String last, String username, String password,char type, char status)
   {
-        return dbController.editAccount(username,first,last,password,type,status);
+    return dbController.editAccount(first,last,username, password,type,status);
   }
   
   /**

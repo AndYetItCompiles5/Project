@@ -23,7 +23,10 @@ public class UserFuncControllerTest {
     adminUI = new AdminUI();
     loginUI = new LoginUI();
     dbcontroller = new DBController();
+    uFuncController = new UserFuncController();
     adminUI.addAccount("Bill",  "Smith", "bsmith", "1234567890", 'u');
+    dbcontroller.editAccount("Zak","Luetmer","zakluetmer","password",'u','Y');
+    dbcontroller.removeSchool("zakluetmer", "QUEENS");
     ArrayList<String> temp = new ArrayList<String>();
  }
  
@@ -32,23 +35,63 @@ public class UserFuncControllerTest {
  // fail("Not yet implemented");
  //}
 
- @Test
- public void testEditUser()
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditUserEmptyUsernameFail()
  {
-   assertTrue("Account cannot have a blank 'username' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "","password",'u','Y').equals("Missing username, password, or type"));
-   assertTrue("Account cannot have a blank 'password' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","",'u','Y').equals("Missing username, password, or type"));
-   assertTrue("Account cannot have a blank 'type' field", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",' ','Y').equals("Missing username, password, or type"));
-   assertTrue("Account's password was changed succesfully", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password1",'u','Y').equals("Edit Successful!"));
-   assertTrue("Account's first name was changed succesfully", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
-   assertTrue("Account's last name was changed succesfully", 
-              dbcontroller.editAccount("Zak", "Litmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+   uFuncController.editUser("Zak", "Luetmer", "","password",'u','Y');
  }
-
+ 
+ @Test (expected=IllegalArgumentException.class)
+ public void testEditUserEmptyPasswordFail()
+ {
+   uFuncController.editUser("Zak", "Luetmer", "zakluetmer","",'u','Y');
+ }
+ 
+  @Test (expected=IllegalArgumentException.class)
+ public void testEditUserEmptyTypeFail()
+  {
+    uFuncController.editUser("Zak", "Luetmer", "zakluetmer","password",' ','Y');
+  }
+  
+  @Test (expected=IllegalArgumentException.class)
+  public void testEditUserEmptyStatusFail()
+  {
+    uFuncController.editUser("Zak", "Luetmer", "zakluetmer","password",'u',' ');
+  }
+  
+  @Test
+  public void testEditUserFirstName()
+ {
+   Account account = dbcontroller.getAccount("zakluetmer");
+   assertFalse("Accounts first name is not 'David'", account.getFirstName().equals("David"));
+   assertTrue("Accounts last name was changed succesfully", 
+              uFuncController.editUser("David", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+   account = dbcontroller.getAccount("zakluetmer");
+   assertTrue("Accounts first name has been changed to 'David'", account.getFirstName().equals("David"));
+ }
+ 
+ @Test
+ public void testEditUserPassword()
+ {
+   Account account = dbcontroller.getAccount("zakluetmer");
+   assertFalse("Accounts password is not 'password1'", account.getPassword().equals("password1"));
+   assertTrue("Accounts password was changed succesfully", 
+              uFuncController.editUser("David", "Allen", "zakluetmer","password1",'u','Y').equals("Edit Successful!"));
+   account = dbcontroller.getAccount("zakluetmer");
+   assertTrue("Accounts password has been changed to 'password1'", account.getPassword().equals("password1"));
+ }
+ 
+ @Test
+ public void testEditUserLastName()
+ {
+   Account account = dbcontroller.getAccount("zakluetmer");
+   assertFalse("Accounts last name is not 'Allen'", account.getLastName().equals("Allen"));
+   assertTrue("Accounts last name was changed succesfully", 
+              uFuncController.editUser("David", "Allen", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+   account = dbcontroller.getAccount("zakluetmer");
+   assertTrue("Accounts last name has been changed to 'Allen'", account.getLastName().equals("Allen"));
+ }
+ 
  @Test
  public void testRemoveSchool() {
   dbcontroller.saveSchool("zakluetmer", "QUEENS");
