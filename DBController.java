@@ -600,7 +600,7 @@ public class DBController
   public String[][] getAllUsers()
   {
     String[][] users = dataBase.user_getUsers();
-
+    
     return users;
   }
   
@@ -617,13 +617,16 @@ public class DBController
   public String addAccount(String first, String last, String username, String password, char type)
   {
     boolean taken = isUsernameTaken(username);
+    
     if(username.equals("")|| password.equals("")){
       throw new IllegalArgumentException("Username or password cannot be empty");
     }
+    
     else if(!taken){
       dataBase.user_addUser(first,last,username,password,type);
       return "Addition Successful!";
     }
+    
     else{
       throw new IllegalArgumentException("Username is taken");
     }
@@ -662,7 +665,8 @@ public class DBController
     {
       throw new IllegalArgumentException("Username, password, type and status are required.");
     }
-    if(status=='Y'|| status=='y' || status=='N' || status=='n'){
+    
+    else if(status=='Y'|| status=='y' || status=='N' || status=='n'){
     	if(type=='A'|| type=='a' || type=='U' || type=='u'){
     		dataBase.user_editUser(username,first,last,password,type,status);
     		return true;

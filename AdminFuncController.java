@@ -39,10 +39,10 @@ public class AdminFuncController {
    * @param type the type of user
    * @return Whether the account was successfully created, an error if not
    */
-  public String addAccount(String first, String last, String username, String password, char type)
-  {
-  return dbController.addAccount(first,last,username,password,type);
-  }
+	  public String addAccount(String first, String last, String username, String password, char type)
+	  {
+	  return dbController.addAccount(first,last,username,password,type);
+	  }
   
   /**
    * Edits the University
