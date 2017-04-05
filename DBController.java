@@ -242,7 +242,10 @@ public class DBController
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                               int socialScale, int lifeScale,ArrayList<String> emphases)
   {
-	  
+	  University u = new University(name,state, location, control, numStudents,
+	          perFemale, satVerbal, satMath, expenses, perFA,
+	          numApplicants, perAdmitted, perEnrolled, academicScale,
+	          socialScale, lifeScale,emphases);
 
   if(name.equals("")){
    throw new IllegalArgumentException("Name is required");
@@ -251,10 +254,7 @@ public class DBController
       throw new IllegalArgumentException("School is already saved");  	  
   }
   else{
-	  University u = new University(name,state, location, control, numStudents,
-	          perFemale, satVerbal, satMath, expenses, perFA,
-	          numApplicants, perAdmitted, perEnrolled, academicScale,
-	          socialScale, lifeScale,emphases);
+	  
       dataBase.university_addUniversity(name,state, location, control, numStudents,
                                         perFemale, satVerbal, satMath, expenses, perFA,
                                         numApplicants, perAdmitted, perEnrolled, academicScale,

@@ -760,14 +760,7 @@ public class DBControllerTest {
 
 
 
- // @Test
- // public void testEditUniversity(){
- // ArrayList<String> emphasis = new ArrayList<String>();
- // assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN",
- // "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1,
- // emphasis));
- // }
- //
+
  // @Test
  // public void testGetAccount() {
  // Account something = dbcontroller.getAccount("zakluetmer");

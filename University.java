@@ -374,11 +374,11 @@ public class University {
   *            the percent of enrolled students who are female
   * @throws IllegalArgumentException
   */
- public void setPercentFemale(double d) {
-  if (d < -1.0 || d > 100.0)
+ public void setPercentFemale(double perFA) {
+  if ((perFA < 0 || perFA > 100.0) && perFA != -1)
    throw new IllegalArgumentException("percent must be greater than zero and less than 100");
   else
-   this.percentFemale = d;
+   this.percentFemale = perFA;
  }
 
  /**
@@ -469,7 +469,7 @@ public class University {
   *             if percent less then 0 or greater then 100
   */
  public void setFinancialAid(double percent) {
-  if (percent < -1.0 || percent > 100.0)
+  if ((percent < 0 || percent > 100.0) && percent != -1)
    throw new IllegalArgumentException("percent must be greater than 0 and less than 100");
   else
    this.percentFA = percent;
@@ -515,7 +515,7 @@ public class University {
   *             if per is less then 0 or greater than 100
   */
  public void setPercentAdmitted(double per) {
-  if (per < -1.0 || per > 100.0)
+  if ((per < 0 || per > 100.0) && per != -1)
    throw new IllegalArgumentException("percent must be greater than 0 and less than 100");
   else
    this.percentAdmitted = per;
@@ -539,7 +539,7 @@ public class University {
   *             if per is less than 0 or is greater than 100
   */
  public void setPercentEnrolled(double per) {
-  if (per < -1.0 || per > 100.0)
+  if ((per < 0 || per > 100.0) && per != -1)
    throw new IllegalArgumentException("percent must be greater than 0 and less than 100");
   else
    this.percentEnrolled = per;

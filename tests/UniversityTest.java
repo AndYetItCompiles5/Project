@@ -53,6 +53,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFemaleLowFailure5(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,-0.5,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testConstructorPerFemaleHighFailure(){
 		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,110.0,500,400,50000,92.0,7000,62.0,50.0,4,3,3,emphases); 
 	}
@@ -88,6 +93,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerFA5Failure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,-0.5,7000,62.0,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testConstructorPerFAHighFailure(){
 		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,192.0,7000,62.0,50.0,4,3,3,emphases); 
 	}
@@ -103,6 +113,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerAdmitted5Failure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,-0.5,50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testConstructorPerAdmittedHighFailure(){
 		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,162.0,50.0,4,3,3,emphases); 
 	}
@@ -110,6 +125,11 @@ public class UniversityTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testConstructorPerEnrolledLowFailure(){
 		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,-50.0,4,3,3,emphases); 
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testConstructorPerEnrolled5Failure(){
+		controllerUniversity = new University("CSB","Minnesota","URBAN","PRIVATE",4000,11.0,500,400,50000,92.0,7000,62.0,-0.5,4,3,3,emphases); 
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -250,6 +270,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailSetPercentFemale5(){
+		testUniversity.setPercentFemale(-0.5);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailSetPercentFemaleHigh(){
 		testUniversity.setPercentFemale(150.0);
 	}
@@ -333,6 +358,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailSetFinancialAid5(){
+		testUniversity.setFinancialAid(-0.5);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailSetFinancialAidHigh(){
 		testUniversity.setFinancialAid(115.0);
 	}
@@ -372,6 +402,11 @@ public class UniversityTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
+	public void testFailSetPercentAdmitted5(){
+		testUniversity.setPercentAdmitted(-0.5);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
 	public void testFailSetPercentAdmittedHigh(){
 		testUniversity.setPercentAdmitted(145.0);
 	}
@@ -396,6 +431,11 @@ public class UniversityTest {
 	@Test(expected=IllegalArgumentException.class)
 	public void testFailSetPercentEnrolledHigh(){
 		testUniversity.setPercentEnrolled(145.0);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testFailSetPercentEnrolled5(){
+		testUniversity.setPercentEnrolled(-0.5);
 	}
 
 	@Test
