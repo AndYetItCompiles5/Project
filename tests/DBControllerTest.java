@@ -145,7 +145,1423 @@ public class DBControllerTest {
 	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
 	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
  }
-  
+
+ @Test
+ public void testEditUniversity() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "SUBURBAN", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "SMALL-CITY", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "-1", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidLocations() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "SUBURBAN", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "SMALL-CITY", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "-1", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidControl() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "STATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "CITY", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "-1", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidNumberOfStudents() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 0, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 1, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidPercentFemale() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 50, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, -1, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 0, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 1, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 99, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidSatVerbal() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 300, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, -1, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 0, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 1, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 799, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidSatMath() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 300, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, -1, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 0, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 1, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 799, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -1, 100, 800, 800, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidExpense() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, -1, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 0, 90,
+             15000, 20, 50, 5, 5, 5, null));
+
+ }
+
+ @Test
+ public void testEditUniversityWithValidPercentFA() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 80,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, -1,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 0,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 1,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 99,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 100,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidNumberOfApplicants() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             0, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             -1, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidPercentAdmitted() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, -1, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 0, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 1, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 99, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 100, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidPercentEnrolled() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, -1, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 0, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 1, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 99, 5, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 100, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidAcademicScale() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 3, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, -1, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 1, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 2, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 4, 5, 5, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidSocialScale() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 3, 3, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, -1, -1, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 1, 1, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 2, 2, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 4, 4, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ @Test
+ public void testEditUniversityWithValidLifeScale() {
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 3, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, -1, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 1, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 2, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 4, null));
+     assertTrue(dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null));
+ }
+
+ // invalid location
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLocation() {
+
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "EARTH", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid control
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidControl() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid number of students
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidNumberOfStudents() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", (-5000), 90, 750, 750, 10000, 90, 15000,
+             20, 50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidNumberOfStudents2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", -2, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent female
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFemale() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, -30, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFemale2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 150, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFemale3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, -2, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFemale4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 101, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFemale5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, -.05, 750, 750, 10000, 90, 15000,
+             20, 50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatVerbal() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 850, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatVerbal2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, -50, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatVerbal3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, -2, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatVerbal4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 801, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatMath() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -50, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatMath2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -2, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatMath3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -801, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSatMath4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -950, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid exp
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidExp() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, -10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid exp
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidExp2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, -2, 90, 15000, 20, 50,
+             5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFA() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -30, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFA2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 150, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFA3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -2, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFA4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 101, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentFA5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -.05, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent numApplicants
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidNumApplicants() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, -1000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent numApplicants
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidNumApplicants2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, -2, 20, 50,
+             5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentAdmitted() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -30,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentAdmitted2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 150,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentAdmitted3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -2,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentAdmitted4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 101,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentAdmitted5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -.5,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentEnrolled() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -30, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentEnrolled2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             150, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentEnrolled3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -2, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentEnrolled4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             101, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidPercentEnrolled5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -.5, 5, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidAcademicScale() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, -6, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidAcademicScale2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 8, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidAcademicScale3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, -2, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidAcademicScale4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 0, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidAcademicScale5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 6, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSocialScale() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, -6, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSocialScale2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 8, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSocialScale3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, -2, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSocialScale4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 0, 5, null);
+ }
+
+ // invalid SocialScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidSocialScale5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 6, 5, null);
+ }
+
+ // invalid LifeScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLifeScale() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, -6, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLifeScale2() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 8, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLifeScale3() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, -2, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLifeScale4() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 0, null);
+ }
+
+ // invalid LifeScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testEditUniversityInvalidLifeScale5() {
+     dbcontroller.editUniversity("SEXTON", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 6, null);
+ }
+
+ @Test
+ public void testAddUniversity() {
+     ArrayList<String> emphasis = new ArrayList<String>();
+
+     dataBase.university_deleteUniversity("DUMMYSCHOOL");
+
+     // reseting the info for test purposes
+     dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
+     dataBase.university_deleteUniversity("SEXTON");
+     // invalid name//
+     assertTrue(dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000,
+             20, 50, 5, 5, 5, emphasis).equals("Name is required"));
+     assertTrue(dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, emphasis).equals("School is already saved"));
+ }
+
+ @Test
+ public void testAddUniversityWithValidLocations() {
+     assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+     dataBase.university_deleteUniversity("SEXTON1");
+
+     assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "SUBURBAN", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+     dataBase.university_deleteUniversity("SEXTON1");
+
+     assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "SMALL-CITY", "PRIVATE", 100, 90, 750, 750, 10000,
+             90, 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+     dataBase.university_deleteUniversity("SEXTON1");
+
+     assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "-1", "PRIVATE", 100, 90, 750, 750, 10000, 90,
+             15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+     dataBase.university_deleteUniversity("SEXTON1");
+ }
+ // Must remove temporary user
+ // dataBase.user_deleteUser("Person");
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testGetAccountError() {
+     dbcontroller.getAccount("SomethingThatWillNotbeAUserName");
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testGetUniversityError() {
+     dbcontroller.getUniversity("ANameOfAUniversityThatWillNotBeInTheDatabase");
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testGetUserSavedSchoolsError() {
+     dbcontroller.getUserSavedSchools("calseth");
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testDeactivateUserAlreadyDeactivated() {
+     dbcontroller.deactivateUser("luser");
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testDeactivateUserErrorWrongUser() {
+     dbcontroller.deactivateUser("asdfasdfasdfasdf");
+ }
+
+ // @Test
+ // public void testEditUniversity(){
+ // ArrayList<String> emphasis = new ArrayList<String>();
+ // assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN",
+ // "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1,
+ // emphasis));
+ // }
+ //
+ // @Test
+ // public void testGetAccount() {
+ // Account something = dbcontroller.getAccount("zakluetmer");
+ // String name = something.getFirstName();
+ // assertTrue(name.equals("Zak"));
+ // }
+ //
+ // @Test
+ // public void testGetUniversity() {
+ // assertTrue(dbcontroller.getUniversity("_TESTSCHOOL").getLocation().equals("URBAN"));
+ // }
+ //
+ //// @Test
+ //// public void testDisplayUniversity() {
+ //// int something = 0;
+ //// for(int i = 0 ; i <=
+ // dbcontroller.displayUniversity("ADELPHI").size();i++){
+ //// something++;
+ //// }
+ //// assertTrue(something > 6);
+ //// assertTrue(dbcontroller.displayUniversity("ADELPHI").get(3).equals("PRIVATE"));
+ //// assertTrue(dbcontroller.displayUniversity("ADELPHI").get(2).equals("-1"));
+ //// }
+ //
+ //// @Test
+ //// public void testEditUniversity() {
+ //// fail("Not yet implemented");
+ //// }emphasis
+ //
+ // @Test(expected=IllegalArgumentException.class)
+ // public void testAddUniversity() {
+ // ArrayList<String> emphasis= new ArrayList<String>();
+ // //invalid name//
+ // dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90,
+ // 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ //
+ // }
+ // @Test(expected=IllegalArgumentException.class)
+ // public void testAddUniversitySameName(){
+ // ArrayList<String> emphasis= new ArrayList<String>();
+ // dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE",
+ // 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ // }
+ //
+ //
+ // @Test(expected=IllegalArgumentException.class)
+ // public void testAddUniversityIllegalArgument(){
+ // ArrayList<String> emphasis= new ArrayList<String>();
+ // //invalid location
+ // dbcontroller.addUniversity("SEXTON", "MINNESOTA", "EARTH", "PRIVATE",
+ // 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ // }
+ //
+ // @Test(expected=IllegalArgumentException.class)
+ // public void testAddUniversityIllegalArgument2(){
+ // //invalid control
+ // ArrayList<String> emphasis = new ArrayList<String>();
+ // dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100,
+ // 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ // dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100,
+ // 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidControl() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "STATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "CITY", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "-1", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidNumberOfStudents() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 0, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 1, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidPercentFemale() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 50, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, -1, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 0, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 1, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 99, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidSatVerbal() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 300, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, -1, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 0, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 1, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 799, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidSatMath() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 300, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, -1, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 0, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 1, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 799, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", -1, 100, 800, 800, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidExpense() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, -1, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 0, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ //
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidPercentFA() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 80,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, -1,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 0,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 1,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 99,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 100,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidNumberOfApplicants() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 0, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // -1, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidPercentAdmitted() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, -1, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 0, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 1, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 99, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 100, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidPercentEnrolled() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, -1, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 0, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 1, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 99, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 100, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidAcademicScale() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 3, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, -1, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 1, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 2, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 4, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidSocialScale() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 3, 3, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, -1, -1, null).equals("School was added
+ // successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 1, 1, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 2, 2, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 4, 4, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+ //
+ // @Test
+ // public void testAddUniversityWithValidLifeScape() {
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 3, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, -1, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 1, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 2, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 4, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN",
+ // "PRIVATE", 100, 90, 750, 750, 10000, 90,
+ // 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+ // dataBase.university_deleteUniversity("SEXTON1");
+ // }
+
+ // invalid location
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLocation() {
+
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "EARTH", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid control
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidControl() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid number of students
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidNumberOfStudents() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", (-5000), 90, 750, 750, 10000, 90, 15000,
+             20, 50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidNumberOfStudents2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", -2, 90, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent female
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFemale() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, -30, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFemale2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 150, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFemale3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, -2, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFemale4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 101, 750, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFemale5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, -.05, 750, 750, 10000, 90, 15000,
+             20, 50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatVerbal() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 850, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatVerbal2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, -50, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatVerbal3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, -2, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satVerbal
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatVerbal4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 801, 750, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatMath() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -50, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatMath2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -2, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatMath3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -801, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid satMath
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSatMath4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, -950, 10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid exp
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidExp() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, -10000, 90, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid exp
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidExp2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, -2, 90, 15000, 20, 50,
+             5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFA() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -30, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFA2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 150, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFA3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -2, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFA4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 101, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent FA
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentFA5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -.05, 15000, 20,
+             50, 5, 5, 5, null);
+ }
+csbsju.educs
+ // invalid percent numApplicants
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidNumApplicants() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, -1000, 20,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid percent numApplicants
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidNumApplicants2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, -2, 20, 50,
+             5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentAdmitted() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -30,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentAdmitted2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 150,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentAdmitted3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -2,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentAdmitted4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 101,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentAdmitted
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentAdmitted5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -.5,
+             50, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentEnrolled() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -30, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentEnrolled2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             150, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentEnrolled3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -2, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentEnrolled4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             101, 5, 5, 5, null);
+ }
+
+ // invalid PercentEnrolled
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidPercentEnrolled5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             -.5, 5, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidAcademicScale() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, -6, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidAcademicScale2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 8, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidAcademicScale3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, -2, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidAcademicScale4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 0, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidAcademicScale5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 6, 5, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSocialScale() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, -6, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSocialScale2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 8, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSocialScale3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, -2, 5, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSocialScale4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 0, 5, null);
+ }
+
+ // invalid SocialScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidSocialScale5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 6, 5, null);
+ }
+
+ // invalid LifeScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLifeScale() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, -6, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLifeScale2() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 8, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLifeScale3() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, -2, null);
+ }
+
+ // invalid AcademicScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLifeScale4() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 0, null);
+ }
+
+ // invalid LifeScale
+ @Test(expected = IllegalArgumentException.class)
+ public void testAddUniversityInvalidLifeScale5() {
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, 50,
+             50, 5, 5, 6, null);
+ }
+
 
  @Test
  public void testSaveSchoolFail() 
