@@ -196,7 +196,7 @@ public class DBController
    * @param emphases up to five areas of study the University excels at (all Strings)
    * @return a success message
    */
-  public String editUniversity(String name, String state, String location, String control, int numStudents,
+  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases)
@@ -207,10 +207,10 @@ public class DBController
       if(universities[i][0].equals(name)){
         dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
                                            numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-              return "Changes successful";
+              return true;
       }      
     }
-    return "Universities doesnt exist or invalid changes";
+    return false;
   }
   
   /**
