@@ -49,13 +49,7 @@ public class DBControllerTest {
     //Must remove temporary user
     dataBase.user_deleteUser("Person");
     
-   // do we need these anymore?
-   // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
-   // dbcontroller.editUniversity("_TESTSCHOOL1", "MMIN", "URBAN", "PRIVATE", 100001, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
-   // dbcontroller.addUniversity("_TESTSCHOOL2", "MMIN", "URBAN", "PRIVATE", 100002, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
-   // dbcontroller.addUniversity("_TESTSCHOOL3", "MMIN", "URBAN", "PRIVATE", 100003, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
-   // dbcontroller.addUniversity("_TESTSCHOOL4", "MMIN", "URBAN", "PRIVATE", 100004, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
-   // dbcontroller.addUniversity("_TESTSCHOOL5", "MMIN", "URBAN", "PRIVATE", 100005, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
+    dataBase.university_deleteUniversity("SEXTON1");
  }
  
  @Test(expected=IllegalArgumentException.class)
@@ -81,12 +75,6 @@ public class DBControllerTest {
  @Test(expected=IllegalArgumentException.class)
  public void testDeactivateUserErrorWrongUser(){
 	 dbcontroller.deactivateUser("asdfasdfasdfasdf");
- }
-  
- @Test
- public void testEditUniversity(){
-	 ArrayList<String> emphasis = new ArrayList<String>();
-	 assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis));
  }
  
  @Test
@@ -118,7 +106,7 @@ public class DBControllerTest {
 // }emphasis
 
  @Test(expected=IllegalArgumentException.class)
- public void testAddUniversity() {
+ public void testAddUniversityError() {
   ArrayList<String> emphasis= new ArrayList<String>();
   //invalid name//
   dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
@@ -737,64 +725,40 @@ public class DBControllerTest {
  @Test
  public void testAddUniversity() {
      ArrayList<String> emphasis = new ArrayList<String>();
-
-     dataBase.university_deleteUniversity("DUMMYSCHOOL");
-
      // reseting the info for test purposes
      dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
      dataBase.university_deleteUniversity("SEXTON");
      // invalid name//
      assertTrue(dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000,
-             20, 50, 5, 5, 5, emphasis).equals("Name is required"));
+             20, 50, 5, 5, 5, emphasis));
      assertTrue(dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
-             15000, 20, 50, 5, 5, 5, emphasis).equals("School is already saved"));
+             15000, 20, 50, 5, 5, 5, emphasis));
  }
 
  @Test
  public void testAddUniversityWithValidLocations() {
+	 ArrayList<String> emp = new ArrayList<String>();
+ 	emp.add("Science");
      assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90,
-             15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+             15000, 20, 50, 5, 5, 5, emp));
      dataBase.university_deleteUniversity("SEXTON1");
 
      assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "SUBURBAN", "PRIVATE", 100, 90, 750, 750, 10000,
-             90, 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+             90, 15000, 20, 50, 5, 5, 5, emp));
      dataBase.university_deleteUniversity("SEXTON1");
 
      assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "SMALL-CITY", "PRIVATE", 100, 90, 750, 750, 10000,
-             90, 15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+             90, 15000, 20, 50, 5, 5, 5, emp));
      dataBase.university_deleteUniversity("SEXTON1");
 
      assertTrue(dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "-1", "PRIVATE", 100, 90, 750, 750, 10000, 90,
-             15000, 20, 50, 5, 5, 5, null).equals("School was added successfully!"));
+             15000, 20, 50, 5, 5, 5, emp));
      dataBase.university_deleteUniversity("SEXTON1");
  }
  // Must remove temporary user
  // dataBase.user_deleteUser("Person");
 
- @Test(expected = IllegalArgumentException.class)
- public void testGetAccountError() {
-     dbcontroller.getAccount("SomethingThatWillNotbeAUserName");
- }
 
- @Test(expected = IllegalArgumentException.class)
- public void testGetUniversityError() {
-     dbcontroller.getUniversity("ANameOfAUniversityThatWillNotBeInTheDatabase");
- }
-
- @Test(expected = IllegalArgumentException.class)
- public void testGetUserSavedSchoolsError() {
-     dbcontroller.getUserSavedSchools("calseth");
- }
-
- @Test(expected = IllegalArgumentException.class)
- public void testDeactivateUserAlreadyDeactivated() {
-     dbcontroller.deactivateUser("luser");
- }
-
- @Test(expected = IllegalArgumentException.class)
- public void testDeactivateUserErrorWrongUser() {
-     dbcontroller.deactivateUser("asdfasdfasdfasdf");
- }
 
  // @Test
  // public void testEditUniversity(){
@@ -1372,7 +1336,6 @@ public class DBControllerTest {
      dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, -.05, 15000, 20,
              50, 5, 5, 5, null);
  }
-csbsju.educs
  // invalid percent numApplicants
  @Test(expected = IllegalArgumentException.class)
  public void testAddUniversityInvalidNumApplicants() {
@@ -1418,7 +1381,7 @@ csbsju.educs
  // invalid PercentAdmitted
  @Test(expected = IllegalArgumentException.class)
  public void testAddUniversityInvalidPercentAdmitted5() {
-     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -.5,
+     dbcontroller.addUniversity("SEXTON1", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 600, 600, 1000, 20, 15000, -0.5,
              50, 5, 5, 5, null);
  }
 
@@ -1654,7 +1617,6 @@ csbsju.educs
  
  @Test
  public void testStateFullCaps() {
-  //dbcontroller.addUniversity("STATE DUMMY", "COLLEGEVILLE", "URBAN", "PRIVATE", 100, 10.0, 10, 10, 10, 10.0, 10, 10.0, 10.0, 4, 4, 4, null);
   searchResult = dbcontroller.search("-1", "COLLEGEVILLE", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
   assertTrue(searchResult.contains("STATE DUMMY"));
   assertTrue(searchResult.size()==1);
@@ -1773,8 +1735,8 @@ csbsju.educs
  
  @Test
  public void testNumStudentsZeroLowBigHigh(){
-	 searchResult = dbcontroller.search("-1", "-1", "-1", "-1", 0, 999999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
-	 assertTrue(searchResult.size()==187);
+	 searchResult = dbcontroller.search("-1", "-1", "-1", "-1", 0, 99999999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
  }
  
  @Test
