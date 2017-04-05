@@ -86,7 +86,7 @@ public class DBControllerTest {
  @Test
  public void testEditUniversity(){
 	 ArrayList<String> emphasis = new ArrayList<String>();
-	 assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis).equals("Changes successful"));
+	 assertTrue(dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis));
  }
  
  @Test
@@ -468,7 +468,7 @@ public void testAddAccountNoPassword(){
    
    assertFalse("Account's password is not 'hello'", account.getPassword().equals("hello"));
    assertTrue("Accounts password was successfully changed", 
-              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","hello",'u','Y').equals("Edit Successful!"));
+              dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","hello",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's password is 'hello'", account.getPassword().equals("hello"));
  }
@@ -479,7 +479,7 @@ public void testAddAccountNoPassword(){
    
    assertFalse("Account's first name is not 'Virgil'", account.getFirstName().equals("Virgil"));
    assertTrue("Accounts last name was successfully changed", 
-              dbcontroller.editAccount("Virgil", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+              dbcontroller.editAccount("Virgil", "Luetmer", "zakluetmer","password",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's first name is 'Virgil'", account.getFirstName().equals("Virgil"));
  }
@@ -490,7 +490,7 @@ public void testAddAccountNoPassword(){
    
    assertFalse("Account's last name is not 'Michael-House'", account.getLastName().equals("Michael-House"));
    assertTrue("Accounts last name was successfully changed", 
-              dbcontroller.editAccount("Zak", "Michael-House", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+              dbcontroller.editAccount("Zak", "Michael-House", "zakluetmer","password",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's password is 'Michael-House'", account.getLastName().equals("Michael-House"));
  }
@@ -501,7 +501,7 @@ public void testAddAccountNoPassword(){
    
    assertFalse("Account's type is not 'a'", account.getType()==('a'));
       assertTrue("Accounts last name was successfully changed", 
-                 dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'a','Y').equals("Edit Successful!"));
+                 dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer","password",'a','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Account's type is 'a'", account.getType()==('a'));   
  }

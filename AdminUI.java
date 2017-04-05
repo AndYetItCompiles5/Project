@@ -97,7 +97,7 @@ public class AdminUI{
    * @param emphases up to five areas of study the University excels at (all Strings) 
    * @return a string
    */
-  public String editUniversity(String name, String state, String location, String control, int numStudents,
+  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases){
@@ -126,9 +126,9 @@ public class AdminUI{
    * @param type of the account
    * @param status the status of the account
    * 
-   * @return string if edit was successful
+   * @return boolean if edit was successful
    */
-  public String editAccount(String first, String last,String username, String password, char type, char status){
+  public boolean editAccount(String first, String last,String username, String password, char type, char status){
     return aFuncController.editAccount(first,last,username,password,type, status); 
   }
   

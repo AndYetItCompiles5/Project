@@ -90,7 +90,7 @@ public class AccountController{
    * @param password: the user's password
    * @return Whether the user was successfully edited
    */
-  public String editUser(String first, String last, String password)
+  public boolean editUser(String first, String last, String password)
   {
     return dbController.editAccount(first,last,loggedIn,password,'u','y');
   }
@@ -105,7 +105,7 @@ public class AccountController{
    * @param status: the status of the account
    * @return whether the account was successfully edited
    */
-  public String editAccount(String first, String last, String username, String password, char type, char status)
+  public boolean editAccount(String first, String last, String username, String password, char type, char status)
   {
     return dbController.editAccount(first,last,username,password,type,status); 
   }

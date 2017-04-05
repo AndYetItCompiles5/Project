@@ -136,9 +136,9 @@ public class UserUI{
    * @param type U for user, A for admin
    * @param status if the account is active or not
    * 
-   * @return string
+   * @return boolean if the account is edited
    */
-  public String editAccount(String first,String last, String username, String password, char type, char status){
+  public boolean editAccount(String first,String last, String username, String password, char type, char status){
     return dbController.editAccount(first,last,username,password,type,status);
   } 
   

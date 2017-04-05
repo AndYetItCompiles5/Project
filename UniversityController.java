@@ -72,9 +72,9 @@ public class UniversityController
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
    * 
-   * @return a string indicating how many fields were change if any
+   * @return a boolean indicating how many fields were change if any
    */
-  public String editUniversity(String name, String state, String location, String control, int numStudents,
+  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
                                 double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                 int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                 int socialScale, int lifeScale, ArrayList<String> emphases)

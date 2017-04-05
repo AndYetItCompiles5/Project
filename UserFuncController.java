@@ -30,9 +30,9 @@ public class UserFuncController{
    * @param password: the user's password
    * @param type: the user's type
    * @param status: the user's status
-   * @return string if the account was successfully edited
+   * @return boolean if the account was successfully edited
    */
-  public String editUser(String first, String last, String username, String password,char type, char status)
+  public boolean editUser(String first, String last, String username, String password,char type, char status)
   {
     return dbController.editAccount(first,last,username, password,type,status);
   }

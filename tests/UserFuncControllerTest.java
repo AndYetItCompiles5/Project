@@ -65,7 +65,7 @@ public class UserFuncControllerTest {
    Account account = dbcontroller.getAccount("zakluetmer");
    assertFalse("Accounts first name is not 'David'", account.getFirstName().equals("David"));
    assertTrue("Accounts last name was changed succesfully", 
-              uFuncController.editUser("David", "Luetmer", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+              uFuncController.editUser("David", "Luetmer", "zakluetmer","password",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Accounts first name has been changed to 'David'", account.getFirstName().equals("David"));
  }
@@ -76,7 +76,7 @@ public class UserFuncControllerTest {
    Account account = dbcontroller.getAccount("zakluetmer");
    assertFalse("Accounts password is not 'password1'", account.getPassword().equals("password1"));
    assertTrue("Accounts password was changed succesfully", 
-              uFuncController.editUser("David", "Allen", "zakluetmer","password1",'u','Y').equals("Edit Successful!"));
+              uFuncController.editUser("David", "Allen", "zakluetmer","password1",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Accounts password has been changed to 'password1'", account.getPassword().equals("password1"));
  }
@@ -87,7 +87,7 @@ public class UserFuncControllerTest {
    Account account = dbcontroller.getAccount("zakluetmer");
    assertFalse("Accounts last name is not 'Allen'", account.getLastName().equals("Allen"));
    assertTrue("Accounts last name was changed succesfully", 
-              uFuncController.editUser("David", "Allen", "zakluetmer","password",'u','Y').equals("Edit Successful!"));
+              uFuncController.editUser("David", "Allen", "zakluetmer","password",'u','Y'));
    account = dbcontroller.getAccount("zakluetmer");
    assertTrue("Accounts last name has been changed to 'Allen'", account.getLastName().equals("Allen"));
  }

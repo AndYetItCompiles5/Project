@@ -194,9 +194,10 @@ public class DBController
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
+   * @throws IllegalArgumentException if the university was not found
    * @return a success message
    */
-  public String editUniversity(String name, String state, String location, String control, int numStudents,
+  public boolean editUniversity(String name, String state, String location, String control, int numStudents,
                                double perFemale, int satVerbal, int satMath, int expenses, double perFA,
                                int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                                int socialScale, int lifeScale, ArrayList<String> emphases)
@@ -207,10 +208,10 @@ public class DBController
       if(universities[i][0].equals(name)){
         dataBase.university_editUniversity(name,state,location,control,numStudents,perFemale,satVerbal,satMath,expenses,perFA,
                                            numApplicants,perAdmitted,perEnrolled,academicScale,socialScale,lifeScale);
-              return "Changes successful";
+              return true;
       }      
     }
-    return "Universities doesnt exist or invalid changes";
+    throw new IllegalArgumentException("Univesity was not found");
   }
   
   /**
@@ -260,7 +261,7 @@ public class DBController
        dataBase.university_addUniversityEmphasis(name, emphases.get(i));
       
     }
-      return name + " was added successfully!";
+      return "School was added successfully!";
   }
  }
   
@@ -652,9 +653,10 @@ public class DBController
    * @param password the password of the user
    * @param type: U for user, A for admin
    * @param status: Y if active, N if deactive
+   * @throws Illegal Argument Exception if an erro occurs
    * @return true if the user was successfully edited
    */
-  public String editAccount(String first, String last, String username, String password, char type, char status)
+  public boolean editAccount(String first, String last, String username, String password, char type, char status)
   {
     if(username.equals("")||password.equals("")||type==(' ')||status==(' '))
     {
@@ -663,14 +665,14 @@ public class DBController
     if(status=='Y'|| status=='y' || status=='N' || status=='n'){
     	if(type=='A'|| type=='a' || type=='U' || type=='u'){
     		dataBase.user_editUser(username,first,last,password,type,status);
-    		return "Edit Successful!";
+    		return true;
     }
     	else{
-    		return "Error";
+    		throw new IllegalArgumentException("Type cannot be "+type);
     	}
     }
     else{
-    	return "Error";
+    	throw new IllegalArgumentException("Status cannot be "+status);
   }
   }
   
