@@ -22,6 +22,10 @@ public class AccountTest {
 		dbController.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
 	}
 	
+	@Test
+	public void testAccount(){
+		assertTrue(account!=null);
+	}
 	@Test(expected=IllegalArgumentException.class)
 	public void testAccountWrongType(){
 		account2 = new Account("Zak","Luetmer","zakluetmer","password",'F','Y');

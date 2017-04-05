@@ -69,6 +69,11 @@ public class AccountControllerTest {
 	public void testDeactivateUserAlreadyDeactivated() {
 		aController.deactivateUser("calseth");
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testDeactivateUserDoesntExist() {
+		aController.deactivateUser("NA");
+	}
 
 	@Test
 	public void testGetLoggedIn() {

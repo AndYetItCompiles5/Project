@@ -40,16 +40,14 @@ public class DBControllerTest {
     
     // need to remove the school from the user's list of schools before testing saveSchool
     dbcontroller.removeSchool("zakluetmer", "_TESTSCHOOL");
-<<<<<<< HEAD
+    dataBase.university_deleteUniversity("DUMMYSCHOOL");
     
     // reseting the info for test purposes
     dbcontroller.editAccount("Zak", "Luetmer", "zakluetmer", "password", 'u', 'Y');
-=======
     dataBase.university_deleteUniversity("SEXTON");
     
     //Must remove temporary user
     dataBase.user_deleteUser("Person");
->>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
     
    // do we need these anymore?
    // dbcontroller.editUniversity("_TESTSCHOOL", "MMIN", "URBAN", "PRIVATE", 100000, 50, 500, 500, 100000, 90, 10000, 98, 50, 1, 1, 1, emphasis);
@@ -119,15 +117,19 @@ public class DBControllerTest {
 //  fail("Not yet implemented");
 // }emphasis
 
- @Test
+ @Test(expected=IllegalArgumentException.class)
  public void testAddUniversity() {
   ArrayList<String> emphasis= new ArrayList<String>();
   //invalid name//
-  assertTrue(dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis).equals("Name is required"));
-  assertTrue(dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis).equals("School is already saved"));
-  
+  dbcontroller.addUniversity("", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
   
  }
+ @Test(expected=IllegalArgumentException.class)
+ public void testAddUniversitySameName(){
+	 ArrayList<String> emphasis= new ArrayList<String>();
+	 dbcontroller.addUniversity("ADELPHI", "MINNESOTA", "URBAN", "PRIVATE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
+ }
+ 
  
  @Test(expected=IllegalArgumentException.class)
  public void testAddUniversityIllegalArgument(){
@@ -140,6 +142,7 @@ public class DBControllerTest {
  public void testAddUniversityIllegalArgument2(){
   //invalid control
 	 ArrayList<String> emphasis = new ArrayList<String>();
+	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
 	 dbcontroller.addUniversity("SEXTON", "MINNESOTA", "URBAN", "ONLINE", 100, 90, 750, 750, 10000, 90, 15000, 20, 50, 5, 5, 5, emphasis);
  }
   
@@ -159,7 +162,6 @@ public class DBControllerTest {
    assertTrue("User's list of schools contains _TESTSCHOOL", 
               dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
  }
-<<<<<<< HEAD
  
  @Test (expected=IllegalArgumentException.class)
  public void testSaveSchoolAlreadySavedFail()
@@ -178,18 +180,13 @@ public class DBControllerTest {
  public void testSaveSchoolInvalidUserFail()
  {
    dbcontroller.saveSchool("LakZuetmer", "_TESTSCHOOL");
-=======
- public void testSaveSchoolFail3(){
-   assertTrue("The school has already been saved to the user's profile", 
-              dbcontroller.saveSchool("zakluetmer","_TESTSCHOOL"));
->>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
  }
  
  
  @Test
  public void testGetUserSavedSchools() {
-  dbcontroller.saveSchool("zakluetmer", "QUEENS");
-  assertTrue(dbcontroller.getUserSavedSchools("zakluetmer").contains("QUEENS"));
+  dbcontroller.saveSchool("zakluetmer", "_TESTSCHOOL");
+  assertTrue(dbcontroller.getUserSavedSchools("zakluetmer").contains("_TESTSCHOOL"));
  }
 
  @Test
@@ -241,7 +238,7 @@ public class DBControllerTest {
  
  @Test
  public void testStateFullCaps() {
-  dbcontroller.addUniversity("STATE DUMMY", "COLLEGEVILLE", "URBAN", "PRIVATE", 100, 10.0, 10, 10, 10, 10.0, 10, 10.0, 10.0, 4, 4, 4, null);
+  //dbcontroller.addUniversity("STATE DUMMY", "COLLEGEVILLE", "URBAN", "PRIVATE", 100, 10.0, 10, 10, 10, 10.0, 10, 10.0, 10.0, 4, 4, 4, null);
   searchResult = dbcontroller.search("-1", "COLLEGEVILLE", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
   assertTrue(searchResult.contains("STATE DUMMY"));
   assertTrue(searchResult.size()==1);
@@ -289,13 +286,13 @@ public class DBControllerTest {
  @Test
  public void testLocationUrbanCaps() {
 	 searchResult = dbcontroller.search("-1", "-1", "URBAN", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
-	 assertTrue(searchResult.size()==82);
+	 assertTrue(searchResult.size()>=82);
  }
  
  @Test
  public void testLocationUrban() {
 	 searchResult = dbcontroller.search("-1", "-1", "urban", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
-	 assertTrue(searchResult.size()==82);
+	 assertTrue(searchResult.size()>=82);
  }
  
  @Test
@@ -524,7 +521,6 @@ public void testAddAccountNoPassword(){
   
  }
 
-<<<<<<< HEAD
  @Test //get from search controller
  public void testFindRecommendations() {
   
@@ -536,7 +532,6 @@ public void testAddAccountNoPassword(){
    assertTrue("The fourth reccomended school for _TESTSCHOOL is '_TESTSCHOOL4'", listRecs.get(3).equals("_TESTSCHOOL4"));
    assertTrue("The fifth reccomended school for _TESTSCHOOL is '_TESTSCHOOL5'",  listRecs.get(4).equals("_TESTSCHOOL5"));
  }
-=======
 // @Test //get from search controller
 // public void testFindRecommendations() {
 //  
@@ -550,5 +545,4 @@ public void testAddAccountNoPassword(){
 //  
 // }
 
->>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
 }

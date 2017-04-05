@@ -232,6 +232,7 @@ public class DBController
    * @param socialScale integer between 1 and 5 indicating the quality of social life at the University
    * @param lifeScale integer between 1 and 5 indicating the quality of life at the University
    * @param emphases up to five areas of study the University excels at (all Strings)
+   * @throw new IllegalArgumentException if the school name is empty or the school is already saved
    * @return success message if the school has been added successfully
    */
   public String addUniversity(String name, String state, String location, String control, int numStudents,
@@ -239,13 +240,16 @@ public class DBController
                               int numApplicants, double perAdmitted, double perEnrolled, int academicScale,
                               int socialScale, int lifeScale,ArrayList<String> emphases)
   {
+	  
+  University u = new University(name,state, location, control, numStudents,
+          perFemale, satVerbal, satMath, expenses, perFA,
+          numApplicants, perAdmitted, perEnrolled, academicScale,
+          socialScale, lifeScale,emphases);
   if(name.equals("")){
-   return "Name is required";
+   throw new IllegalArgumentException("Name is required");
   }
   else if(isSchoolSaved(name)){
-      return "School is already saved";
-      
-    	  
+      throw new IllegalArgumentException("School is already saved");  	  
   }
   else{
       dataBase.university_addUniversity(name,state, location, control, numStudents,
@@ -273,11 +277,7 @@ public class DBController
     
     if(r==-1)
     {
-<<<<<<< HEAD
-      throw new IllegalArgumentException("That school has already been saved to that user's profile.");
-=======
-      return false;
->>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
+      throw new IllegalArgumentException("There was an error");
     }
      
      return true;
@@ -565,15 +565,6 @@ public class DBController
    */
   public boolean removeSchool(String user, String school)
   {
-<<<<<<< HEAD
- String [][] temp = dataBase.user_getUsers();
- for (int i = 0; i<temp.length;i++){
-  if(temp[i][2].equals(user)){
-   return dataBase.user_removeSchool(user, school);
-  }
- }
- throw new IllegalArgumentException("Invalid Username");
-=======
 	String [][] temp = dataBase.user_getUsers();
 	for (int i = 0; i<temp.length;i++){
 		if(temp[i][2].equals(user)){
@@ -582,7 +573,6 @@ public class DBController
 		}
 	}
 	throw new IllegalArgumentException("Invalid Username");
->>>>>>> e258f97b3dc87baad6151de707cbd1136b919767
   }
   
   /**

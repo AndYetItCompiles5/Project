@@ -24,7 +24,7 @@ public class UserFuncControllerTest {
     loginUI = new LoginUI();
     dbcontroller = new DBController();
     uFuncController = new UserFuncController();
-    adminUI.addAccount("Bill",  "Smith", "bsmith", "1234567890", 'u');
+    //adminUI.addAccount("Bill",  "Smith", "bsmith", "1234567890", 'u');
     dbcontroller.editAccount("Zak","Luetmer","zakluetmer","password",'u','Y');
     dbcontroller.removeSchool("zakluetmer", "QUEENS");
     ArrayList<String> temp = new ArrayList<String>();
