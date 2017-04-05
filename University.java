@@ -200,17 +200,17 @@ public class University {
   } else {
    this.numberOfStudents = numStudents;
   }
-  if (perFemale < -1.0 || perFemale > 100.0) {
+  if ((perFemale < 0 || perFemale > 100.0) && perFemale != -1) {
    throw new IllegalArgumentException("Percent should be between 0 and 100");
   } else {
    this.percentFemale = perFemale;
   }
-  if (satVerbal < -1 || satVerbal > 800) {
+  if (satVerbal < -1 || satVerbal >= 801) {
    throw new IllegalArgumentException("SAT Verbal score should be between 0 and 800");
   } else {
    this.satVerbal = satVerbal;
   }
-  if (satMath < -1 || satMath > 800) {
+  if (satMath < -1 || satMath >= 801) {
    throw new IllegalArgumentException("SAT Math score should be between 0 and 800");
   } else {
    this.satMath = satMath;
@@ -220,7 +220,7 @@ public class University {
   } else {
    this.expenses = expenses;
   }
-  if (perFA < -1.0 || perFA > 100.0) {
+  if ((perFA < 0 || perFA > 100.0) && perFA != -1) {
    throw new IllegalArgumentException("Percent should be between 0 and 100");
   } else {
    this.percentFA = perFA;
@@ -230,12 +230,12 @@ public class University {
   } else {
    this.numApplicants = numApplicants;
   }
-  if (perAdmitted < -1.0 || perAdmitted > 100.0) {
+  if ((perAdmitted < 0 || perAdmitted > 100.0) && perAdmitted != -1) {
    throw new IllegalArgumentException("Percent should be between 0 and 100");
   } else {
    this.percentAdmitted = perAdmitted;
   }
-  if (perEnrolled < -1.0 || perEnrolled > 100.0) {
+  if ((perEnrolled < 0 || perEnrolled > 100.0) && perEnrolled != -1) {
    throw new IllegalArgumentException("Percent should be between 0 and 100");
   } else {
    this.percentEnrolled = perEnrolled;

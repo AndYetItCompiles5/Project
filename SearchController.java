@@ -63,11 +63,93 @@ public class SearchController
                      int numApplicantsLow, int numApplicantsHigh, double perAdmittedLow, double perAdmittedHigh, double perEnrolledLow, double perEnrolledHigh,
                      int academicScaleLow, int academicScaleHigh, int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases)
   {
-    return dbController.search(name, state, location, control, numStudentsLow,numStudentsHigh, perFemaleLow,perFemaleHigh, satVerbalLow,satVerbalHigh,
-                                   satMathLow,satMathHigh,expensesLow,expensesHigh,
-                                   perFALow,perFAHigh, numApplicantsLow,numApplicantsHigh, perAdmittedLow,perAdmittedHigh,perEnrolledLow,perEnrolledHigh,
-                                   academicScaleLow,academicScaleHigh,socialScaleLow,socialScaleHigh, lifeScaleLow,lifeScaleHigh,
-                                   emphases);
+	  ArrayList<University> allUniversities = dbController.getUniversityObjects();
+	  HashSet<String> answer = new HashSet<String>();
+
+	  for (int i = 0; i < allUniversities.size(); i++) {
+		  University currentU = allUniversities.get(i);
+	   if (currentU.getName().toLowerCase().contains(name.toLowerCase()) || name.equals("-1")
+	     && (currentU.getState().toLowerCase().contains(state.toLowerCase()) || state.equals("-1"))
+	     && (currentU.getLocation().toLowerCase().equals(location.toLowerCase())
+	        || location.equals("-1"))
+	     &&  (currentU.getControl().toLowerCase().equals(control.toLowerCase())
+	        || control.equals("-1"))) {
+
+	    if ((isWithinRangeInt(numStudentsLow, numStudentsHigh, currentU.getNumStudents())
+	      || (numStudentsLow == 0 && numStudentsHigh == 0))
+	      && (isWithinRangeDouble(perFemaleLow, perFemaleHigh, currentU.getPercentFemale())
+	        || (perFemaleLow == 0 && perFemaleHigh == 0))
+	      && (isWithinRangeInt(satVerbalLow, satVerbalHigh, currentU.getSatVerbal())
+	        || (satVerbalLow == 0 && satVerbalHigh == 0))
+	      && (isWithinRangeInt(satMathLow, satMathHigh, currentU.getSatMath())
+	        || (satMathLow == 0 && satMathHigh == 0))
+	      && (isWithinRangeInt(expensesLow, expensesHigh, currentU.getExpenses())
+	        || (expensesLow == 0 && expensesHigh == 0))
+	      && (isWithinRangeDouble(perFALow, perFAHigh, currentU.getFinancialAid()) || (perFALow == 0 && perFAHigh == 0))
+	      && (isWithinRangeInt(numApplicantsLow, numApplicantsHigh, currentU.getNumApplicants())
+	        || (numApplicantsLow == 0 && numApplicantsHigh == 0))
+	      && (isWithinRangeDouble(perAdmittedLow, perAdmittedHigh, currentU.getPercentAdmitted())
+	        || (perAdmittedLow == 0 && perAdmittedHigh == 0))
+	      && (isWithinRangeDouble(perEnrolledLow, perEnrolledHigh, currentU.getPercentEnrolled())
+	        || (perEnrolledLow == 0 && perEnrolledHigh == 0))
+	      && (isWithinRangeInt(academicScaleLow, academicScaleHigh, currentU.getAcademicScale())
+	        || (academicScaleLow == 0 && academicScaleHigh == 0))
+	      && (isWithinRangeInt(socialScaleLow, socialScaleHigh, currentU.getSocialScale())
+	        || (socialScaleLow == 0 && socialScaleHigh == 0))
+	      && (isWithinRangeInt(lifeScaleLow, lifeScaleHigh, currentU.getLifeScale())
+	        || (lifeScaleLow == 0 && lifeScaleHigh == 0))) 
+	    {
+	     if (emphases != (null)) 
+	     {
+	    	 ArrayList<String> currentUEmphases = currentU.getEmphases();
+	    	 for (int e=0; e<emphases.size();e++){
+	    		 if(currentUEmphases.contains(emphases.get(e))){
+	    			 answer.add(currentU.getName());
+	    		 }
+	    	 }
+	     } 
+	     else 
+	     {
+	      answer.add(currentU.getName());
+	     }
+	    }
+	   }
+	  }
+	  return answer;
+  }
+  
+  /**
+   * Checks if the school's actual data is within the range of the low and high that the user searched for
+   * @param low: the low bound the user inputed
+   * @param high: the high bound the user inputed
+   * @param actual: the concrete number of the school
+   * @return true if the actual is between the low and the high
+   * 
+   */
+  public boolean isWithinRangeDouble(double low, double high, double actual){
+    if(actual>=low && actual<=high){
+      return true; 
+    }
+    else{
+      return false; 
+    }
+  }
+  
+  /**
+   * Checks if the school's actual data is within the range of the low and high that the user searched for
+   * @param low: the low bound the user inputed
+   * @param high: the high bound the user inputed
+   * @param actual: the concrete number of the school
+   * @return true if the actual is between the low and the high
+   * 
+   */
+  public boolean isWithinRangeInt(int low, int high, int actual){
+    if(actual>=low && actual<=high){
+      return true; 
+    }
+    else{
+      return false; 
+    }
   }
   
   /**
