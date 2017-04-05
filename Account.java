@@ -67,12 +67,12 @@ public class Account{
     else{
     	throw new IllegalArgumentException("Type must be A,a,U,or u");
     }
-    if(status=='Y'||type=='y'|| type=='N' || type=='n'){
+    if(status=='Y'||status=='y'|| status=='N' || status=='n'){
 		  this.status=status;
 	    }
-	    else{
-	    	throw new IllegalArgumentException("Must set status to Y,y,N, or n");
-	    }  
+	else{
+	    throw new IllegalArgumentException("Must set status to Y,y,N, or n");
+	}  
   }
   
   /**
