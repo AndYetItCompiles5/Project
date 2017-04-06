@@ -16,6 +16,7 @@ public class AccountControllerTest {
 		aController = new AccountController();
 		dbController = new DBController();
 		dbController.editAccount("Nathan", "Hansen", "nhansen", "password", 'a', 'Y');
+		dbController.editAccount("Colton", "Alseth", "calseth", "password", 'U', 'N');
 	}
 
 	@Test

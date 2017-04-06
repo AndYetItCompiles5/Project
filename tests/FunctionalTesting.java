@@ -234,10 +234,10 @@ public class FunctionalTesting {
 		assertTrue(dbcontroller.getUniversity("_TESTTHISSCHOOL").getState().equals("TEXAS"));
 	}
 	
-	@Test (expected=IllegalArgumentException.class)
+	@Test
 	public void testEditUniversityNotASchoolFail(){
 		ArrayList<String> emp = new ArrayList<String>();
-		adminUI.editUniversity("_DOESNTEXIST", "MINNESOTA", "URBAN", "STATE", 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, emp);
+		assertFalse(adminUI.editUniversity("_DOESNTEXIST", "MINNESOTA", "URBAN", "STATE", 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, emp));
 	}
 	
 	@After

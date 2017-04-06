@@ -49,7 +49,7 @@ public class AccountController{
      throw new IllegalArgumentException("Username/password Incorrect");
     }
     
-    if(status == 'n')
+    if(status == 'n'|| status=='N')
     {
      throw new IllegalArgumentException("Account is deactivated");
     }
