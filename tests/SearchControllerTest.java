@@ -14,21 +14,21 @@ public class SearchControllerTest {
 
  private SearchController sController;
  private HashSet<String> searchResult;
+ private ArrayList<String> oneEmphases;
+ private ArrayList<String> manyEmphasis;
  
  @Before
  public void init()
  {
   sController = new SearchController();
   searchResult = new HashSet<String>();
+  oneEmphases = new ArrayList<String>();
+  manyEmphasis = new ArrayList<String>();
+  oneEmphases.add("AGRICULTURE");
+  manyEmphasis.add("ACCOUNTING");
+  manyEmphasis.add("ADMINISTRATIVE-SCIENCE");
+  manyEmphasis.add("AEROSPACE");
  }
- 
- /* still need to do this
- @Test
- public void testSearch()
- {
-  fail("Not yet implemented");
- }
- */
  
  @Test (expected = IllegalArgumentException.class)
  public void testFindReccomendationsFail()
@@ -609,5 +609,208 @@ public class SearchControllerTest {
  public void testPerEnrolledNoEntry(){
 	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
 	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testAcademicScaleNegativeLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, 6, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testAcademicScaleZeroLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==184);
+ }
+ 
+ @Test
+ public void testAcademicScaleBigLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==83);
+ }
+ 
+ @Test
+ public void testAcademicScaleLowBiggerThanHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==0);
+ }
+ 
+ @Test
+ public void testAcademicScaleSmallLowSmallHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==39);
+ }
+ 
+ @Test
+ public void testAcademicScaleMediumLowMediumHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==89);
+ }
+ 
+ @Test
+ public void testAcademicScaleNoEntry(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testSocialScaleNegativeLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, 6, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testSocialScaleZeroLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, null);
+	 assertTrue(searchResult.size()==184);
+ }
+ 
+ @Test
+ public void testSocialScaleBigLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, 0, 0, null);
+	 assertTrue(searchResult.size()==61);
+ }
+ 
+ @Test
+ public void testSocialScaleLowBiggerThanHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1, 0, 0, null);
+	 assertTrue(searchResult.size()==0);
+ }
+ 
+ @Test
+ public void testSocialScaleMediumLowMediumHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, null);
+	 assertTrue(searchResult.size()==110);
+ }
+ 
+ @Test
+ public void testSocialScaleNoEntry(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testLifeScaleNegativeLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, 6, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testLifeScaleZeroLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, null);
+	 assertTrue(searchResult.size()==183);
+ }
+ 
+ @Test
+ public void testLifeScaleBigLowBigHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 5, null);
+	 assertTrue(searchResult.size()==74);
+ }
+ 
+ @Test
+ public void testLifeScaleLowBiggerThanHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 1, null);
+	 assertTrue(searchResult.size()==0);
+ }
+ 
+ @Test
+ public void testLifeScaleMediumLowMediumHigh(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, null);
+	 assertTrue(searchResult.size()==100);
+ }
+ 
+ @Test
+ public void testLifeScaleNoEntry(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testOneEmphasis(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, oneEmphases);
+	 assertTrue(searchResult.size()==6);
+ }
+ 
+ @Test
+ public void testMultipleEmphases(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, manyEmphasis);
+	 assertTrue(searchResult.size()==11);
+ }
+ 
+ @Test
+ public void testNoEmphases(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==189);
+ }
+ 
+ @Test
+ public void testCombination1(){
+	 searchResult = sController.search("BOSTON", "-1", "SUBURBAN", "-1", 0, 16000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==1);
+	 assertTrue(searchResult.contains("BOSTON COLLEGE"));
+ }
+ 
+ @Test
+ public void testCombination2(){
+	 searchResult = sController.search("-1", "-1", "-1", "PRIVATE", 0, 9999, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==4);
+	 assertTrue(searchResult.contains("CSB"));
+	 assertTrue(searchResult.contains("SJU"));
+ }
+ 
+ @Test
+ public void testCombination3(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 5, 15, 400, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==3);
+	 assertTrue(searchResult.contains("ILLINOIS TECH"));
+	 assertTrue(searchResult.contains("NEW JERSEY TECH"));
+ }
+ 
+ @Test
+ public void testCombination4(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 5, 15, 400, 500, 0, 0, 10000, 19500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==2);
+	 assertTrue(searchResult.contains("ILLINOIS TECH"));
+	 assertTrue(searchResult.contains("NEWJERSEY TECH"));
+ }
+ 
+ @Test
+ public void testCombination5(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 10000, 11300, 80, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==4);
+	 assertTrue(searchResult.contains("SUNY BINGHAMTON"));
+	 assertTrue(searchResult.contains("GOTHENBURG UNIVERSITY"));
+ }
+ 
+ @Test
+ public void testCombination6(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 100, 16500, 17000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==2);
+	 assertTrue(searchResult.contains("SETON HALL"));
+	 assertTrue(searchResult.contains("WESLEYAN"));
+ }
+ 
+ @Test
+ public void testCombination7(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5000, 10000, 14, 15, 70, 80, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==2);
+	 assertTrue(searchResult.contains("JUILLIARD"));
+	 assertTrue(searchResult.contains("EASTMAN SCHOOL OF MUSIC"));
+ }
+ 
+ @Test
+ public void testCombination8(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 15, 0, 0, 5, 5, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==2);
+	 assertTrue(searchResult.contains("CAL TECH"));
+	 assertTrue(searchResult.contains("ECOLE POLYTECHNIQUE"));
+ }
+ 
+ @Test
+ public void testCombination9(){
+	 searchResult = sController.search("-1", "-1", "-1", "-1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 5, null);
+	 assertTrue(searchResult.size()==4);
+	 assertTrue(searchResult.contains("UNIVERSITY OF MICHIGAN"));
+	 assertTrue(searchResult.contains("ECOLE POLYTECHNIQUE"));
  }
 }
