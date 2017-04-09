@@ -646,6 +646,7 @@ public class DBController {
    * @return true if the user was successfully edited
    */
   public boolean editAccount(String first, String last, String username, String password, char type, char status) {
+    
     if (username.equals("") || password.equals("") || type == (' ') || status == (' ')) {
       throw new IllegalArgumentException("Username, password, type and status are required.");
     }
