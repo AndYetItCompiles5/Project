@@ -26,6 +26,60 @@ public class SearchController {
 	}
 
 	/**
+	 * Checks if the school's actual data is within the range of the low and
+	 * high that the user searched for
+	 * 
+	 * @param low:
+	 *            the low bound the user inputed
+	 * @param high:
+	 *            the high bound the user inputed
+	 * @param actual:
+	 *            the concrete number of the school
+	 * @return true if the actual is between the low and the high
+	 * 
+	 */
+	public boolean isWithinRangeDouble(double low, double high, double actual) {
+		if (actual >= low && actual <= high) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Checks if the school's actual data is within the range of the low and
+	 * high that the user searched for
+	 * 
+	 * @param low:
+	 *            the low bound the user inputed
+	 * @param high:
+	 *            the high bound the user inputed
+	 * @param actual:
+	 *            the concrete number of the school
+	 * @return true if the actual is between the low and the high
+	 * 
+	 */
+	public boolean isWithinRangeInt(int low, int high, int actual) {
+		if (actual >= low && actual <= high) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Gets any recommended schools
+	 * 
+	 * @param name
+	 *            the name of the University
+	 * 
+	 * @return ArrayList of recommended schools
+	 */
+	public ArrayList<String> findRecommendations(String name) {
+		return dbController.findRecommendations(name);
+	}
+	
+	/**
 	 * Searches for schools with the provided information
 	 * 
 	 * @param name
@@ -99,108 +153,53 @@ public class SearchController {
 			int socialScaleLow, int socialScaleHigh, int lifeScaleLow, int lifeScaleHigh, ArrayList<String> emphases) {
 		ArrayList<University> allUniversities = dbController.getUniversityObjects();
 		HashSet<String> answer = new HashSet<String>();
-
-		for (int i = 0; i < allUniversities.size(); i++) {
-			University currentU = allUniversities.get(i);
-			if (currentU.getName().toLowerCase().contains(name.toLowerCase())
-					|| name.equals("-1")
-							&& (currentU.getState().toLowerCase().contains(state.toLowerCase()) || state.equals("-1"))
-							&& (currentU.getLocation().toLowerCase().equals(location.toLowerCase())
-									|| location.equals("-1"))
-					&& (currentU.getControl().toLowerCase().equals(control.toLowerCase()) || control.equals("-1"))) {
-
-				if ((isWithinRangeInt(numStudentsLow, numStudentsHigh, currentU.getNumStudents())
-						|| (numStudentsLow == 0 && numStudentsHigh == 0))
-						&& (isWithinRangeDouble(perFemaleLow, perFemaleHigh, currentU.getPercentFemale())
-								|| (perFemaleLow == 0 && perFemaleHigh == 0))
-						&& (isWithinRangeInt(satVerbalLow, satVerbalHigh, currentU.getSatVerbal())
-								|| (satVerbalLow == 0 && satVerbalHigh == 0))
-						&& (isWithinRangeInt(satMathLow, satMathHigh, currentU.getSatMath())
-								|| (satMathLow == 0 && satMathHigh == 0))
-						&& (isWithinRangeInt(expensesLow, expensesHigh, currentU.getExpenses())
-								|| (expensesLow == 0 && expensesHigh == 0))
-						&& (isWithinRangeDouble(perFALow, perFAHigh, currentU.getFinancialAid())
-								|| (perFALow == 0 && perFAHigh == 0))
-						&& (isWithinRangeInt(numApplicantsLow, numApplicantsHigh, currentU.getNumApplicants())
-								|| (numApplicantsLow == 0 && numApplicantsHigh == 0))
-						&& (isWithinRangeDouble(perAdmittedLow, perAdmittedHigh, currentU.getPercentAdmitted())
-								|| (perAdmittedLow == 0 && perAdmittedHigh == 0))
-						&& (isWithinRangeDouble(perEnrolledLow, perEnrolledHigh, currentU.getPercentEnrolled())
-								|| (perEnrolledLow == 0 && perEnrolledHigh == 0))
-						&& (isWithinRangeInt(academicScaleLow, academicScaleHigh, currentU.getAcademicScale())
-								|| (academicScaleLow == 0 && academicScaleHigh == 0))
-						&& (isWithinRangeInt(socialScaleLow, socialScaleHigh, currentU.getSocialScale())
-								|| (socialScaleLow == 0 && socialScaleHigh == 0))
-						&& (isWithinRangeInt(lifeScaleLow, lifeScaleHigh, currentU.getLifeScale())
-								|| (lifeScaleLow == 0 && lifeScaleHigh == 0))) {
-					if (emphases != null) {
-						ArrayList<String> currentUEmphases = currentU.getEmphases();
-						for (int e = 0; e < emphases.size(); e++) {
-							if (currentUEmphases.contains(emphases.get(e))) {
-								answer.add(currentU.getName());
+		for (int i=0;i<allUniversities.size();i++){
+			if(allUniversities.get(i).getName().toLowerCase().contains(name.toLowerCase()) || name.equals("-1")){
+				if(allUniversities.get(i).getState().toLowerCase().contains(state.toLowerCase()) || state.equals("-1")){
+					if(allUniversities.get(i).getLocation().toLowerCase().contains(location.toLowerCase()) || location.equals("-1")){
+						if(allUniversities.get(i).getControl().toLowerCase().contains(control.toLowerCase()) || control.equals("-1")){
+							if(isWithinRangeInt(numStudentsLow,numStudentsHigh,allUniversities.get(i).getNumStudents()) || (numStudentsLow==0&&numStudentsHigh==0)){
+								if(isWithinRangeDouble(perFemaleLow,perFemaleHigh,allUniversities.get(i).getPercentFemale()) || (perFemaleLow==0 && perFemaleHigh==0)){
+									if(isWithinRangeInt(satVerbalLow,satVerbalHigh,allUniversities.get(i).getSatVerbal()) || (satVerbalLow==0 && satVerbalHigh==0)){
+										if(isWithinRangeInt(satMathLow,satMathHigh,allUniversities.get(i).getSatMath()) || (satMathLow==0 && satMathHigh==0)){
+											if(isWithinRangeInt(expensesLow,expensesHigh,allUniversities.get(i).getExpenses()) || (expensesLow==0 && expensesHigh==0)){
+												if(isWithinRangeDouble(perFALow,perFAHigh,allUniversities.get(i).getFinancialAid()) || (perFALow==0 && perFAHigh==0)){
+													if(isWithinRangeInt(numApplicantsLow,numApplicantsHigh,allUniversities.get(i).getNumApplicants()) || (numApplicantsLow==0 && numApplicantsHigh==0)){
+														if(isWithinRangeDouble(perAdmittedLow,perAdmittedHigh,allUniversities.get(i).getPercentAdmitted()) || (perAdmittedLow==0 && perAdmittedHigh==0)){
+															if(isWithinRangeDouble(perEnrolledLow,perEnrolledHigh,allUniversities.get(i).getPercentEnrolled()) || (perEnrolledLow==0 && perEnrolledHigh==0)){
+																if(isWithinRangeInt(academicScaleLow,academicScaleHigh,allUniversities.get(i).getAcademicScale()) || (academicScaleLow==0 && academicScaleHigh==0)){
+																	if(isWithinRangeInt(socialScaleLow,socialScaleHigh,allUniversities.get(i).getSocialScale()) || (socialScaleLow==0 && socialScaleHigh==0)){
+																		if(isWithinRangeInt(lifeScaleLow,lifeScaleHigh,allUniversities.get(i).getLifeScale()) || (lifeScaleLow==0 && lifeScaleHigh==0)){
+																			if(emphases==null){
+																				answer.add(allUniversities.get(i).getName());
+																			}
+																			else{
+																				ArrayList<String> currentUEmphases = allUniversities.get(i).getEmphases();
+																				for(int e=0;e<currentUEmphases.size();e++){
+																					if(emphases.contains(currentUEmphases.get(e))){
+																						answer.add(allUniversities.get(i).getName());
+																					}
+																				}
+																			}
+																		}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
 							}
 						}
-					} else if (emphases == null) {
-						answer.add(currentU.getName());
 					}
 				}
 			}
+		return answer;		
 		}
-		return answer;
-	}
-
-	/**
-	 * Checks if the school's actual data is within the range of the low and
-	 * high that the user searched for
-	 * 
-	 * @param low:
-	 *            the low bound the user inputed
-	 * @param high:
-	 *            the high bound the user inputed
-	 * @param actual:
-	 *            the concrete number of the school
-	 * @return true if the actual is between the low and the high
-	 * 
-	 */
-	public boolean isWithinRangeDouble(double low, double high, double actual) {
-		if (actual >= low && actual <= high) {
-			return true;
-		} else {
-			return false;
 		}
-	}
+	
 
-	/**
-	 * Checks if the school's actual data is within the range of the low and
-	 * high that the user searched for
-	 * 
-	 * @param low:
-	 *            the low bound the user inputed
-	 * @param high:
-	 *            the high bound the user inputed
-	 * @param actual:
-	 *            the concrete number of the school
-	 * @return true if the actual is between the low and the high
-	 * 
-	 */
-	public boolean isWithinRangeInt(int low, int high, int actual) {
-		if (actual >= low && actual <= high) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Gets any recommended schools
-	 * 
-	 * @param name
-	 *            the name of the University
-	 * 
-	 * @return ArrayList of recommended schools
-	 */
-	public ArrayList<String> findRecommendations(String name) {
-		return dbController.findRecommendations(name);
-	}
-
-}
