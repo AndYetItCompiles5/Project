@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ AccountControllerTest.class, AccountTest.class, AdminFuncControllerTest.class,
-		DBControllerTest.class, SearchControllerTest.class, UniversityControllerTest.class, UniversityTest.class,
+		DBControllerTest.class, SearchControllerTest.class, UniversityTest.class,
 		UserFuncControllerTest.class })
 public class AllTests {
 

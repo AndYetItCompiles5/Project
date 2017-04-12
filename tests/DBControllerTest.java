@@ -1449,10 +1449,10 @@ public class DBControllerTest {
 
  @Test
  public void testRemoveSchool() {
-  dbcontroller.saveSchool("calseth", "QUEENS");
-  dbcontroller.removeSchool("calseth", "QUEENS");
-  ArrayList<String> temp = dbcontroller.getUserSavedSchools("calseth");
-  assertTrue(!temp.get(0).equals("QUEENS"));
+  dbcontroller.saveSchool("zakluetmer", "QUEENS");
+  dbcontroller.removeSchool("zakluetmer", "QUEENS");
+  ArrayList<String> temp = dbcontroller.getUserSavedSchools("zakluetmer");
+  assertTrue(!temp.contains("QUEENS"));
  }
 
  @Test(expected = IllegalArgumentException.class)
