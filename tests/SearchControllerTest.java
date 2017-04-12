@@ -813,4 +813,13 @@ public class SearchControllerTest {
 	 assertTrue(searchResult.contains("UNIVERSITY OF MICHIGAN"));
 	 assertTrue(searchResult.contains("ECOLE POLYTECHNIQUE"));
  }
+ 
+ @Test
+ public void testCombination10(){
+	 searchResult = sController.search("UNIVERSITY", "TEXAS", "SUBURBAN", "PRIVATE", 7500, 10250, 25, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, null);
+	 assertTrue(searchResult.size()==1);
+	 assertTrue(searchResult.contains("ABILENE CHRISTIAN UNIVERSITY"));
+ }
+ 
+ 
 }
