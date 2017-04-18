@@ -364,6 +364,9 @@ public class DBController {
     ArrayList<String> listSchools = new ArrayList<String>();
     String[][] namesWithSchools = dataBase.user_getUsernamesWithSavedSchools();
     boolean added = false;
+    if(isDeactivated(user)){
+    	throw new IllegalArgumentException("The user is deactivated");
+    }
     if (namesWithSchools == null) {
       return listSchools;
     }
@@ -695,7 +698,7 @@ public class DBController {
    * @return confirmation message if the user was deactivated or not
    */
   public boolean deactivateUser(String username) {
-    if (!getAccount(username).getUsername().equals(username)) {
+    if (!isUsernameTaken(username)) {
       throw new IllegalArgumentException("The name you have entered was not found.");
     } else if (isDeactivated(username)) {
       throw new IllegalArgumentException("Account is deactivated");
@@ -709,7 +712,7 @@ public class DBController {
       String password = account.getPassword();
       char type = account.getType();
       
-      dataBase.user_editUser(username, first, last, password, type, 'n');
+      dataBase.user_editUser(username, first, last, password, type, 'N');
       
       return true;
     }
