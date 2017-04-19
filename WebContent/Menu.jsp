@@ -1,5 +1,5 @@
 <%@include file = "verifyLogin.jsp"%>
-<%@page language="java" import="edu.csbsju.csci230.*,java.util.*"%>
+<%@page language="java" import="Project..*,java.util.*"%>
 <html>
 <head>
 <title></title>
