@@ -1,13 +1,24 @@
+<<<<<<< HEAD
 import java.util.*;
 import Project230.*;
 
 /**
  * Admin
  * @authors: Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+=======
+package Project;
+import java.util.*;
+import Project.*;
+
+/**
+ * Admin
+ * @author Nathan Hansen, Zak Luetmer, Colton Alseth, TJ Schmitz
+>>>>>>> c2f6581e9c9ac05ca7e938b7773cee6b7fa0f2cb
  * @version 2/25/2017
  */
 
 public class Admin extends Account{
+<<<<<<< HEAD
    
   /**
    *Constructor 
@@ -72,5 +83,18 @@ public class Admin extends Account{
    */
   public boolean editAccount(Account account){
     return false; 
+=======
+  
+  /**
+   * Default constructor
+   * @param first the first name of the Admin
+   * @param last the last name of the Admin
+   * @param username of the Admin
+   * @param password the password of the admin
+   */
+  public Admin(String first, String last, String username, String password)
+  {
+    super(first,last,username,password,'a','y');
+>>>>>>> c2f6581e9c9ac05ca7e938b7773cee6b7fa0f2cb
   }
 }
