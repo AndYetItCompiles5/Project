@@ -1,4 +1,4 @@
-<%@include file = "verifyLogin.jsp"%>
+<%@include file="verifyLogin.jsp"%>
 <%@page language="java" import="Project..*,java.util.*"%>
 <html>
 <head>
@@ -8,9 +8,9 @@
 
 	<%
 		UserController uc = (UserController) session.getAttribute("sess");
-			User currentU = uc.getCurrentUser();
-			String name = currentU.getfName();
-			out.print("Hello User " + name);
+		User currentU = uc.getCurrentUser();
+		String name = currentU.getfName();
+		out.print("Hello User " + name);
 		ArrayList<User> allUsers = new ArrayList<User>();
 		allUsers = uc.getAllUsers();
 	%>
@@ -38,18 +38,30 @@
 				<td style="vertical-align: top;">
 					<form method="post" action="Edit.jsp" name="Edit">
 						<input name="Edit" value="Edit" type="submit"> <input
-							name="Username" value="<%= (allUsers.get(i)).getUsername() %>" type="hidden">
+							name="Username" value="<%= (allUsers.get(i)).getUsername() %>"
+							type="hidden">
 					</form>
 				</td>
-				<td style="vertical-align: top;"><%out.print(allUsers.get(i).getFullName());%></td>
-				<td style="vertical-align: top;"><%out.print(allUsers.get(i).getUsername());%></td>
-				<td style="vertical-align: top;"><%out.print(allUsers.get(i).getPassword());%></td>
-				<td style="vertical-align: top;"><%out.print(allUsers.get(i).getType());%></td>
-				<td style="vertical-align: top;"><%out.print(allUsers.get(i).getStatus());%></td>
+				<td style="vertical-align: top;">
+					<%out.print(allUsers.get(i).getFullName());%>
+				</td>
+				<td style="vertical-align: top;">
+					<%out.print(allUsers.get(i).getUsername());%>
+				</td>
+				<td style="vertical-align: top;">
+					<%out.print(allUsers.get(i).getPassword());%>
+				</td>
+				<td style="vertical-align: top;">
+					<%out.print(allUsers.get(i).getType());%>
+				</td>
+				<td style="vertical-align: top;">
+					<%out.print(allUsers.get(i).getStatus());%>
+				</td>
 				<td style="vertical-align: top;">
 					<form method="post" action="Delete.jsp" name="Delete">
 						<input name="Delete" value="Delete" type="submit"> <input
-							name="Username" value="<%= (allUsers.get(i)).getUsername() %>" type="hidden">
+							name="Username" value="<%= (allUsers.get(i)).getUsername() %>"
+							type="hidden">
 					</form>
 				</td>
 			</tr>
